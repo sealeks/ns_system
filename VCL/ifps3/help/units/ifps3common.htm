@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifps3common</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<H1>Unit ifps3common</H1>
+<H2>Description</H2>
+<P>
+Defines: NOSMARTLIST - Don't use the smart list option NOSMARTMM - Don't use the smart PIFVariant allocater</P>
+<H2>Functions and procedures</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A href="#244"><CODE>function <B>MakeHash</B>(const s: string): Longint;</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="244"><TD><CODE>function <B>MakeHash</B>(const s: string): Longint;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Make a hash of a string</P>
+<H2>Types</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="231"><TD>TbtDouble</TD>
+<TD>Double</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="232"><TD>TbtExtended</TD>
+<TD>Extended</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="233"><TD>TbtS16</TD>
+<TD>Smallint</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="234"><TD>TbtS32</TD>
+<TD>Integer/Longint</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="235"><TD>tbts64</TD>
+<TD>An 8 byte signed integer (int64)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="236"><TD>TbtS8</TD>
+<TD>Shortint</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="237"><TD>TbtSingle</TD>
+<TD>Single</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="238"><TD>TbtString</TD>
+<TD>String/Pchar</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="239"><TD>TbtU16</TD>
+<TD>word</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="240"><TD>TbtU32</TD>
+<TD>Cardinal/Longword</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="241"><TD>TbtU8</TD>
+<TD>Byte</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="242"><TD>TIFPSBaseType</TD>
+<TD>TIFPSBaseType is the most basic type -type</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="243"><TD>TIFPSVariableType</TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#501">OnUseVariable</A></CODE> TIFPSVariableType is used in TIFPSComp.OnUseVariable event</TD>
+</A></TR>
+</TABLE><H2>Constants</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="185"><TD>btArray</TD>
+<TD>An array</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="186"><TD>btClass</TD>
+<TD>Compile time class type; In IFPS3 external classes are not of one defined type (They could be anything from an integer to a pointer)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="187"><TD>btDouble</TD>
+<TD>A 8 byte float (double)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="188"><TD>btEnum</TD>
+<TD>Compile time enumeration; This will be a btu32 when compiled</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="189"><TD>btExtended</TD>
+<TD>A 10 byte float (extended)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="190"><TD>btPChar</TD>
+<TD>A PChar (internally the same as a string)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="191"><TD>btPointer</TD>
+<TD>A pointer</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="192"><TD>btProcPtr</TD>
+<TD>Compile time procedural pointer (will be btu32 when compiled)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="193"><TD>btRecord</TD>
+<TD>A record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="194"><TD>btResourcePointer</TD>
+<TD>A resource pointer: Variable that can contain things from outside the script engine</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="195"><TD>btReturnAddress</TD>
+<TD>Executer internal type for return addresses, can not be used as a type</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="196"><TD>btS16</TD>
+<TD>A 2 byte signed integer (smallint)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="197"><TD>btS32</TD>
+<TD>A 4 byte signed integer (Integer/Longint)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="198"><TD>btS64</TD>
+<TD>An 8 byte signed integer (int64)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="199"><TD>btS8</TD>
+<TD>A 1 byte signed integer (Shortint)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="200"><TD>btSingle</TD>
+<TD>A 4 byte float (single)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="201"><TD>btString</TD>
+<TD>A string</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="202"><TD>btU16</TD>
+<TD>A 2 byte unsigned integer (word)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="203"><TD>btU32</TD>
+<TD>A 4 byte unsigned integer (cardinal/longword)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="204"><TD>btU8</TD>
+<TD>A 1 byte unsigned integer (byte)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="205"><TD>btVariant</TD>
+<TD>A variant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="206"><TD>CM_A</TD>
+<TD>Script internal command: Assign command</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="207"><TD>cm_bn</TD>
+<TD>Script internal command: Boolean NOT</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="208"><TD>Cm_C</TD>
+<TD>Script internal command: Call</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="209"><TD>CM_CA</TD>
+<TD>Script internal command: Calculate Command</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="210"><TD>Cm_CG</TD>
+<TD>Script internal command: Conditional Goto</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="211"><TD>Cm_CNG</TD>
+<TD>Script internal command: Conditional NOT Goto</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="212"><TD>CM_CO</TD>
+<TD>Script internal command: Compare</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="213"><TD>Cm_cv</TD>
+<TD>Script internal command: Call Var</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="214"><TD>cm_fg</TD>
+<TD>Script internal command: Flag Goto</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="215"><TD>Cm_G</TD>
+<TD>Script internal command: Goto</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="216"><TD>CM_P</TD>
+<TD>Script internal command: Push</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="217"><TD>CM_PO</TD>
+<TD>Script internal command: Pop</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="218"><TD>Cm_Pt</TD>
+<TD>Script internal command: Push Type</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="219"><TD>CM_PV</TD>
+<TD>Script internal command: Push Var</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="220"><TD>Cm_R</TD>
+<TD>Script internal command: Ret</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="221"><TD>cm_sf</TD>
+<TD>Script internal command: Set Flag</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="222"><TD>cm_sp</TD>
+<TD>Script internal command: Set Pointer</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="223"><TD>Cm_ST</TD>
+<TD>Script internal command: Set Stack Type</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="224"><TD>cm_vm</TD>
+<TD>Script internal command: Var Minus</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="225"><TD>IFPSAddrNegativeStackStart</TD>
+<TD>Start of the negative stack</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="226"><TD>IFPSAddrStackStart</TD>
+<TD>Start of the positive stack</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="227"><TD>IFPSCurrentBuildNo</TD>
+<TD>The current build of the compiler and executer.</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="228"><TD>IFPSCurrentversion</TD>
+<TD>The current version of the script engine</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="229"><TD>IFPSLowBuildSupport</TD>
+<TD>The lowest supported build by the executer.</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="230"><TD>IFPSValidHeader</TD>
+<TD>The header of a compiled IFPS3 binary must start with this</TD>
+</A></TR>
+</TABLE><HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

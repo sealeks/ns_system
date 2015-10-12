@@ -1,0 +1,20 @@
+procedure MyClick(sender: TObject);
+       begin
+            ImmiSyButton1.Width:=immiSyButton1.Width+200;
+       end;
+
+procedure MyClick1(sender: TObject);
+       begin
+                     Writeln(inttostr( immishape3.brush.color));
+   // Writeln(inttostr(immishape3.brush.color+10));
+         // immishape3.brush.color:=10;
+   // Writeln(inttostr( immishape3.brush.color));
+   // Writeln(inttostr(immishape3.brush.color+10));
+   
+       end;
+
+    begin
+         _13.OnClick:=@MyClick;
+         immisyButton1.onclick:=@MyClick;
+         MyClick1(nil);
+  end.

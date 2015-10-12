@@ -1,0 +1,22 @@
+Program IFSTest;
+var
+  e: variant;
+Begin
+  case VarGetType(e) of
+vtNull: Writeln('null');
+vtString: Writeln('String');
+vtU64: writeln('Int64');
+vtS32: Writeln('Longint');
+vtU32: Writeln('Cardinal');
+vtS16: Writeln('Smallint');
+vtU16: Writeln('Word');
+vtS8: Writeln('Shortint');
+vtU8: Writeln('Byte');
+vtSingle: Writeln('Single');
+vtDouble: Writeln('Double');
+vtExtended: Writeln('Extended');
+vtResourcePointer: writeln('Pointer');
+vtArray: writeln('arr');
+vtRecord: Writeln('rec');
+  end;
+End.

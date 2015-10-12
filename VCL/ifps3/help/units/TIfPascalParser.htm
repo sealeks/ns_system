@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifps3utl: Class TIfPascalParser</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<A name="309"><H1>Class TIfPascalParser</H1>
+</A><H2>Unit</H2>
+<A href="ifps3utl.htm">ifps3utl</A><BR><H2>Declaration</H2>
+<P><CODE>type TIfPascalParser = class</CODE></P><H2>Description</H2>
+TIfPacalParser is the parser used to parse the current script<H2>Methods</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#310"><CODE>constructor <B>Create</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#311"><CODE>destructor <B>Destroy</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#312"><CODE>procedure <B>Clear</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#313"><CODE>function <B>CurrTokenID</B>: TIFPasToken;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#314"><CODE>function <B>GetData</B>(var Data: string): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#315"><CODE>function <B>GetToken</B>: string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#316"><CODE>procedure <B>Next</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#317"><CODE>function <B>SetData</B>(const Data: string): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIfPascalParser.htm#318"><CODE>function <B>SetText</B>(const Data: string; var ErrRec: TIFParserError): Boolean;</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="310"><TD><CODE>constructor <B>Create</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Create</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="311"><TD><CODE>destructor <B>Destroy</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Destroy</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="312"><TD><CODE>procedure <B>Clear</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Clear the parser</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="313"><TD><CODE>function <B>CurrTokenID</B>: <A href="ifps3utl.htm#285">TIFPasToken</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>The current token ID</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="314"><TD><CODE>function <B>GetData</B>(var Data: string): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Save the data to a binary format</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="315"><TD><CODE>function <B>GetToken</B>: string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Return the token in case it is a string, char, integer, number or identifier</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="316"><TD><CODE>procedure <B>Next</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Go to the next token</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="317"><TD><CODE>function <B>SetData</B>(const Data: string): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>load the data from a binary format</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="318"><TD><CODE>function <B>SetText</B>(const Data: string; var ErrRec: <A href="ifps3utl.htm#283">TIFParserError</A>): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Load a script</P>
+<H2>Properties</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIfPascalParser.htm#319"><B>CurrTokenPos</B>: Cardinal;</A></CODE></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="319"><CODE><B>CurrTokenPos</B>: Cardinal;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>The current token position</P>
+<HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

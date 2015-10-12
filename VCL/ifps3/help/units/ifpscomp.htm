@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifpscomp</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<H1>Unit ifpscomp</H1>
+<H2>Description</H2>
+<P>
+ifpscomp is the compiler part of the script engine</P>
+<H2>Classes, interfaces and objects</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><TD>Class&nbsp;<A href="TIFPSExternalClass.htm">TIFPSExternalClass</A></TD>
+<TD>TIFPSExternalClass is used when external classes need to be called</TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD>Class&nbsp;<A href="TIFPSPascalCompiler.htm">TIFPSPascalCompiler</A></TD>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+<H2>Functions and procedures</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A href="#382"><CODE>function <B>IFPSMessageToString</B>(x: PIFPSPascalCompilerMessage): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#383"><CODE>procedure <B>SetVarExportName</B>(P: PIFPSVar; const ExpName: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#384"><CODE>function <B>TransByteToStr</B>(D: Byte): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#385"><CODE>function <B>TransCardinalToStr</B>(D: Cardinal): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#386"><CODE>function <B>TransDoubleToStr</B>(D: Double): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#387"><CODE>function <B>TransExtendedToStr</B>(D: Extended): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#388"><CODE>function <B>TransLongintToStr</B>(D: Longint): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#389"><CODE>function <B>TransShortIntToStr</B>(D: ShortInt): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#390"><CODE>function <B>TransSingleToStr</B>(D: Single): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#391"><CODE>function <B>TransSmallIntToStr</B>(D: SmallInt): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#392"><CODE>function <B>TransWordToStr</B>(D: Word): string;</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="382"><TD><CODE>function <B>IFPSMessageToString</B>(x: <A href="ifpscomp.htm#346">PIFPSPascalCompilerMessage</A>): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Convert a message to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="383"><TD><CODE>procedure <B>SetVarExportName</B>(P: <A href="ifpscomp.htm#355">PIFPSVar</A>; const ExpName: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Set the name of an exported variable</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="384"><TD><CODE>function <B>TransByteToStr</B>(D: Byte): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a byte to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="385"><TD><CODE>function <B>TransCardinalToStr</B>(D: Cardinal): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a cardinal to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="386"><TD><CODE>function <B>TransDoubleToStr</B>(D: Double): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a double to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="387"><TD><CODE>function <B>TransExtendedToStr</B>(D: Extended): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a extended to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="388"><TD><CODE>function <B>TransLongintToStr</B>(D: Longint): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a longint to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="389"><TD><CODE>function <B>TransShortIntToStr</B>(D: ShortInt): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a shortint to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="390"><TD><CODE>function <B>TransSingleToStr</B>(D: Single): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a single to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="391"><TD><CODE>function <B>TransSmallIntToStr</B>(D: SmallInt): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a smallint to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="392"><TD><CODE>function <B>TransWordToStr</B>(D: Word): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Transform a word to a string</P>
+<H2>Types</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="344"><TD>PCalc_Item</TD>
+<TD>i</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="345"><TD>PIFPSConstant</TD>
+<TD>PIFPSContant is a pointer to a TIFPSConstant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="346"><TD>PIFPSPascalCompilerMessage</TD>
+<TD>Contains a pointer to an TIFPSPascalCompilerMessages record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="347"><TD>PIFPSProceduralType</TD>
+<TD>PIFPSProceduralType is a pointer to <CODE><A href="ifpscomp.htm#370">TIFPSProceduralType</A></CODE></TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="348"><TD>PIFPSProcedure</TD>
+<TD>PIFPSProcedure is a pointer to a TIFPSProcedure</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="349"><TD>PIFPSProcVar</TD>
+<TD><CODE><A href="ifpscomp.htm#372">TIFPSProcVar</A></CODE> PIFPSProcVar is a pointer to a TIFPSProcVar record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="350"><TD>PIFPSRecordType</TD>
+<TD>PIFPSRecordType is is used to store records</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="351"><TD>PIFPSRegProc</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="352"><TD>PIFPSType</TD>
+<TD>PIFPSType is a pointer to a <CODE><A href="ifpscomp.htm#375">TIFPSType</A></CODE> record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="353"><TD>PIFPSUsedRegProc</TD>
+<TD>PIFPSUsedRegProc is a pointer to an TIFPSUsedRegProc</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="354"><TD>PIFPSValue</TD>
+<TD>Pointer to <CODE><A href="ifpscomp.htm#377">TIFPSValue</A></CODE> type</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="355"><TD>PIFPSVar</TD>
+<TD>PIFPSVar is a pointer to a TIFPSVar record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="356"><TD>PIFRecField</TD>
+<TD>if calcCmd > 128 then it's already processed</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="357"><TD>PIfVariant</TD>
+<TD>The compile time variant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="358"><TD>TCalc_Item</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="359"><TD>TIFPSConstant</TD>
+<TD>TIFPSContant contains a constant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="360"><TD>TIFPSOnExportCheck</TD>
+<TD>See TIFPSPascalCompiler.OnExportCheck</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="361"><TD>TIFPSOnExternalProc</TD>
+<TD>See TIFPSPascalCompiler.OnExternalProc</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="362"><TD>TIFPSOnUses</TD>
+<TD>See TIFPSPascalCompiler.OnUses</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="363"><TD>TIFPSOnUseVariable</TD>
+<TD>See TIFPSPascalCompiler.OnUseVariable</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="364"><TD>TIFPSOnWriteLineEvent</TD>
+<TD>See TIFPSPascalCompiler.OnWriteLine</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="365"><TD>TIFPSPascalCompilerError</TD>
+<TD>Is used to store the type of a compiler error</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="366"><TD>TIFPSPascalCompilerHint</TD>
+<TD>Used to store the type of a hint</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="367"><TD>TIFPSPascalCompilerMessage</TD>
+<TD>Contains compiler messages</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="368"><TD>TIFPSPascalCompilerMessageType</TD>
+<TD>Is used to store the type of the messages</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="369"><TD>TIFPSPascalCompilerWarning</TD>
+<TD>Is used to store the type of a warning</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="370"><TD>TIFPSProceduralType</TD>
+<TD>TIFPSProceduralType contains information to store procedural variables</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="371"><TD>TIFPSProcedure</TD>
+<TD>TIFPSProcdure is used to store information about a procedure</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="372"><TD>TIFPSProcVar</TD>
+<TD>TIFPSProcVar is used to store procedural variables</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="373"><TD>TIFPSRecordType</TD>
+<TD>TIFPSRecordType is is used to store records</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="374"><TD>TIFPSRegProc</TD>
+<TD>TIFPSRegProc is used to store the registered procs</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="375"><TD>TIFPSType</TD>
+<TD>TIFPSType contains a type definition</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="376"><TD>TIFPSUsedRegProc</TD>
+<TD>TIFPSUsedRegProc is used to store used registered procs</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="377"><TD>TIFPSValue</TD>
+<TD>Type containing types</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="378"><TD>TIFPSVar</TD>
+<TD>TIFPSVar is used to store global variables</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="379"><TD>TIFRecField</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="380"><TD>TIfVariant</TD>
+<TD>The compile time variant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="381"><TD>TSubOptType</TD>
+<TD>Internal type used to store the current block type</TD>
+</A></TR>
+</TABLE><H2>Constants</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="331"><TD>CVAL_Addr</TD>
+<TD>Internal constant: used when a value must be read from an address</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="332"><TD>CVAL_AllocatedStackReg</TD>
+<TD>Internal constant: same as address except that it has to be freed otherwise</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="333"><TD>CVAL_Array</TD>
+<TD>Internal Constant: Array</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="334"><TD>CVAL_ArrayAllocatedStackRec</TD>
+<TD>Internal Constant: ArrayAllocatedStackRec same as <CODE><A href="ifpscomp.htm#332">CVAL_AllocatedStackReg</A></CODE></TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="335"><TD>CVAL_ClassMethodCall</TD>
+<TD>Internal contant: A method call</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="336"><TD>CVAL_ClassProcCall</TD>
+<TD>Internal constant: A method call</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="337"><TD>CVAL_ClassPropertyCallGet</TD>
+<TD>Internal constant: Property get method</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="338"><TD>CVAL_ClassPropertyCallSet</TD>
+<TD>Internal constant: Property set method</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="339"><TD>CVAL_Data</TD>
+<TD>Internal constant: used when a value is plain data</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="340"><TD>CVAL_Eval</TD>
+<TD>Internal constant: used when there are sub calculations</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="341"><TD>CVAL_Proc</TD>
+<TD>Internal constant: used for function calls</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="342"><TD>CVAL_PushAddr</TD>
+<TD>Internal constant: used when a value must be read from an address and pushed</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="343"><TD>CVAL_VarProc</TD>
+<TD>Internal Constant: Procedural Call with variable procedure number</TD>
+</A></TR>
+</TABLE><HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

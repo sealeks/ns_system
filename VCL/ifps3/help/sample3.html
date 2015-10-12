@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Index - Innerfuse Pascal Script III</title>
+</head>
+<body>
+<font size="7">Innerfuse Pascal Script 3</font><br>
+<a href="index.html">Back to index</a><br />
+<b>Getting Started</b><br><br>
+<ul>
+<li>Create an instance of a TIFPSPascalCompiler</li>
+<li>Create an OnUses event handler</li>
+<li><font color="#000080">Assign the dll library.</font></li>
+<li>Compile the script</li>
+<li>Save the compiled output and free the instance of TIFPSPascalCompiler</li>
+<li>Create a TIFPSExec</li>
+<li><font color="#000080">Register the dll runtime library.</font></li>
+<li>compiled script</li>
+<li>Execute it</li>
+</ul>
+This should look like:<br>
+<pre>
+<b>function </b>ScriptOnUses(Sender: TIFPSPascalCompiler; <b>const </b>Name: <b>string</b>): Boolean;
+<i>{ the OnUses callback function is called for each &quot;uses&quot; in the script. 
+  It's always called with the parameter 'SYSTEM' at the top of the script. 
+  For example: uses ii1, ii2;   
+  This will call this function 3 times. First with 'SYSTEM' then 'II1' and then 'II2'.
+}</i>
+<b>begin</b>
+  <b>if</b> Name = 'SYSTEM' <b>then</b>
+  <b>begin</b>
+    RegisterStandardLibrary_C(Sender);
+    <i>{ Register the standard library. The standard library is in the 
+      ifps3lib_std.pas unit. This will register all standard functions like 
+      Copy, Pos, Length. }</i>
+
+    <font color="#000080">Sender.OnExternal := @DllExternalProc;
+    <i>{ Assign the dll library to the script engine. This function can be found in the ifpidll2.pas file.
+      When you have assigned this, it's possible to do this in the script:
+    
+        Function FindWindow(c1, c2: PChar): Cardinal; external 'FindWindow@user32.dll stdcall';
+        
+        The syntax for the external string is 'functionname@dllname callingconvention'.
+    }</i></font>
+
+    Result := True;
+  <b>end else</b>
+    Result := False;
+<b>end;</b>
+
+<b>procedure </b>ExecuteScript(<b>const </b>Script: <b>string</b>);
+<b>var</b>
+  Compiler: TIFPSPascalCompiler;
+  <i>{ TIFPSPascalCompiler is the compiler part of the scriptengine. This will 
+    translate a Pascal script into a compiled for the executer understands. } </i>
+  Exec: TIFPSExec;
+  <i> { TIFPSExec is the executer part of the scriptengine. It uses the output of
+    the compiler to run a script. }</i>
+  Data: <b>string</b>;
+<b>begin</b>
+  Compiler := TIFPSPascalCompiler.Create; <i>// create an instance of the compiler.</i>
+  Compiler.OnUses := ScriptOnUses; <i>// assign the OnUses event.</i>
+  <b>if not </b>Compiler.Compile(Script) <b>then</b> <i> // Compile the Pascal script into bytecode.</i>
+  <b>begin</b>
+    Compiler.Free;
+    <i> // You could raise an exception here.</i>
+    Exit;
+  <b>end</b>;
+
+  Compiler.GetOutput(Data); <i>// Save the output of the compiler in the string Data.</i>
+  Compiler.Free; <i>// After compiling the script, there is no need for the compiler anymore.</i>
+
+  Exec := TIFPSExec.Create; <i> // Create an instance of the executer.
+  RegisterStandardLibrary_R(Exec);
+  <i>{ The functions registered at compile time also need to be registered at runtime. These
+    functions can be found in the ifps3lib_stdr.pas unit. }</i>
+
+  <font color="#000080">RegisterDLLRuntime(Exec);
+  <i>{ Register the DLL runtime library. This can be found in the ifpidll2runtime.pas file.}</i></font>
+
+  <b>if not </b>Exec.LoadData(Data) <b>then</b> <i>// Load the data from the Data string.</i>
+  <b>begin</b>
+    <i>{ For some reason the script could not be loaded. This is usually the case when a 
+      library that has been used at compile time isn't registered at runtime. }</i>
+    Exec.Free;
+    <i> // You could raise an exception here.</i>
+    Exit;
+  <b>end</b>;
+
+  Exec.RunScript; <i>// Run the script.</i>
+  Exec.Free; <i>// Free the executer.</i>
+<b>end</b>;
+</pre>
+</i>
+</body>
+</html>

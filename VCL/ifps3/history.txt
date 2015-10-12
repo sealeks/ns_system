@@ -1,0 +1,18 @@
+History:
+1.0.2 26-aug-2002   Change in parser: The parser doesn't store the tokens anymore. Compiling should be faster. Couple of small changes.
+1.01.1 08-July-2002 Variant and Int64 support in calling library; Forward procedures; Automaticly adding published properties; Try/Finally/Except/End constructions; Open Array parameters for the class calling library; Component wrapper.
+1.01   20-June-2002 Casting and some fixes and changes.
+1.00.3 07-June-2002 Kylix Demo, Dll Library updated for Kylix, Variant type, array constants, Procedural Variables, Nil, Events, couple of fixes.
+1.00.2 15-may-2002  Record support for class calling library. Couple of new support functions. Couple of fixes.
+1.00.1 6-may-2002   Int64 support (d4+), variant type support, abstract methods, couple of fixes
+1.00  25-apr-2002   1.00 Release.
+1.00b 21-apr-2002   Enumeration support. Updated documentation. Access to string elements (s[1]).
+1.00a 17-apr-2002   Couple of small fixes. Updated documentation (Added 5 samples).
+0.09b 12-apr-2002   Array properties support; Added the rest of the IFPS2 import libs.
+0.08b 1-apr-2002    Class support
+0.07b 30-jan-2002   Labels/Goto Break/Continue
+0.06b 16-jan-2002   Better Debugging; Dll Calling Library; Case support; Const support
+0.05b 9-jan-2002    Lower Delphi (2,3) version support. Added Boolean type. Exporting and calling functions. Warnings when not using variables. Constants defined outside the script. A lot of bugfixes
+0.04b 2-jan-2002    Array support; Importing Delphi Functions library; Bugfix in memory manager
+0.03b 13-dec-2001   A lot of speed improvements
+0.02b 30-nov-2001   Record support; Speed improvements

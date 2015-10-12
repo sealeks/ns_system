@@ -1,0 +1,21 @@
+ew
+TrendStart
+25.11.2002 13:53:26
+TrendEnd
+25.11.2002 13:54:26
+Pen1
+Пусто
+Pen2
+mVent
+Pen3
+Пусто
+Pen4
+Пусто
+Pen5
+Пусто
+Pen6
+Пусто
+Pen7
+Пусто
+Pen8
+Пусто

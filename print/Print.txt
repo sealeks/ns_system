@@ -1,0 +1,93 @@
+Header - 10/02/2002 12:43:49 AM
+Header1
+
+Heading1 - this is the greatest - just like Mohammed Ali !
+
+Heading 2 - this one is even better - watch out for rocket-like progress !
+
+Text - yes, boring old text (not much different from all the other strings, really
+
+0 The quick brown fox jumped over the lazy doggy.  1 The quick brown fox jumped
+over the lazy doggy.  2 The quick brown fox jumped over the lazy dog''s
+breakfast.  3 The quick brown fox jumped over the lazy poodle.  4 The quick
+brown fox jumped.  5 The quick brown fox jumped over the gargantuan lazy dog.  6
+The quick brown fox jumped over snail.  7 The quick brown fox fell asleep on the
+lazy dog.  8 The quick brown fox jumped over the lazy dog and 10000 other dogs. 
+9 The quick brown fox jumped high over the lazy dog.  10 The quick brown fox
+jumped over the lazy dog.  
+
+Line 0
+Line 1
+Line 2
+Line 3
+Line 4
+
+Block 1 Caption...
+
+Name      Age Language   ShoeSize Phone     Score  Speed Flower       Brand         
+
+Matthew    24 Polish           11 38-25690   12.5  100.1 Daisy        Target        
+Sue        43 Indian            6 7891789   66.66 666.66 Daffodil     Peck & Stokes 
+John        8 Australian        5 52563034     19   87.6 Delphinium   Toys-R-US     
+Herbert    45 Italian           7 13-918732    50  99.11 Lily         Smiths        
+Henrietta  85 Polish            9 9991023      88     67 Pear Blossom Safeway       
+
+Block 2 Caption...
+
+Name    Age Language  ShoeSize Phone     Score  Speed Flower   Brand        
+
+Jackson  44 Greek           13 091834    50.05 678.98 Crocus   Bob Jane     
+Matilda  16 Norwegian        8 7644301    1023  100.5 Lavender World-4-Kids 
+Harry    12 English          6 9890073      13     42 Cactus   Woolworths   
+Linda    30 Aussie           7 525434678  75.5    200 Tea Rose Target       
+Adrian   85 Dutch           12 52653221  18.32 997.23 Geranium Coles        
+
+Block 3 Caption...
+
+Name     Age Language   ShoeSize Phone      Score  Speed Flower     Brand           
+
+Hermione  37 Dutch             9 5546731      100    401 Rose       Aussie Disposal 
+Daniel    10 Roumanian         6 5256981       15 102.12 Dandelian  Toy Kingdom     
+Cathy     53 English           7 54359807   22.98   67.2 Pansy      Myer            
+Jamie     12 Portuguese        7 21347809  234.43 6654.3 Stink Weed Giddings        
+Peter     62 Swedish           9 -09875231 690.09   8889 Buttercup  Liquorland      
+
+(Grid Caption) Customer Details...
+
+Name      Age Language   ShoeSize Phone      Score  Speed Flower       Brand           Grouping 
+
+Matthew   24  Polish        11    38-25690    12.5  100.1 Daisy        Target          Fast     
+Adrian    85  Dutch         12    52653221   18.32 997.23 Geranium     Coles           Medium   
+Cathy     53  English       7     54359807   22.98   67.2 Pansy        Myer            Slow     
+John      8   Australian    5     52563034      19   87.6 Delphinium   Toys-R-US       Fast     
+Daniel    10  Roumanian     6     5256981       15 102.12 Dandelian    Toy Kingdom     Slow     
+Linda     30  Aussie        7     525434678   75.5    200 Tea Rose     Target          Medium   
+Harry     12  English       6     9890073       13     42 Cactus       Woolworths      Medium   
+Matilda   16  Norwegian     8     7644301     1023  100.5 Lavender     World-4-Kids    Medium   
+Henrietta 85  Polish        9     9991023       88     67 Pear Blossom Safeway         Fast     
+Hermione  37  Dutch         9     5546731      100    401 Rose         Aussie Disposal Slow     
+Herbert   45  Italian       7     13-918732     50  99.11 Lily         Smiths          Fast     
+Jackson   44  Greek         13    091834     50.05 678.98 Crocus       Bob Jane        Medium   
+Sue       43  Indian        6     7891789    66.66 666.66 Daffodil     Peck & Stokes   Fast     
+Jamie     12  Portuguese    7     21347809  234.43 6654.3 Stink Weed   Giddings        Slow     
+Peter     62  Swedish       9     -09875231 690.09   8889 Buttercup    Liquorland      Slow     
+
+(Grid Caption) Customer Details...
+
+Name      Age Language   ShoeSize Phone      Score  Speed Flower       Brand           Grouping 
+
+Matthew   24  Polish        11    38-25690    12.5  100.1 Daisy        Target          Fast     
+Adrian    85  Dutch         12    52653221   18.32 997.23 Geranium     Coles           Medium   
+Cathy     53  English       7     54359807   22.98   67.2 Pansy        Myer            Slow     
+John      8   Australian    5     52563034      19   87.6 Delphinium   Toys-R-US       Fast     
+Daniel    10  Roumanian     6     5256981       15 102.12 Dandelian    Toy Kingdom     Slow     
+Linda     30  Aussie        7     525434678   75.5    200 Tea Rose     Target          Medium   
+Harry     12  English       6     9890073       13     42 Cactus       Woolworths      Medium   
+Matilda   16  Norwegian     8     7644301     1023  100.5 Lavender     World-4-Kids    Medium   
+Henrietta 85  Polish        9     9991023       88     67 Pear Blossom Safeway         Fast     
+Hermione  37  Dutch         9     5546731      100    401 Rose         Aussie Disposal Slow     
+Herbert   45  Italian       7     13-918732     50  99.11 Lily         Smiths          Fast     
+Jackson   44  Greek         13    091834     50.05 678.98 Crocus       Bob Jane        Medium   
+Sue       43  Indian        6     7891789    66.66 666.66 Daffodil     Peck & Stokes   Fast     
+Jamie     12  Portuguese    7     21347809  234.43 6654.3 Stink Weed   Giddings        Slow     
+Peter     62  Swedish       9     -09875231 690.09   8889 Buttercup    Liquorland      Slow     

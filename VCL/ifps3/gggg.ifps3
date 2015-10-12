@@ -1,0 +1,21 @@
+procedure MyClick(sender: TObject);
+       begin
+            Immishape3.brush.color:=immishape3.brush.color+40000;
+       end;
+
+procedure MyClick1(sender: TObject);
+       begin
+                   //  Writeln(inttostr( immishape3.brush.color));
+    //Writeln(inttostr(immishape3.brush.color+10));
+          //  immishape3.brush.color:=immishape3.brush.color+10;
+    Writeln(inttostr( immishape3.brush.color));
+  //  Writeln(inttostr(immishape3.brush.color+10));
+   immishape3.brush.color:=immishape3.brush.color+400;
+    immishape3.brush.color:=immishape3.brush.color+56786;
+       end;
+
+    begin
+         _13.OnClick:=@MyClick1;
+         immisyButton1.onclick:=@MyClick1;
+         MyClick1(nil);
+  end.

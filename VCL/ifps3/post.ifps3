@@ -1,0 +1,20 @@
+program A;
+ var i: integer;
+
+     procedure MyClick(sender: TObject);
+          begin
+            if immishape3.brush.color=clRed then immishape3.brush.color:=clGreen else                                                                                         immishape3.brush.color:=clRed;
+         end;
+    begin
+      repeat
+        try
+           immisyButton1.onclick:=@MyClick;
+          Application.HandleMessage;
+          Application.ProcessMessages;
+          i:=i+1;
+        except
+          Application.HandleException(Application);
+        end;
+      until Application.Terminated;
+   
+  end.

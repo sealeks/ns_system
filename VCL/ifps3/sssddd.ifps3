@@ -1,0 +1,5 @@
+program A;
+begin
+immishape1.brush.color:=clRed;
+immishape1.ifillrec.brush.color:=clRed;
+end.

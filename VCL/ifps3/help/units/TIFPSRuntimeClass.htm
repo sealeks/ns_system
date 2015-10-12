@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifpiclassruntime: Class TIFPSRuntimeClass</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<A name="30"><H1>Class TIFPSRuntimeClass</H1>
+</A><H2>Unit</H2>
+<A href="ifpiclassruntime.htm">ifpiclassruntime</A><BR><H2>Declaration</H2>
+<P><CODE>type TIFPSRuntimeClass = class</CODE></P><H2>Description</H2>
+TIFPSRuntimeClass is one class at runtime<H2>Methods</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#31"><CODE>constructor <B>Create</B>(aClass: TClass);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#32"><CODE>destructor <B>Destroy</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#33"><CODE>procedure <B>RegisterConstructor</B>(ProcPtr: Pointer; const Name: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#34"><CODE>procedure <B>RegisterMethod</B>(ProcPtr: Pointer; const Name: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#35"><CODE>procedure <B>RegisterProperty</B>(const PropertyName: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#36"><CODE>procedure <B>RegisterPropertyHelper</B>(ReadFunc, WriteFunc: Pointer; const Name: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#37"><CODE>procedure <B>RegisterVirtualAbstractMethod</B>(ClassDef: TClass; ProcPtr: Pointer; const Name: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#38"><CODE>procedure <B>RegisterVirtualConstructor</B>(ProcPtr: Pointer; const Name: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSRuntimeClass.htm#39"><CODE>procedure <B>RegisterVirtualMethod</B>(ProcPtr: Pointer; const Name: string);</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="31"><TD><CODE>constructor <B>Create</B>(aClass: TClass);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>create</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="32"><TD><CODE>destructor <B>Destroy</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>destroy</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="33"><TD><CODE>procedure <B>RegisterConstructor</B>(ProcPtr: Pointer; const Name: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register a constructor</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="34"><TD><CODE>procedure <B>RegisterMethod</B>(ProcPtr: Pointer; const Name: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register a method</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="35"><TD><CODE>procedure <B>RegisterProperty</B>(const PropertyName: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register a property</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="36"><TD><CODE>procedure <B>RegisterPropertyHelper</B>(ReadFunc, WriteFunc: Pointer; const Name: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register a property helper</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="37"><TD><CODE>procedure <B>RegisterVirtualAbstractMethod</B>(ClassDef: TClass; ProcPtr: Pointer; const Name: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register an abstract virtual method</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="38"><TD><CODE>procedure <B>RegisterVirtualConstructor</B>(ProcPtr: Pointer; const Name: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register a virtual constructor</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="39"><TD><CODE>procedure <B>RegisterVirtualMethod</B>(ProcPtr: Pointer; const Name: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Register a virtual method</P>
+<HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

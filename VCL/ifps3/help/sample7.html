@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>Index - Innerfuse Pascal Script III</title>
+</head>
+<body>
+<font size="7">Innerfuse Pascal Script 3</font><br>
+<a href="index.html">Back to index</a><br />
+<b>Adding Delphi functions to the script</b><br><br>
+<ul>
+<li>Create an instance of a TIFPSPascalCompiler</li>
+<li>Create an OnUses event handler</li>
+<li>Create an OnExportCheck event handler</li>
+<li>Add the function in the OnUses event</li>
+<li>Compile the script</li>
+<li>Save the compiled output and free the instance of TIFPSPascalCompiler</li>
+<li>Create a TIFPSExec</li>
+<li>Add the function to the executer.</li>
+<li>Run the function</li>
+<li>Execute it</li>
+</ul>
+The script used with this example:<br />
+<pre>
+<font color="#000080"><b>procedure </b>test(s: <b>TStringArray</b>); </font>
+<b>begin </b>
+  MyOwnFunction(''Test is called: ''+s);
+<b>end</b>; 
+
+<b>begin 
+end</b>.
+</pre>
+
+
+This should look like:<br>
+<pre>
+
+<b>function </b>ScriptOnExportCheck(Sender: TIFPSPascalCompiler; Proc: PIFPSProcedure; <b>const </b>ProcDecl: <b>string</b>): Boolean;
+<i>{
+  The OnExportCheck callback function is called for each function in the script
+  (Also for the main proc, with '!MAIN' as a Proc^.Name). ProcDecl contains the
+  result type and parameter types of a function using this format:
+  ProcDecl: ResultType + ' ' + Parameter1 + ' ' + Parameter2 + ' '+Parameter3 + .....
+  Parameter: ParameterType+TypeName
+  ParameterType is @ for a normal parameter and ! for a var parameter.
+  A result type of 0 means no result.
+}</i>
+<b>begin</b>
+  <b>if </b>Proc^.Name = 'TEST' <b>then </b><i>// Check if the proc is the Test proc we want.</i>
+  <b>begin</b>
+<font color="#000080">    <b>if </b>ProcDecl &lt;&gt; '0 @TSTRINGARRAY' then <i>// Check if the proc has the correct params.</i></font>
+    <b>begin</b>
+      <i>{ Something is wrong, so cause an error at the declaration position of the proc. }</i>
+      Sender.MakeError('', ecTypeMismatch, '')^.Position := Proc^.DeclarePosition;
+      Result := False;
+      Exit;
+    <b>end</b>;
+    Proc^.FExport := 1;
+    <i>{ Export the proc; This is needed because IFPS doesn't store the name of a
+      function by default }</i>
+    Result := True;
+  <b>end else </b>Result := True;
+<b>end</b>;
+
+
+<b>procedure </b>MyOwnFunction(<b>const </b>Data: <b>string</b>);
+<b>begin</b>
+  <i>// Do something with Data</i>
+  ShowMessage(Data);
+<b>end</b>;
+
+<b>function </b>ScriptOnUses(Sender: TIFPSPascalCompiler; <b>const </b>Name: <b>string</b>): Boolean;
+<i>{ the OnUses callback function is called for each &quot;uses&quot; in the script. 
+  It's always called with the parameter 'SYSTEM' at the top of the script. 
+  For example: uses ii1, ii2;   
+  This will call this function 3 times. First with 'SYSTEM' then 'II1' and then 'II2'.
+}</i>
+<b>begin</b>
+  <b>if</b> Name = 'SYSTEM' <b>then</b>
+  <b>begin</b>
+    RegisterStandardLibrary_C(Sender);
+    <i>{ Register the standard library. The standard library is in the 
+      ifps3lib_std.pas unit. This will register all standard functions like 
+      Copy, Pos, Length.
+    }</i>
+
+    RegisterDelphiFunctionC(Sender, 'procedure MyOwnFunction(Data: string)');
+    <i>{ This will register the function to the script engine. Now it can be used from within the script. When adding
+      functions always leave the const out, this is not yet supported but doesn't make a change. This function can be
+      found in the ifpidelphi.pas file. }</i>
+
+<font color="#000080">    Sender.AddTypeS('TSTRINGARRAY', 'array of string')^.FExport := True;
+    <i>{ Add the type to the script engine (and export it) }</i></font>
+
+    Result := True;
+  <b>end else</b>
+    Result := False;
+<b>end;</b>
+
+<b>procedure </b>ExecuteScript(<b>const </b>Script: <b>string</b>);
+<b>var</b>
+  Compiler: TIFPSPascalCompiler;
+  <i>{ TIFPSPascalCompiler is the compiler part of the scriptengine. This will 
+    translate a Pascal script into a compiled for the executer understands. } </i>
+  Exec: TIFPSExec;
+  <i> { TIFPSExec is the executer part of the scriptengine. It uses the output of
+    the compiler to run a script. }</i>
+  Data: <b>string</b>;
+
+  N: PIfVariant;
+  <i>{ The variant in which we are going to store the parameter }</i>
+  ParamList: TIfList;
+  <i>{ The parameter list }</i>
+<b>begin</b>
+  Compiler := TIFPSPascalCompiler.Create; <i>// create an instance of the compiler.</i>
+  Compiler.OnUses := ScriptOnUses; <i>// assign the OnUses event.</i>
+
+  Compiler.OnExportCheck := ScriptOnExportCheck; // Assign the onExportCheck event.
+
+  <b>if not </b>Compiler.Compile(Script) <b>then</b> <i> // Compile the Pascal script into bytecode.</i>
+  <b>begin</b>
+    Compiler.Free;
+    <i> // You could raise an exception here.</i>
+    Exit;
+  <b>end</b>;
+
+  Compiler.GetOutput(Data); <i>// Save the output of the compiler in the string Data.</i>
+  Compiler.Free; <i>// After compiling the script, there is no need for the compiler anymore.</i>
+
+  Exec := TIFPSExec.Create; <i> // Create an instance of the executer.</i>
+  RegisterStandardLibrary_R(Exec);
+  <i>{ The functions registered at compile time also need to be registered at runtime. These
+    functions can be found in the ifps3lib_stdr.pas unit. }</i>
+
+  RegisterDelphiFunctionR(Exec, @MyOwnFunction, 'MYOWNFUNCTION', cdRegister);
+  <i>{ This will register the function to the executer. The first parameter is the executer. The second parameter is a 
+    pointer to the function. The third parameter is the name of the function (in uppercase). And the last parameter is the
+    calling convention (usually Register). This function can be found in the ifpidelphiruntime.pas file. } </i> 
+
+  <b>if not </b>Exec.LoadData(Data) <b>then</b> <i>// Load the data from the Data string.</i>
+  <b>begin</b>
+    <i>{ For some reason the script could not be loaded. This is usually the case when a 
+      library that has been used at compile time isn't registered at runtime. }</i>
+    Exec.Free;
+    <i> // You could raise an exception here.</i>
+    Exit;
+  <b>end</b>;
+
+  ParamList := TIfList.Create; <i>// Create the parameter list</i>
+<font color="#000080">
+  n := CreateVariant(Exec.MemoryManager, Exec.GetTypeNo(Exec.GetType('TSTRINGARRAY')));
+  <i>{ Create a variant for the array parameter }</i></font>
+  <b>if </b>n = <b>nil then
+  begin</b>
+    <i>{ Something is wrong. Exit here }</i>
+    ParamList.Free;
+    Exec.Free;
+    Exit;
+  <b>end</b>;
+  <font color="#000080">
+  SetIFPSArrayLength(Exec, n, 2); <i>// Put two items in the array</i>
+
+  tbtstring(pbtrecord(n^.TArray)^.Fields[0]^.TString) := 'First item';
+  tbtstring(pbtrecord(n^.TArray)^.Fields[1]^.TString) := 'Second item';
+  <i>// Put something in the array elements</i></font>
+
+  ParamList.Add(n); <i>// Add it to the parameter list.</i>
+
+  Exec.RunProc(ParamList, Exec.GetProc('TEST'));
+  <i>{ This will call the test proc that was exported before }</i>
+
+  FreePIFVariantList(Exec.MemoryManager, ParamList); <i>// Cleanup the parameters (This will also free N)</i>
+
+  Exec.Free; <i>// Free the executer.</i>
+<b>end</b>;
+</pre>
+</body>
+</html>

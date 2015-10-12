@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifps3</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<H1>Unit ifps3</H1>
+<H2>Description</H2>
+<P>
+The execute part of the script engine</P>
+<H2>Classes, interfaces and objects</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><TD>Class&nbsp;<A href="TIFPSExec.htm">TIFPSExec</A></TD>
+<TD>TIFPSExec is the core of the script engine executer</TD>
+</TR>
+</TABLE>
+<H2>Functions and procedures</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A href="#93"><CODE>function <B>CreateVariant</B>(MM: Pointer; n: PIFTypeRec): PIfVariant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#94"><CODE>procedure <B>DisposeVariant</B>(MM: Pointer; p: PIfVariant);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#95"><CODE>procedure <B>FreePIFVariantList</B>(MM: Pointer; List: TIfList);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#96"><CODE>function <B>GetIFPSArrayLength</B>(SE: TIFPSExec; p: PIfVariant): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#97"><CODE>function <B>GetInt</B>(Src: PIfVariant; var s: Boolean): Longint;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#98"><CODE>function <B>GetReal</B>(Src: PIfVariant; var s: Boolean): Extended;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#99"><CODE>function <B>GetString</B>(Src: PIfVariant; var s: Boolean): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#100"><CODE>function <B>GetUInt</B>(Src: PIfVariant; var s: Boolean): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#101"><CODE>function <B>IFPSVariantToString</B>(p: PIfVariant): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#102"><CODE>function <B>LGetInt</B>(List: TIfList; Pos: Cardinal): Longint;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#103"><CODE>function <B>LGetReal</B>(List: TIfList; Pos: Cardinal): Extended;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#104"><CODE>function <B>LGetStr</B>(List: TIfList; Pos: Cardinal): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#105"><CODE>function <B>LGetUInt</B>(List: TIfList; Pos: Cardinal): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#106"><CODE>procedure <B>LSetInt</B>(List: TIfList; Pos: Cardinal; Val: Longint);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#107"><CODE>procedure <B>LSetReal</B>(List: TIfList; Pos: Cardinal; const Val: Extended);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#108"><CODE>procedure <B>LSetStr</B>(List: TIfList; Pos: Cardinal; const s: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#109"><CODE>procedure <B>LSetUInt</B>(List: TIfList; Pos: Cardinal; Val: Cardinal);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#110"><CODE>procedure <B>SetIFPSArrayLength</B>(SE: TIFPSExec; p: PIfVariant; NewLength: Cardinal);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#111"><CODE>function <B>TIFErrorToString</B>(x: TIFError; const Param: string): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#112"><CODE>function <B>VGetFloat</B>(P: PIFVariant): Extended;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#113"><CODE>function <B>VGetInt</B>(P: PIFVariant): Longint;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#114"><CODE>function <B>VGetInt64</B>(P: PIFVariant): Int64;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#115"><CODE>function <B>VGetString</B>(P: PIFVariant): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#116"><CODE>procedure <B>VSetFloat</B>(P: PIFVariant; const d: Extended);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#117"><CODE>procedure <B>VSetInt</B>(P: PIFVariant; const d: Longint);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#118"><CODE>procedure <B>VSetInt64</B>(P: PIFVariant; const d: Int64);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#119"><CODE>procedure <B>VSetString</B>(P: PIFVariant; const d: string);</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="93"><TD><CODE>function <B>CreateVariant</B>(MM: Pointer; n: <A href="ifps3.htm#68">PIFTypeRec</A>): <A href="ifps3.htm#69">PIfVariant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Create a variant</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="94"><TD><CODE>procedure <B>DisposeVariant</B>(MM: Pointer; p: <A href="ifps3.htm#69">PIfVariant</A>);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Decrease the variant's refcount and free it if it's 0</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="95"><TD><CODE>procedure <B>FreePIFVariantList</B>(MM: Pointer; List: <A href="TIfList.htm">TIfList</A>);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Free a list of variants and also the list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="96"><TD><CODE>function <B>GetIFPSArrayLength</B>(SE: <A href="TIFPSExec.htm">TIFPSExec</A>; p: <A href="ifps3.htm#69">PIfVariant</A>): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the length of a variant array</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="97"><TD><CODE>function <B>GetInt</B>(Src: <A href="ifps3.htm#69">PIfVariant</A>; var s: Boolean): Longint;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of a variant (as Longint)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="98"><TD><CODE>function <B>GetReal</B>(Src: <A href="ifps3.htm#69">PIfVariant</A>; var s: Boolean): Extended;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of a variant (as Extended)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="99"><TD><CODE>function <B>GetString</B>(Src: <A href="ifps3.htm#69">PIfVariant</A>; var s: Boolean): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of a variant (as String)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="100"><TD><CODE>function <B>GetUInt</B>(Src: <A href="ifps3.htm#69">PIfVariant</A>; var s: Boolean): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of a variant (as Cardinal/Longword)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="101"><TD><CODE>function <B>IFPSVariantToString</B>(p: <A href="ifps3.htm#69">PIfVariant</A>): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Convert a variant to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="102"><TD><CODE>function <B>LGetInt</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal): Longint;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of an Integer variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="103"><TD><CODE>function <B>LGetReal</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal): Extended;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of a real variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="104"><TD><CODE>function <B>LGetStr</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of a string variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="105"><TD><CODE>function <B>LGetUInt</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the value of an unsigned integer variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="106"><TD><CODE>procedure <B>LSetInt</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal; Val: Longint);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Set the value of an Integer variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="107"><TD><CODE>procedure <B>LSetReal</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal; const Val: Extended);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Set the value of a real variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="108"><TD><CODE>procedure <B>LSetStr</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal; const s: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Set the value of a string variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="109"><TD><CODE>procedure <B>LSetUInt</B>(List: <A href="TIfList.htm">TIfList</A>; Pos: Cardinal; Val: Cardinal);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Set the value of an unsigned integer variant in a list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="110"><TD><CODE>procedure <B>SetIFPSArrayLength</B>(SE: <A href="TIFPSExec.htm">TIFPSExec</A>; p: <A href="ifps3.htm#69">PIfVariant</A>; NewLength: Cardinal);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Set the length of a variant array</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="111"><TD><CODE>function <B>TIFErrorToString</B>(x: <A href="ifps3.htm#78">TIFError</A>; const Param: string): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Convert an error to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="112"><TD><CODE>function <B>VGetFloat</B>(P: <A href="ifps3.htm#69">PIFVariant</A>): Extended;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="113"><TD><CODE>function <B>VGetInt</B>(P: <A href="ifps3.htm#69">PIFVariant</A>): Longint;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="114"><TD><CODE>function <B>VGetInt64</B>(P: <A href="ifps3.htm#69">PIFVariant</A>): Int64;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="115"><TD><CODE>function <B>VGetString</B>(P: <A href="ifps3.htm#69">PIFVariant</A>): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="116"><TD><CODE>procedure <B>VSetFloat</B>(P: <A href="ifps3.htm#69">PIFVariant</A>; const d: Extended);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="117"><TD><CODE>procedure <B>VSetInt</B>(P: <A href="ifps3.htm#69">PIFVariant</A>; const d: Longint);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="118"><TD><CODE>procedure <B>VSetInt64</B>(P: <A href="ifps3.htm#69">PIFVariant</A>; const d: Int64);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="119"><TD><CODE>procedure <B>VSetString</B>(P: <A href="ifps3.htm#69">PIFVariant</A>; const d: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<H2>Types</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="60"><TD>PBTArray</TD>
+<TD><CODE><A href="ifps3.htm#61">pbtrecord</A></CODE> PBTRecord</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="61"><TD>pbtrecord</TD>
+<TD>PBTRecord is a pointer to a <CODE><A href="ifps3.htm#73">TbtRecord</A></CODE> record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="62"><TD>PBTReturnAddress</TD>
+<TD><CODE><A href="ifps3.htm#74">TBTReturnAddress</A></CODE> PBTReturnAddress is a pointer to an TBTReturnAddress record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="63"><TD>PByteArray</TD>
+<TD>Pointer to array of bytes</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="64"><TD>PDWordArray</TD>
+<TD>Pointer to array of words</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="65"><TD>PIFProcRec</TD>
+<TD><CODE><A href="ifps3.htm#81">TIFProcRec</A></CODE> PIFProcRec is a pointer to a TIProcRec record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="66"><TD>PIFPSResource</TD>
+<TD><CODE><A href="ifps3.htm#84">TIFPSResource</A></CODE> PIFPSResource is a pointer to a TIFPSResource record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="67"><TD>PIFRecordType</TD>
+<TD>PIFRecordType is a pointer to record information</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="68"><TD>PIFTypeRec</TD>
+<TD>Pointer to <CODE><A href="ifps3.htm#88">TIFTypeRec</A></CODE></TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="69"><TD>PIFVariant</TD>
+<TD><CODE><A href="ifps3.htm#89">TIFVariant</A></CODE> PIFVariant is a pointer to a TIFVariant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="70"><TD>PPIFVariant</TD>
+<TD><CODE><A href="ifps3.htm#69">PIFVariant</A></CODE> PPIFVariant is a pointer to a PIFVariant</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="71"><TD>PProcRec</TD>
+<TD><CODE><A href="ifps3.htm#90">TProcRec</A></CODE> PProcRec is pointer to a TProcRec record</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="72"><TD>TBTArray</TD>
+<TD><CODE><A href="ifps3.htm#73">TbtRecord</A></CODE> tbtrecord</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="73"><TD>TbtRecord</TD>
+<TD>TbtRecord is used to store the fields in a record or array</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="74"><TD>TBTReturnAddress</TD>
+<TD>TBTReturnAddress is a record used to store return information</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="75"><TD>TByteArray</TD>
+<TD>Array of bytes</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="76"><TD>TDWordArray</TD>
+<TD>Array of dwords</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="77"><TD>TIFArrayType</TD>
+<TD>TIFArrayType is a pointer to an other type</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="78"><TD>TIFError</TD>
+<TD>TIFError contains all possible errors</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="79"><TD>TIFFreeProc</TD>
+<TD><CODE><A href="ifps3.htm#71">PProcRec</A></CODE> FreeProc is called when a PProcRec is freed</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="80"><TD>TIFProc</TD>
+<TD><CODE><A href="TIFPSExec.htm">TIFPSExec</A></CODE> <CODE><A href="ifps3.htm#65">PIFProcRec</A></CODE> <CODE><A href="TIfList.htm">TIfList</A></CODE> TIFProc is is the procedure definition of all external functions</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="81"><TD>TIFProcRec</TD>
+<TD>TIFProcRec contains a currently used internal or external function</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="82"><TD>TIFPSOnLineEvent</TD>
+<TD>See TIFPSExec.OnRunLine</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="83"><TD>TIFPSOnSpecialProcImport</TD>
+<TD>See TIFPSExec.AddSpecialProcImport</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="84"><TD>TIFPSResource</TD>
+<TD>A resource in IFPS3 is stored as a pointer to the proc and a tag (p)</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="85"><TD>TIFPSResourceFreeProc</TD>
+<TD>TIFPSResourceFreeProc is called when a resource needs to be freed</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="86"><TD>TIFRecordType</TD>
+<TD>TIFRecordType is used to store information about records</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="87"><TD>TIFStatus</TD>
+<TD>The current status of the script</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="88"><TD>TIFTypeRec</TD>
+<TD>TIFTypeRec is used to store all types inside the script</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="89"><TD>TIFVariant</TD>
+<TD>TIFvariant is variant used for storing all variables used by the script</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="90"><TD>TProcRec</TD>
+<TD>TProcrec is used to store an external function that could be used by the script executer</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="91"><TD>TVariantResourceFreeProc</TD>
+<TD>TVRMode TVariantResourceFreeProc is used when the scriptengine needs to free or duplicate a resourcepointer</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="92"><TD>TVRFMode</TD>
+<TD><CODE><A href="ifps3.htm#91">TVariantResourceFreeProc</A></CODE> TVRMode is used to when the scriptengine needs to free or duplicate a resourcepointer</TD>
+</A></TR>
+</TABLE><HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

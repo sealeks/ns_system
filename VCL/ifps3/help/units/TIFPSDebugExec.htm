@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifps3debug: Class TIFPSDebugExec</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<A name="250"><H1>Class TIFPSDebugExec</H1>
+</A><H2>Unit</H2>
+<A href="ifps3debug.htm">ifps3debug</A><BR><H2>Declaration</H2>
+<P><CODE>type TIFPSDebugExec = class(<CODE><A href="TIFPSExec.htm">TIFPSExec</A></CODE>)</CODE></P><H2>Description</H2>
+The TIFPSDebugExec class is used to load and use compiler debug information<H2>Hierarchy</H2>
+<CODE><A href="TIFPSExec.htm">TIFPSExec</A></CODE><H2>Methods</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#251"><CODE>constructor <B>Create</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#252"><CODE>destructor <B>Destroy</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#253"><CODE>procedure <B>Clear</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSDebugExec.htm#254"><CODE>procedure <B>ClearDebug</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#255"><CODE>function <B>GetCurrentProcNo</B>: Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#256"><CODE>function <B>GetGlobalVar</B>(I: Cardinal): PIfVariant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#257"><CODE>function <B>GetProcParam</B>(I: Cardinal): PIfVariant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#258"><CODE>function <B>GetProcVar</B>(I: Cardinal): PIfVariant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#259"><CODE>function <B>LoadData</B>(const s: string): TIFError; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#260"><CODE>procedure <B>LoadDebugData</B>(const Data: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#261"><CODE>procedure <B>Pause</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#262"><CODE>procedure <B>Run</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSDebugExec.htm#263"><CODE>procedure <B>RunLine</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#264"><CODE>procedure <B>StepInto</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#265"><CODE>procedure <B>StepOver</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSDebugExec.htm#266"><CODE>procedure <B>Stop</B>; override;</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="251"><TD><CODE>constructor <B>Create</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Create an instance of the debugger</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="252"><TD><CODE>destructor <B>Destroy</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>destroy the current instance of the debugger</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="253"><TD><CODE>procedure <B>Clear</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Clear the debugdata and the current script</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="254"><TD><CODE>procedure <B>ClearDebug</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="255"><TD><CODE>function <B>GetCurrentProcNo</B>: Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>The current proc no</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="256"><TD><CODE>function <B>GetGlobalVar</B>(I: Cardinal): <A href="ifps3.htm#69">PIfVariant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get global variable no I</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="257"><TD><CODE>function <B>GetProcParam</B>(I: Cardinal): <A href="ifps3.htm#69">PIfVariant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get proc param no I</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="258"><TD><CODE>function <B>GetProcVar</B>(I: Cardinal): <A href="ifps3.htm#69">PIfVariant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get Proc variable no I</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="259"><TD><CODE>function <B>LoadData</B>(const s: string): <A href="ifps3.htm#78">TIFError</A>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>See TIFPSExec.LoadData</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="260"><TD><CODE>procedure <B>LoadDebugData</B>(const Data: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Load debug data in the scriptengine</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="261"><TD><CODE>procedure <B>Pause</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Pause the script</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="262"><TD><CODE>procedure <B>Run</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Run the script</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="263"><TD><CODE>procedure <B>RunLine</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="264"><TD><CODE>procedure <B>StepInto</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Step into the current line</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="265"><TD><CODE>procedure <B>StepOver</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Step over the current line</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="266"><TD><CODE>procedure <B>Stop</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Stop the script</P>
+<H2>Properties</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#267"><B>CurrentProcParams</B>: TIfStringList;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#268"><B>CurrentProcVars</B>: TIfStringList;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#269"><B>DebugMode</B>: TDebugMode;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#270"><B>GlobalVarNames</B>: TIfStringList;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#271"><B>OnIdleCall</B>: TOnIdleCall;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#272"><B>OnSourceLine</B>: TOnSourceLine;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSDebugExec.htm#273"><B>ProcNames</B>: TIfStringList;</A></CODE></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="267"><CODE><B>CurrentProcParams</B>: <A href="TIfStringList.htm">TIfStringList</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>The paramters of the current proc (could be nil)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="268"><CODE><B>CurrentProcVars</B>: <A href="TIfStringList.htm">TIfStringList</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>The variables in the current proc (could be nil)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="269"><CODE><B>DebugMode</B>: <A href="ifps3debug.htm#246">TDebugMode</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Contains the current debugmode</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="270"><CODE><B>GlobalVarNames</B>: <A href="TIfStringList.htm">TIfStringList</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Contains the names of the global variables</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="271"><CODE><B>OnIdleCall</B>: <A href="ifps3debug.htm#247">TOnIdleCall</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>OnIdleCall is called when the script is paused</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="272"><CODE><B>OnSourceLine</B>: <A href="ifps3debug.htm#248">TOnSourceLine</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>OnSourceLine is called after passing each source line</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="273"><CODE><B>ProcNames</B>: <A href="TIfStringList.htm">TIfStringList</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Contains the names of the procedures</P>
+<HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

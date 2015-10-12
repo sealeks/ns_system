@@ -1,0 +1,57 @@
+package ContrDDH;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  dbrtl,
+  VclSmp,
+  vcldb,
+  vcldbx,
+  indy;
+
+contains
+  Controlddh in 'Controlddh.pas',
+  Redactor in 'Redactor.pas',
+  ObjInsp1 in 'ObjInsp1.pas',
+  ConfigForm in 'ConfigForm.pas' {Form11},
+  FormList in 'FormList.pas' {Form7},
+  Opendirectory in 'Opendirectory.pas' {Form12},
+  OpenPictureDialog2 in 'OpenPictureDialog2.pas',
+  OpenProject in 'OpenProject.pas' {Form10},
+  Projectdialog in 'Projectdialog.pas' {Form9},
+  RedacValue in 'RedacValue.pas' {Form8},
+  Stringsprop in 'Stringsprop.pas' {Form14},
+  UnitAlighn in 'UnitAlighn.pas' {Form3},
+  UnitExpr in 'UnitExpr.pas' {Form13},
+  UnitObject in 'UnitObject.pas' {Form2},
+  UnitPicture in 'UnitPicture.pas' {Form4},
+  UnitScale in 'UnitScale.pas' {Form5},
+  Unitsized in 'Unitsized.pas' {Form6},
+  ImageForm in 'ImageForm.pas' {Form18};
+
+end.

@@ -1,0 +1,228 @@
+package MyComponent3;
+
+{$R *.res}
+{$R 'IMMIAlarmTriangle.dcr'}
+{$R 'IMMIShape.dcr'}
+{$R 'IMMIPanel.dcr'}
+{$R 'IMMISpeedbutton.dcr'}
+{$R 'IMMIArmatCtrl.dcr'}
+{$R 'IMMIArmatVl.dcr'}
+{$R 'IMMItrackbar.dcr'}
+{$R 'IMMIEditreal.dcr'}
+{$R 'IMMIGoU.dcr'}
+{$R 'IMMIArmatBm.dcr'}
+{$R 'TScriptTimer.dcr'}
+{$R 'TActExpr.dcr'}
+{$R 'IMMIGroupBox.dcr'}
+{$R 'Trackbardouble.dcr'}
+{$R 'IMMIArmatura.dcr'}
+{$R 'IMMIColorLabelU.dcr'}
+{$R 'TIMMIIMGGIF.dcr'}
+{$R 'IMMISCOPEMULTI.dcr'}
+{$R 'timmiUpDown.dcr'}
+{$R 'TAPPEXPR.dcr'}
+{$R 'TIMMILABELROTATE.dcr'}
+{$R 'TIMMILABELOPERATOR.dcr'}
+{$R 'TIMMISCOPESTATIC.dcr'}
+{$R 'TIMMISHAPEFORM.dcr'}
+{$R 'TIMMIBORDER.dcr'}
+{$R 'TEditExpr.dcr'}
+{$R 'TTCLOCKLABELU.dcr'}
+{$R 'TJurnal.dcr'}
+{$R 'TJURNALTREE.dcr'}
+{$R 'IMMIbitbtn.dcr'}
+{$R 'TDISKKYESETCOMP.dcr'}
+{$R 'TIMMIDATETIMEPICKER.dcr'}
+{$R 'TEXPRGRAPHBUTTON.dcr'}
+{$R 'TCTRLGROSCHBUTTON.dcr'}
+{$R 'TCTRLGRARCHBUTTON.dcr'}
+{$R 'TIMMIGRAPHBUTTON.dcr'}
+{$R 'TTCLOCKU.dcr'}
+{$R 'IMMIRegul.dcr'}
+{$R 'Ruler.dcr'}
+{$R 'IMMIImage.dcr'}
+{$R 'immiSYButton.dcr'}
+{$R 'immiButtonxp.dcr'}
+{$R 'immivalueentry.dcr'}
+{$R 'immiLabelfull.dcr'}
+{$R 'immitube.dcr'}
+{$R 'immigrid.dcr'}
+{$R 'colordbgrid.dcr'}
+{$R 'immiformx.dcr'}
+{$R 'ImmiScope.dcr'}
+{$R 'TTIMEGRLABEL.dcr'}
+{$R 'TEXPRNAMELABEL.dcr'}
+{$R 'TIMMIGRAPHTRBR.dcr'}
+{$R 'COLORSTRINGGRID.dcr'}
+{$R 'AVPR.dcr'}
+{$R 'messagescreen.dcr'}
+{$R 'immilabel.dcr'}
+{$R 'immiimg1.dcr'}
+{$R 'line.dcr'}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE ON}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Компоненты IMMI'}
+{$IMPLICITBUILD ON}
+
+requires
+  vcl,
+  vcldb,
+  vclsmp,
+  bdertl,
+  designide,
+  visualclx,
+  vclshlctrls,
+  rtl,
+  indy,
+  teedb,
+  tee,
+  vcldbx,
+  dclocx,
+  vclx,
+  dbrtl,
+  vclactnband,
+  adortl,
+  SynEdit_D6,
+  additional;
+
+contains
+  IMMILabelFullU in 'IMMILabelFullU.pas',
+  IMMIAlarmTriangle in 'IMMIAlarmTriangle.pas',
+  IMMITrackBar in 'IMMITrackBar.pas',
+  IMMIArmatCtrl in 'IMMIArmatCtrl.pas',
+  IMMIArmatVl in 'IMMIArmatVl.pas',
+  IMMIGoU in 'IMMIGoU.pas',
+  IMMIArmatBm in 'IMMIArmatBm.pas',
+  IMMIArmatura in 'IMMIArmatura.pas',
+  IMMIColorLabelU in 'IMMIColorLabelU.pas',
+  IMMIValueEntryU in 'IMMIValueEntryU.pas',
+  IMMIBitBtn in 'IMMIBitBtn.pas',
+  IMMIEditReal in 'IMMIEditReal.pas',
+  IMMIGridU in 'IMMIGridU.pas',
+  ColorDBGrid in 'ColorDBGrid.pas',
+  ColorStringGrid in 'ColorStringGrid.pas',
+  Ruler in 'Ruler.pas',
+  IMMIReg in 'IMMIReg.pas',
+  IMMITubeEditorU in 'IMMITubeEditorU.pas' {IMMITubeForm},
+  IMMIFormU in '..\Units\IMMIFormU.pas' {IMMIForm},
+  IMMITube in 'IMMITube.pas',
+  IMMIPanelU in 'IMMIPanelU.pas',
+  IMMIPropertysU in 'IMMIPropertysU.pas',
+  TrackBarDouble in 'TrackBarDouble.pas',
+  IMMIImg1 in 'IMMIImg1.pas',
+  IMMIRegul in 'IMMIRegul.pas',
+  TClockU in 'TClockU.pas',
+  ImmiButton in 'ImmiButton.pas',
+  ImmiSyButton in 'ImmiSyButton.pas',
+  IMMIScope in 'IMMIScope.pas',
+  AvPr in 'AvPr.pas',
+  QueryForm in '..\Units\QueryForm.pas' {QueryForm},
+  GlobalValue in '..\Units\GlobalValue.pas',
+  frmShowTegsU in '..\Units\frmShowTegsU.pas' {frmShowTegs},
+  IMMIRegulU in '..\Units\IMMIRegulU.pas' {IMMIFormRegul},
+  LoginError in '..\Units\LoginError.pas' {LoginError},
+  SwitchKnobFormU in '..\Units\SwitchKnobFormU.pas' {SwitchKnobForm},
+  Switch2FormU in '..\Units\Switch2FormU.pas' {Switch2Form},
+  GroupsU in '..\Units\GroupsU.pas',
+  CalcU1 in '..\Units\CalcU1.pas',
+  ConstDef in '..\Units\constDef.pas',
+  MessageScreen in 'MessageScreen.pas',
+  debugClasses in '..\Units\debugClasses.pas',
+  convFunc in '..\Units\convFunc.pas',
+  IMMIRegulEditF in 'IMMIRegulEditF.pas' {RegulEditF},
+  frmRegSetupU in '..\Units\frmRegSetupU.pas' {frmRegSetup},
+  IMMIGroupBoxU in 'IMMIGroupBoxU.pas',
+  IMMIArmatBMEditorU in 'IMMIArmatBMEditorU.pas' {ArmatBmEditorFrm},
+  IMMIArmatVlEditorU in 'IMMIArmatVlEditorU.pas' {ArmatVlEditorFrm},
+  GlobalVar in '..\Units\GlobalVar.pas',
+  IMMILabelU in 'IMMILabelU.pas',
+  IMMIShapeEditorU in 'IMMIShapeEditorU.pas' {ShapeEditorFrm},
+  IMMIImage in 'IMMIImage.pas',
+  IMMIControls in 'IMMIControls.pas',
+  IMMIImg in 'IMMIImg.pas',
+  IMMIImgEditorU in 'IMMIImgEditorU.pas' {IMMIImgForm},
+  Expr in 'Expr.pas',
+  IMMILabelEditorU in 'IMMILabelEditorU.pas' {LabelEditorFrm},
+  IMMIEditEditorU in 'IMMIEditEditorU.pas' {EditEditorFrm},
+  IMMISpeedButton in 'IMMISpeedButton.pas',
+  Scope in 'Scope.pas',
+  IMMITrackBEditorU in 'IMMITrackBEditorU.pas' {TrackBEditorFrm},
+  IMMIButtonEditorU in 'IMMIButtonEditorU.pas' {ButtonEditorFrm},
+  IMMIValueEntryFrmU in 'IMMIValueEntryFrmU.pas' {ImmiValueEntryFrm},
+  dxCore in 'dxCore.pas',
+  dxButton in 'dxButton.pas',
+  IMMIPropertysEditorU in 'IMMIPropertysEditorU.pas' {IMMIPropertysForm},
+  ParamU in 'ParamU.pas',
+  ImmibuttonXp in 'ImmibuttonXp.pas',
+  IMMIAnalogPropU in '..\Units\IMMIAnalogPropU.pas' {IMMIAnalogProp},
+  AnalogpropGraphic in '..\Units\AnalogpropGraphic.pas' {AnalogGraph},
+  AlarmU in '..\Units\AlarmU.pas',
+  sRegistrationForm in '..\Units\sRegistrationForm.pas' {RegistrationForm},
+  DataGraphcModul in '..\Units\DataGraphcModul.pas' {DataModule1: TDataModule},
+  MemStructsU in '..\Units\MemStructsU.pas',
+  IMMIAlTrgEditorU in 'IMMIAlTrgEditorU.pas' {AlTrgFrm},
+  IMMIformx in 'IMMIformx.pas',
+  PropTubeColorU in 'PropTubeColorU.pas' {PropTubeColor},
+  UnitExpr in 'UnitExpr.pas' {FormExpr},
+  Imit in 'Imit.pas',
+  ImitEditFrm in 'ImitEditFrm.pas' {ImitEditForm},
+  OKDlgFormU in 'OKDlgFormU.pas' {OKDlgForm},
+  imitsh in 'imitsh.pas',
+  AlarmTblU in '..\Immi\AlarmTblU.pas',
+  EditExpr in 'EditExpr.pas',
+  ImControlBridge in 'ImControlBridge.pas' {AppImmi in '..\Units\AppImmi.pas'},
+  IMMIShapeImg in 'IMMIShapeImg.pas',
+  IMMIImggif in 'IMMIImggif.pas',
+  PictEdit in 'PICTEDIT.PAS' {PictureEditDialog},
+  RXCConst in 'RXCCONST.PAS',
+  RXConst in 'RXCONST.PAS',
+  RXCtrls in 'RxCtrls.pas',
+  RxGConst in 'RXGCONST.PAS',
+  RxGIF in 'Rxgif.pas',
+  RxGraph in 'RxGraph.pas',
+  RxHook in 'RXHOOK.PAS',
+  RxPrgrss in 'RXPRGRSS.PAS',
+  RXProps in 'RxProps.pas',
+  RxTimer in 'RxTimer.pas',
+  IMMILabelRotateU in 'IMMILabelRotateU.pas',
+  Jurnal in 'Jurnal.pas',
+  IMMIBorder in 'IMMIBorder.pas',
+  JurnalEditor in 'JurnalEditor.pas' {frmJurnalEditor},
+  JurnalTree in 'JurnalTree.pas',
+  IMMIDateTimePicker in 'IMMIDateTimePicker.pas',
+  DiskKyeSetComp in 'DiskKyeSetComp.pas',
+  IMMImaskPanel in 'IMMImaskPanel.pas',
+  ImmiScopeStatic in 'ImmiScopeStatic.pas',
+  SelectFormVCLU in 'SelectFormVCLU.pas' {SelectFormVCL},
+  fStartDateTimeGrU in 'fStartDateTimeGrU.pas' {fDateTimeGr},
+  oscillogramU in 'oscillogramU.pas' {FormSelectOsc},
+  ActBoolExpr in 'ActBoolExpr.pas',
+  AppImmi in '..\Units\AppImmi.pas',
+  MainCompilerigistration in 'ifps3\MainCompilerigistration.pas',
+  IMMILabelREditorU in 'IMMILabelREditorU.pas' {LabelREditorFrm},
+  line in 'line.pas',
+  IMMISpeedBtnEditor in 'IMMISpeedBtnEditor.pas' {SpeedBtnEditorFrm},
+  ImmiScopeMulti in 'ImmiScopeMulti.pas',
+  FormManager in '..\Units\FormManager.pas',
+  TmyStringListFormU in 'TmyStringListFormU.pas' {myStringList};
+
+end.

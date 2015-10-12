@@ -1,0 +1,679 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifpscomp: Class TIFPSPascalCompiler</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<A name="408"><H1>Class TIFPSPascalCompiler</H1>
+</A><H2>Unit</H2>
+<A href="ifpscomp.htm">ifpscomp</A><BR><H2>Declaration</H2>
+<P><CODE>type TIFPSPascalCompiler = class</CODE></P><H2>Fields</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="409"><TD>FAllowNoBegin</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="410"><TD>FAllowNoEnd</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="411"><TD>FAllowUnit</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="412"><TD>FAutoFreeList</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="413"><TD>FAvailableTypes</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="414"><TD>FConstants</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="415"><TD>FContinueOffsets</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="416"><TD>FDebugOutput</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="417"><TD>FID</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="418"><TD>FIsUnit</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="419"><TD>FMessages</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="420"><TD>FOnExportCheck</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="421"><TD>FOnExternalProc</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="422"><TD>FOnUses</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="423"><TD>FOnUseVariable</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="424"><TD>FOnWriteLine</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="425"><TD>FOutput</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="426"><TD>FParser</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="427"><TD>FProcs</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="428"><TD>FRegProcs</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="429"><TD>FUsedTypes</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="430"><TD>FVars</TD>
+<TD>&nbsp;</TD>
+</A></TR>
+</TABLE><H2>Methods</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#431"><CODE>constructor <B>Create</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#432"><CODE>destructor <B>Destroy</B>; override;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#433"><CODE>function <B>AddConstant</B>(const Name: string; FType: Cardinal): PIFPSConstant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#434"><CODE>function <B>AddConstantN</B>(const Name, FType: string): PIFPSConstant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#435"><CODE>function <B>AddFunction</B>(const Header: string): PIFPSRegProc;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#436"><CODE>procedure <B>AddToFreeList</B>(Obj: TObject);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#437"><CODE>function <B>AddType</B>(const Name: string; const BaseType: TIFPSBaseType): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#438"><CODE>function <B>AddTypeCopy</B>(const Name: string; TypeNo: Cardinal): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#439"><CODE>function <B>AddTypeCopyN</B>(const Name, FType: string): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#440"><CODE>function <B>AddTypeS</B>(const Name, Decl: string): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#441"><CODE>function <B>AddUsedFunction</B>(var Proc: PIFPSProcedure): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#442"><CODE>function <B>AddUsedFunction2</B>(var Proc: PIFPSUsedRegProc): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#443"><CODE>function <B>AddUsedVariable</B>(const Name: string; FType: Cardinal): PIFPSVar;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#444"><CODE>function <B>AddUsedVariableN</B>(const Name, FType: string): PIFPSVar;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#445"><CODE>function <B>AddVariable</B>(const Name: string; FType: Cardinal): PIFPSVar;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#446"><CODE>function <B>AddVariableN</B>(const Name, FType: string): PIFPSVar;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#447"><CODE>function <B>AT2UT</B>(L: Cardinal): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#448"><CODE>procedure <B>Clear</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#449"><CODE>function <B>Compile</B>(const s: string): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#450"><CODE>procedure <B>Debug_SavePosition</B>(ProcNo: Cardinal; Proc: PIFPSProcedure);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#451"><CODE>procedure <B>Debug_WriteParams</B>(ProcNo: Cardinal; Proc: PIFPSProcedure);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#452"><CODE>procedure <B>DefineStandardTypes</B>;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#453"><CODE>function <B>DoTypeBlock</B>(FParser: TIfPascalParser): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#454"><CODE>function <B>DoVarBlock</B>(proc: PIFPSProcedure): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#455"><CODE>function <B>FindType</B>(const Name: string): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#456"><CODE>function <B>GetAvailableType</B>(No: Cardinal): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#457"><CODE>function <B>GetAvailableTypeCount</B>: Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#458"><CODE>function <B>GetBooleanType</B>(FOnlyAvailTypes: Boolean): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#459"><CODE>function <B>GetDebugOutput</B>(var s: string): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#460"><CODE>function <B>GetInt</B>(FUseTypes: TIFList; Src: PIfVariant; var s: Boolean): Longint;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#461"><CODE>function <B>GetMsg</B>(l: Longint): PIFPSPascalCompilerMessage;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#462"><CODE>function <B>GetMsgCount</B>: Longint;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#463"><CODE>function <B>GetOutput</B>(var s: string): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#464"><CODE>function <B>GetProc</B>(No: Cardinal): PIFPSProcedure;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#465"><CODE>function <B>GetProcCount</B>: Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#466"><CODE>function <B>GetReal</B>(FUseTypes: TIFList; Src: PIfVariant; var s: Boolean): Extended;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#467"><CODE>function <B>GetString</B>(FUseTypes: TIFList; Src: PIfVariant; var s: Boolean): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#468"><CODE>function <B>GetTypeCopyLink</B>(p: PIFPSType): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#469"><CODE>function <B>GetUInt</B>(FUseTypes: TIFList; Src: PIfVariant; var s: Boolean): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#470"><CODE>function <B>GetUsedType</B>(No: Cardinal): PIFPSType;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#471"><CODE>function <B>GetUsedTypeCount</B>: Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#472"><CODE>function <B>GetVariable</B>(No: Cardinal): PIFPSVar;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#473"><CODE>function <B>GetVariableCount</B>: Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#474"><CODE>function <B>IsDuplicate</B>(const s: string): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#475"><CODE>function <B>MakeDecl</B>(decl: string): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#476"><CODE>function <B>MakeError</B>(const Module: string; E: TIFPSPascalCompilerError; const Param: string): PIFPSPascalCompilerMessage;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#477"><CODE>function <B>MakeHint</B>(const Module: string; E: TIFPSPascalCompilerHint; const Param: string): PIFPSPascalCompilerMessage;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#478"><CODE>function <B>MakeWarning</B>(const Module: string; E: TIFPSPascalCompilerWarning; const Param: string): PIFPSPascalCompilerMessage;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#479"><CODE>function <B>NewProc</B>(const Name: string): PIFPSProcedure;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#480"><CODE>function <B>PreCalc</B>(FUseTypes: TIFList; Var1Mod: Byte; var1: PIFVariant; Var2Mod: Byte; Var2: PIfVariant; Cmd: Byte; Pos: Cardinal): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#481"><CODE>function <B>ProcessFunction</B>: Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#482"><CODE>function <B>ProcessLabel</B>(Proc: PIFPSProcedure): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#483"><CODE>function <B>ProcessLabelForwards</B>(Proc: PIFPSProcedure): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#484"><CODE>function <B>ProcessSub</B>(FType: TSubOptType; ProcNo: Cardinal; proc: PIFPSProcedure): Boolean;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#485"><CODE>function <B>ReadConstant</B>(StopOn: TIfPasToken): PIfVariant;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#486"><CODE>function <B>ReadType</B>(const Name: string; FParser: TIfPascalParser): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#487"><CODE>procedure <B>ReplaceTypes</B>(var s: string);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#488"><CODE>procedure <B>UpdateRecordFields</B>(r: Pointer);</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#489"><CODE>function <B>UseAvailableType</B>(No: Cardinal): Cardinal;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="protected.gif" alt="Protected"></TD>
+<TD><A href="TIFPSPascalCompiler.htm#490"><CODE>procedure <B>WriteDebugData</B>(const s: string);</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="431"><TD><CODE>constructor <B>Create</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Create</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="432"><TD><CODE>destructor <B>Destroy</B>; override;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Destroy the current instance of the script compiler</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="433"><TD><CODE>function <B>AddConstant</B>(const Name: string; FType: Cardinal): <A href="ifpscomp.htm#345">PIFPSConstant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a constant</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="434"><TD><CODE>function <B>AddConstantN</B>(const Name, FType: string): <A href="ifpscomp.htm#345">PIFPSConstant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a constant</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="435"><TD><CODE>function <B>AddFunction</B>(const Header: string): <A href="ifpscomp.htm#351">PIFPSRegProc</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a function</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="436"><TD><CODE>procedure <B>AddToFreeList</B>(Obj: TObject);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add an object to the auto-free list</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="437"><TD><CODE>function <B>AddType</B>(const Name: string; const BaseType: <A href="ifps3common.htm#242">TIFPSBaseType</A>): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>add a type</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="438"><TD><CODE>function <B>AddTypeCopy</B>(const Name: string; TypeNo: Cardinal): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a type copy type</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="439"><TD><CODE>function <B>AddTypeCopyN</B>(const Name, FType: string): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a type copy type</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="440"><TD><CODE>function <B>AddTypeS</B>(const Name, Decl: string): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a type declared in a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="441"><TD><CODE>function <B>AddUsedFunction</B>(var Proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="442"><TD><CODE>function <B>AddUsedFunction2</B>(var Proc: <A href="ifpscomp.htm#353">PIFPSUsedRegProc</A>): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="443"><TD><CODE>function <B>AddUsedVariable</B>(const Name: string; FType: Cardinal): <A href="ifpscomp.htm#355">PIFPSVar</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add an used variable</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="444"><TD><CODE>function <B>AddUsedVariableN</B>(const Name, FType: string): <A href="ifpscomp.htm#355">PIFPSVar</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>add an used variable (with named type)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="445"><TD><CODE>function <B>AddVariable</B>(const Name: string; FType: Cardinal): <A href="ifpscomp.htm#355">PIFPSVar</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a variable</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="446"><TD><CODE>function <B>AddVariableN</B>(const Name, FType: string): <A href="ifpscomp.htm#355">PIFPSVar</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a variable</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="447"><TD><CODE>function <B>AT2UT</B>(L: Cardinal): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="448"><TD><CODE>procedure <B>Clear</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Clear the current data</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="449"><TD><CODE>function <B>Compile</B>(const s: string): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Compile a script (s)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="450"><TD><CODE>procedure <B>Debug_SavePosition</B>(ProcNo: Cardinal; Proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="451"><TD><CODE>procedure <B>Debug_WriteParams</B>(ProcNo: Cardinal; Proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="452"><TD><CODE>procedure <B>DefineStandardTypes</B>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="453"><TD><CODE>function <B>DoTypeBlock</B>(FParser: <A href="TIfPascalParser.htm">TIfPascalParser</A>): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="454"><TD><CODE>function <B>DoVarBlock</B>(proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="455"><TD><CODE>function <B>FindType</B>(const Name: string): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Search for a type</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="456"><TD><CODE>function <B>GetAvailableType</B>(No: Cardinal): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="457"><TD><CODE>function <B>GetAvailableTypeCount</B>: Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="458"><TD><CODE>function <B>GetBooleanType</B>(FOnlyAvailTypes: Boolean): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="459"><TD><CODE>function <B>GetDebugOutput</B>(var s: string): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Return the debugger output</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="460"><TD><CODE>function <B>GetInt</B>(FUseTypes: <A href="TIfList.htm">TIFList</A>; Src: <A href="ifpscomp.htm#357">PIfVariant</A>; var s: Boolean): Longint;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="461"><TD><CODE>function <B>GetMsg</B>(l: Longint): <A href="ifpscomp.htm#346">PIFPSPascalCompilerMessage</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="462"><TD><CODE>function <B>GetMsgCount</B>: Longint;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="463"><TD><CODE>function <B>GetOutput</B>(var s: string): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Return the output</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="464"><TD><CODE>function <B>GetProc</B>(No: Cardinal): <A href="ifpscomp.htm#348">PIFPSProcedure</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="465"><TD><CODE>function <B>GetProcCount</B>: Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="466"><TD><CODE>function <B>GetReal</B>(FUseTypes: <A href="TIfList.htm">TIFList</A>; Src: <A href="ifpscomp.htm#357">PIfVariant</A>; var s: Boolean): Extended;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="467"><TD><CODE>function <B>GetString</B>(FUseTypes: <A href="TIfList.htm">TIFList</A>; Src: <A href="ifpscomp.htm#357">PIfVariant</A>; var s: Boolean): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="468"><TD><CODE>function <B>GetTypeCopyLink</B>(p: <A href="ifpscomp.htm#352">PIFPSType</A>): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="469"><TD><CODE>function <B>GetUInt</B>(FUseTypes: <A href="TIfList.htm">TIFList</A>; Src: <A href="ifpscomp.htm#357">PIfVariant</A>; var s: Boolean): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="470"><TD><CODE>function <B>GetUsedType</B>(No: Cardinal): <A href="ifpscomp.htm#352">PIFPSType</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="471"><TD><CODE>function <B>GetUsedTypeCount</B>: Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="472"><TD><CODE>function <B>GetVariable</B>(No: Cardinal): <A href="ifpscomp.htm#355">PIFPSVar</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="473"><TD><CODE>function <B>GetVariableCount</B>: Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="474"><TD><CODE>function <B>IsDuplicate</B>(const s: string): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="475"><TD><CODE>function <B>MakeDecl</B>(decl: string): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="476"><TD><CODE>function <B>MakeError</B>(const Module: string; E: <A href="ifpscomp.htm#365">TIFPSPascalCompilerError</A>; const Param: string): <A href="ifpscomp.htm#346">PIFPSPascalCompilerMessage</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add an error the messages</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="477"><TD><CODE>function <B>MakeHint</B>(const Module: string; E: <A href="ifpscomp.htm#366">TIFPSPascalCompilerHint</A>; const Param: string): <A href="ifpscomp.htm#346">PIFPSPascalCompilerMessage</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a hint to the messages</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="478"><TD><CODE>function <B>MakeWarning</B>(const Module: string; E: <A href="ifpscomp.htm#369">TIFPSPascalCompilerWarning</A>; const Param: string): <A href="ifpscomp.htm#346">PIFPSPascalCompilerMessage</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Add a warning to the messages</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="479"><TD><CODE>function <B>NewProc</B>(const Name: string): <A href="ifpscomp.htm#348">PIFPSProcedure</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="480"><TD><CODE>function <B>PreCalc</B>(FUseTypes: <A href="TIfList.htm">TIFList</A>; Var1Mod: Byte; var1: <A href="ifpscomp.htm#357">PIFVariant</A>; Var2Mod: Byte; Var2: <A href="ifpscomp.htm#357">PIfVariant</A>; Cmd: Byte; Pos: Cardinal): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="481"><TD><CODE>function <B>ProcessFunction</B>: Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="482"><TD><CODE>function <B>ProcessLabel</B>(Proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="483"><TD><CODE>function <B>ProcessLabelForwards</B>(Proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="484"><TD><CODE>function <B>ProcessSub</B>(FType: <A href="ifpscomp.htm#381">TSubOptType</A>; ProcNo: Cardinal; proc: <A href="ifpscomp.htm#348">PIFPSProcedure</A>): Boolean;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="485"><TD><CODE>function <B>ReadConstant</B>(StopOn: <A href="ifps3utl.htm#285">TIfPasToken</A>): <A href="ifpscomp.htm#357">PIfVariant</A>;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="486"><TD><CODE>function <B>ReadType</B>(const Name: string; FParser: <A href="TIfPascalParser.htm">TIfPascalParser</A>): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="487"><TD><CODE>procedure <B>ReplaceTypes</B>(var s: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="488"><TD><CODE>procedure <B>UpdateRecordFields</B>(r: Pointer);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="489"><TD><CODE>function <B>UseAvailableType</B>(No: Cardinal): Cardinal;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="490"><TD><CODE>procedure <B>WriteDebugData</B>(const s: string);</CODE></TD>
+</A></TR>
+</TABLE>
+<P>&nbsp;</P>
+<H2>Properties</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#491"><B>AllowNoBegin</B>: Boolean;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#492"><B>AllowNoEnd</B>: Boolean;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#493"><B>AllowUnit</B>: Boolean;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#494"><B>ID</B>: Pointer;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#495"><B>IsUnit</B>: Boolean;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#496"><B>Msg</B>[l: Longint]: PIFPSPascalCompilerMessage;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#497"><B>MsgCount</B>: Longint;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#498"><B>OnExportCheck</B>: TIFPSOnExportCheck;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#499"><B>OnExternalProc</B>: TIFPSOnExternalProc;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#500"><B>OnUses</B>: TIFPSOnUses;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#501"><B>OnUseVariable</B>: TIFPSOnUseVariable;</A></CODE></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><IMG src="public.gif" alt="Public"></TD>
+<TD><CODE><A href="TIFPSPascalCompiler.htm#502"><B>OnWriteLine</B>: TIFPSOnWriteLineEvent;</A></CODE></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="491"><CODE><B>AllowNoBegin</B>: Boolean;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Allow no main begin/end</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="492"><CODE><B>AllowNoEnd</B>: Boolean;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Allow it to have no END on the script (only works when AllowNoBegin is true)</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="493"><CODE><B>AllowUnit</B>: Boolean;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Allow a unit instead of program</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="494"><CODE><B>ID</B>: Pointer;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>Tag</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="495"><CODE><B>IsUnit</B>: Boolean;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>contains true if the current file is a unit</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="496"><CODE><B>Msg</B>[l: Longint]: <A href="ifpscomp.htm#346">PIFPSPascalCompilerMessage</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>The messages/warnings/errors</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="497"><CODE><B>MsgCount</B>: Longint;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>contains the number of messages</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="498"><CODE><B>OnExportCheck</B>: <A href="ifpscomp.htm#360">TIFPSOnExportCheck</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>OnExportCheck is called for each function to check if it needs to be exported and has the correct parameters</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="499"><CODE><B>OnExternalProc</B>: <A href="ifpscomp.htm#361">TIFPSOnExternalProc</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>OnExternalProc is called when an external token is found after a procedure header</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="500"><CODE><B>OnUses</B>: <A href="ifpscomp.htm#362">TIFPSOnUses</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>OnUses i scalled for each Uses and always first with 'SYSTEM' parameters</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="501"><CODE><B>OnUseVariable</B>: <A href="ifpscomp.htm#363">TIFPSOnUseVariable</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>The OnUseVariant event is called when a variable is used by the script engine</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A name="502"><CODE><B>OnWriteLine</B>: <A href="ifpscomp.htm#364">TIFPSOnWriteLineEvent</A>;</CODE></A></TD>
+</TR>
+</TABLE>
+<P>OnWriteLine is called after each line</P>
+<HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

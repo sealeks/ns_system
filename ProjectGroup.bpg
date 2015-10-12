@@ -1,0 +1,115 @@
+#------------------------------------------------------------------------------
+VERSION = BWS.01
+#------------------------------------------------------------------------------
+!ifndef ROOT
+ROOT = $(MAKEDIR)\..
+!endif
+#------------------------------------------------------------------------------
+MAKE = $(ROOT)\bin\make.exe -$(MAKEFLAGS) -f$**
+DCC = $(ROOT)\bin\dcc32.exe $**
+BRCC = $(ROOT)\bin\brcc32.exe $**
+#------------------------------------------------------------------------------
+PROJECTS = NWCRedactor.bpl NS_Component.bpl additional.bpl SynEdit_D6.bpl \
+  NS_RunTime.exe NS_Debuger.exe NS_DesignTime.exe keyhook.dll \
+  NS_NetShareService.exe NS_MemBaseServ.exe NS_OPCDDEbridge.exe \
+  NS_DirectNetIOService.exe NS_ArchServ_app.exe NS_Report.exe \
+  NS_OPCDDEbridgeService.exe NS_ArchServ.exe NS_Journal.exe NS_BaseTag.exe \
+  NS_DirectNetIOService_app.exe ZComponentDesign70.bpl NS_MemBaseServ_app.exe \
+  NS_LogikaIOServ_app.exe NS_LogikaIOServ.exe NS_Trend.exe \
+  NS_NetShareService_app.exe NS_Trend_1024_768.exe Project1.exe \
+  NS_Trend_1920_1080.exe NS_SETIOServ_app.exe NS_SETIOServ.exe
+#------------------------------------------------------------------------------
+default: $(PROJECTS)
+#------------------------------------------------------------------------------
+
+NS_Component.bpl: VCL\NS_Component.dpk
+  $(DCC)
+
+NS_RunTime.exe: Immi\NS_RunTime.dpr
+  $(DCC)
+
+NS_Debuger.exe: MemShow\NS_Debuger.dpr
+  $(DCC)
+
+NS_DesignTime.exe: Редактор\NS_DesignTime.dpr
+  $(DCC)
+
+NWCRedactor.bpl: компоненты редактора\NWCRedactor.dpk
+  $(DCC)
+
+additional.bpl: Additional\additional.dpk
+  $(DCC)
+
+SynEdit_D6.bpl: VCL\SynEdit\Packages\SynEdit_D6.dpk
+  $(DCC)
+
+keyhook.dll: KeyHook\keyhook.dpr
+  $(DCC)
+
+NS_NetShareService.exe: NetShare\NS_NetShareService.dpr
+  $(DCC)
+
+NS_MemBaseServ.exe: AlarmSrv\NS_MemBaseServ.dpr
+  $(DCC)
+
+NS_OPCDDEbridge.exe: opcgetway\NS_OPCDDEbridge.dpr
+  $(DCC)
+
+NS_DirectNetIOService.exe: New_serv\NS_DirectNetIOService.dpr
+  $(DCC)
+
+NS_ArchServ_app.exe: arcServ\NS_ArchServ_app.dpr
+  $(DCC)
+
+NS_Report.exe: ImmiBaseReport\NS_Report.dpr
+  $(DCC)
+
+NS_OPCDDEbridgeService.exe: opcgetway\NS_OPCDDEbridgeService.dpr
+  $(DCC)
+
+NS_ArchServ.exe: arcServ\NS_ArchServ.dpr
+  $(DCC)
+
+NS_Journal.exe: ImmiBaseJurnal\NS_Journal.dpr
+  $(DCC)
+
+NS_BaseTag.exe: BaseTag\NS_BaseTag.dpr
+  $(DCC)
+
+NS_DirectNetIOService_app.exe: New_serv\NS_DirectNetIOService_app.dpr
+  $(DCC)
+
+ZComponentDesign70.bpl: PostGresComp\delphi7\ZComponentDesign.dpk
+  $(DCC)
+
+NS_MemBaseServ_app.exe: AlarmSrv\NS_MemBaseServ_app.dpr
+  $(DCC)
+
+NS_LogikaIOServ_app.exe: logika_server\NS_LogikaIOServ_app.dpr
+  $(DCC)
+
+NS_LogikaIOServ.exe: logika_server\NS_LogikaIOServ.dpr
+  $(DCC)
+
+NS_Trend.exe: TrendShows\NS_Trend.dpr
+  $(DCC)
+
+NS_NetShareService_app.exe: NetShare\NS_NetShareService_app.dpr
+  $(DCC)
+
+NS_Trend_1024_768.exe: TrendShows1024_768\NS_Trend_1024_768.dpr
+  $(DCC)
+
+Project1.exe: Project1\Project1.dpr
+  $(DCC)
+
+NS_Trend_1920_1080.exe: TrendShows1920_1080\NS_Trend_1920_1080.dpr
+  $(DCC)
+
+NS_SETIOServ_app.exe: set_server\NS_SETIOServ_app.dpr
+  $(DCC)
+
+NS_SETIOServ.exe: set_server\NS_SETIOServ.dpr
+  $(DCC)
+
+

@@ -1,0 +1,1 @@
+com[com2,br1200,bd7,sb2,pt0,trd50,red50,ri300,rtm3001,rtc3002,wtm4001,wtc4002]

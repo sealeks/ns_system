@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Index - Innerfuse Pascal Script III</title>
+</head>
+<body>
+<font size="7">Innerfuse Pascal Script 3</font><br>
+<font size="5">Index</font><br>
+<a href="units/allunits.htm">All units</a><br />
+<a href="units/alltypes.htm">All types</a><br />
+<a href="units/allclass.htm">All classes</a><br />
+</br>
+
+Innerfuse Pascal Script 3 (short IFPS3) is a script engine written in Delphi. IFPS3 allowes you to use parts of Object Pascal language within your Delphi projects at runtime. It's a set of units that can be compiled into your exe file so there is no need to distribute any external files. IFPS3 compiles first and allows to execute the script later.<br><br>
+Samples:<br>
+<a href="sample1.html">Sample 1 - Getting started</a><br />
+<a href="sample2.html">Sample 2 - Adding a function</a><br />
+<a href="sample3.html">Sample 3 - Using the dll library</a><br />
+<a href="sample4.html">Sample 4 - Using the classes library</a><br />
+<a href="sample5.html">Sample 5 - Using the classes library with an already created class</a><br />
+<a href="sample6.html">Sample 6 - Calling functions by name</a><br />
+<a href="sample6.html">Sample 7 - Calling functions by name with array parameters</a><br />
+<br />
+<b>About parameters</b><br />
+  Parameters are pushed from Right to Left so the first parameter is always
+  pushed last. The result (if there is one) is pushed as the very last parameter.<br>
+<br>
+  Var parameters are pushed on the stack the same way except that instead
+  of copying a variable, it's pushed directly on it and the refcount is
+  increased. The result is also pushed like a var parameter.<br>
+<br>
+<b>About importing classes</b><br />
+"All public and published properties need to be registered, unless they were already registered by an ancester class"<br /><br />
+
+"Public properties need to be registered using a property helper at runtime since there is no typeinfo generated for them"<br /><br />
+
+"All public and published methods and constructors need to be registered, unless they are overriden or dynamic (not supported)"<br /><br />
+
+"Destructors may not be registered, use TObject.Free instead"<br /><br />
+
+
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="rjPasDoc 0.7">
+<TITLE>ifps3utl</TITLE>
+<LINK rel="StyleSheet" href="Help.css">
+</HEAD>
+<BODY bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#800080" alink="#FF0000">
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="e0e0e0">
+<TD><A href="AllUnits.htm"><CENTER>Units</CENTER></A></TD>
+<TD><A href="AllClass.htm"><CENTER>Classes, Interfaces, Objects</CENTER></A></TD>
+<TD><A href="AllTypes.htm"><CENTER>Types</CENTER></A></TD>
+<TD><A href="AllVaria.htm"><CENTER>Variables</CENTER></A></TD>
+<TD><A href="AllConst.htm"><CENTER>Constants</CENTER></A></TD>
+<TD><A href="AllFuncs.htm"><CENTER>Functions, Procedures</CENTER></A></TD>
+<TD><A href="AllIdent.htm"><CENTER>Identifiers</CENTER></A></TD>
+</TR>
+</TABLE>
+<H1>Unit ifps3utl</H1>
+<H2>Description</H2>
+<P>
+This unit contains types and functions used by the compiler and executer</P>
+<H2>Classes, interfaces and objects</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><TD>Class&nbsp;<A href="TIfList.htm">TIfList</A></TD>
+<TD>TIfList is the list class used in IFPS</TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD>Class&nbsp;<A href="TIfPascalParser.htm">TIfPascalParser</A></TD>
+<TD>TIfPacalParser is the parser used to parse the current script</TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD>Class&nbsp;<A href="TIfStringList.htm">TIfStringList</A></TD>
+<TD>&nbsp;</TD>
+</TR>
+</TABLE>
+<H2>Functions and procedures</H2>
+<H3>Overview</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><TD><A href="#287"><CODE>function <B>FastLowerCase</B>(const s: String): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#288"><CODE>function <B>FastUpperCase</B>(const s: String): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#289"><CODE>function <B>FloatToStr</B>(E: Extended): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#290"><CODE>function <B>Fw</B>(const S: string): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#291"><CODE>function <B>GRFW</B>(var s: string): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#292"><CODE>function <B>IntToStr</B>(I: LongInt): string;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#293"><CODE>function <B>StrToInt</B>(const S: string): LongInt;</CODE></A></TD>
+</TR>
+<TR bgcolor=#efefef valign=top><TD><A href="#294"><CODE>function <B>StrToIntDef</B>(const S: string; Def: LongInt): LongInt;</CODE></A></TD>
+</TR>
+</TABLE>
+<H3>Description</H3>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="287"><TD><CODE>function <B>FastLowerCase</B>(const s: String): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Fast uppercase</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="288"><TD><CODE>function <B>FastUpperCase</B>(const s: String): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Fast uppercase</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="289"><TD><CODE>function <B>FloatToStr</B>(E: Extended): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Convert a float to a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="290"><TD><CODE>function <B>Fw</B>(const S: string): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Return the first word of a string</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="291"><TD><CODE>function <B>GRFW</B>(var s: string): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Get the first word and remove it</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="292"><TD><CODE>function <B>IntToStr</B>(I: LongInt): string;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>Integer to string conversion</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="293"><TD><CODE>function <B>StrToInt</B>(const S: string): LongInt;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>String to integer</P>
+<TABLE cellspacing=2 cellpadding=4 width=100%>
+<TR bgcolor=#efefef valign=top><A name="294"><TD><CODE>function <B>StrToIntDef</B>(const S: string; Def: LongInt): LongInt;</CODE></TD>
+</A></TR>
+</TABLE>
+<P>String to integer</P>
+<H2>Types</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="282"><TD>PPointerList</TD>
+<TD>PPointerList is pointing to an array of pointers</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="283"><TD>TIFParserError</TD>
+<TD>The error occured while parsing</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="284"><TD>TIFParserErrorKind</TD>
+<TD>TIFParserErrorKind is used to store the parser error</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="285"><TD>TIfPasToken</TD>
+<TD>TIFPasToken is used to store the type of the current token</TD>
+</A></TR>
+<TR bgcolor=#efefef valign=top><A name="286"><TD>TPointerList</TD>
+<TD>An array of pointers</TD>
+</A></TR>
+</TABLE><H2>Constants</H2>
+<TABLE cellspacing=2 cellpadding=4 width=100%><TR bgcolor="#e0e0e0"><TH>Name</TH><TH>Description</TH></TR>
+<TR bgcolor=#efefef valign=top><A name="281"><TD>MaxListSize</TD>
+<TD>Maximum number of items in a list</TD>
+</A></TR>
+</TABLE><HR noshade size=1><EM>Generated by <A href="http://www.zeitungsjunge.de/delphi/">rjPasDoc 0.7</A> on Wed 15 May 2002 19:21:35</EM>
+</BODY>
+</HTML>

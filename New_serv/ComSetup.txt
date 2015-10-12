@@ -1,0 +1,10 @@
+Port
+1
+Parity
+1
+baudRate
+9
+StopBits
+0
+DataBits
+3

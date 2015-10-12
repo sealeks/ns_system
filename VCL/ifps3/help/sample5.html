@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Index - Innerfuse Pascal Script III</title>
+</head>
+<body>
+<font size="7">Innerfuse Pascal Script 3</font><br>
+<a href="index.html">Back to index</a><br />
+<b>Getting Started</b><br><br>
+<ul>
+<li>Create an instance of a TIFPSPascalCompiler</li>
+<li>Create an OnUses event handler</li>
+<li>Register the classes</li>
+<li><font color="#000080">Register the variable</font></li>
+<li>Compile the script</li>
+<li>Save the compiled output and free the instance of TIFPSPascalCompiler</li>
+<li>Create a TIFPSExec</li>
+<li>Register the runtime classes</li>
+<li><font color="#000080">Set the class instance</font></li>
+<li>Load the compiled script</li>
+<li>Execute it</li>
+</ul>
+<br />
+The result of this sample is that it's possible to create all the registered classes from the script.
+<br /><br />
+
+This should look like:<br>
+<pre>
+<b>function </b>ScriptOnUses(Sender: TIFPSPascalCompiler; <b>const </b>Name: <b>string</b>): Boolean;
+<i>{ the OnUses callback function is called for each &quot;uses&quot; in the script. 
+  It's always called with the parameter 'SYSTEM' at the top of the script. 
+  For example: uses ii1, ii2;   
+  This will call this function 3 times. First with 'SYSTEM' then 'II1' and then 'II2'.
+}</i>
+<b>var</b>
+  CI: TIFPSCompileTimeClassesImporter;<i> // can be found in ifpiclass.pas unit.</i>
+<b>begin</b>
+  <b>if</b> Name = 'SYSTEM' <b>then</b>
+  <b>begin</b>
+    RegisterStandardLibrary_C(Sender);
+    <i>{ Register the standard library. The standard library is in the 
+      ifps3lib_std.pas unit. This will register all standard functions like 
+      Copy, Pos, Length.
+    }</i>
+
+    CI := TIFPSCompileTimeClassesImporter.Create(Sender, True);
+    <i>{ Create an instance of the class importer. The first parameter is the script engine. The second parameter is the 
+      auto-free parameter, since it's true, there is no need to free the library. }</i>
+
+    SIRegister_Std(CI);  
+    <i>{ This will register the declarations of these classes: 
+      TObject, TPersisent. This can be found
+      in the ifpii_std.pas unit. }</i>
+
+	SIRegister_Controls(CI);  
+    <i>{ This will register the declarations of these classes: 
+      TControl, TWinControl, TFont, TStrings, TStringList. This can be found
+      in the ifpii_controls.pas unit. }</i>
+
+    SIRegister_Forms(CI);
+    <i>{ This will register: TScrollingWinControl, TCustomForm, TForm and TApplication. ifpii_forms.pas unit. }</i>
+  
+    SIRegister_stdctrls(CI);
+    <i> { This will register: TButtonContol, TButton, TCustomCheckbox, TCheckBox, TCustomEdit, TEdit, TCustomMemo, TMemo,
+      TCustomLabel and TLabel. Can be found in the ifpii_stdctrls.pas unit. }</i>
+    
+    <font color="#000080">AddImportedClassVariable(Sender, 'Application', 'TApplication');
+    <i>// Registers the application variable to the script engine.</i></font>
+
+    Result := True;
+  <b>end else</b>
+    Result := False;
+<b>end;</b>
+
+<b>procedure </b>ExecuteScript(<b>const </b>Script: <b>string</b>);
+<b>var</b>
+  Compiler: TIFPSPascalCompiler;
+  <i>{ TIFPSPascalCompiler is the compiler part of the scriptengine. This will 
+    translate a Pascal script into a compiled for the executer understands. } </i>
+  Exec: TIFPSExec;
+  <i> { TIFPSExec is the executer part of the scriptengine. It uses the output of
+    the compiler to run a script. }</i>
+  Data: <b>string</b>;
+  CI: TIFPSRuntimeClassImporter;<i> // Can be found in the ifpiclassruntime.pas unit.</i>
+<b>begin</b>
+  Compiler := TIFPSPascalCompiler.Create; <i>// create an instance of the compiler.</i>
+  Compiler.OnUses := ScriptOnUses; <i>// assign the OnUses event.</i>
+  <b>if not </b>Compiler.Compile(Script) <b>then</b> <i> // Compile the Pascal script into bytecode.</i>
+  <b>begin</b>
+    Compiler.Free;
+    <i> // You could raise an exception here.</i>
+    Exit;
+  <b>end</b>;
+
+  Compiler.GetOutput(Data); <i>// Save the output of the compiler in the string Data.</i>
+  Compiler.Free; <i>// After compiling the script, there is no need for the compiler anymore.</i>
+
+  CI := TIFPSRuntimeClassImporter.Create;
+  <i>{ Create an instance of the runtime class importer.}</i>
+  
+  RIRegister_Std(CI); <i> // ifpiir_std.pas unit.</i>
+  RIRegister_Controls(I); <i> // ifpiir_controls.pas unit.</i>
+  RIRegister_stdctrls(CI); <i> // ifpiir_stdctrls.pas unit.</i>
+  RIRegister_Forms(CI); <i> // ifpiir_forms.pas unit.</i>
+
+  Exec := TIFPSExec.Create; <i> // Create an instance of the executer.</i>
+  RegisterStandardLibrary_R(Exec);
+
+  RegisterClassLibaryRuntime(Exec, CI);
+  <i>// Assign the runtime class importer to the executer.</i>
+  
+  <i>{ The functions registered at compile time also need to be registered at runtime. These
+    functions can be found in the ifps3lib_stdr.pas unit. }</i>
+  <b>if not </b>Exec.LoadData(Data) <b>then</b> <i>// Load the data from the Data string.</i>
+  <b>begin</b>
+    <i>{ For some reason the script could not be loaded. This is usually the case when a 
+      library that has been used at compile time isn't registered at runtime. }</i>
+    Exec.Free;
+    <i> // You could raise an exception here.</i>
+    Exit;
+  <b>end</b>;
+
+  <font color="#000080">SetVariantToClass(Exec.GetVarNo(Exec.GetVar('APPLICATION')), Application);
+  <i> // This will set the script's Application variable to the real Application variable.</i></font>
+
+  Exec.RunScript; <i>// Run the script.</i>
+  Exec.Free; <i>// Free the executer.</i>
+  CI.Free; <i> // Free the runtime class importer. </i>
+<b>end</b>;
+</pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+
+
+ControlDDHList: TComponentList;
+
+procedure ChoisControl(SelectControl: TControl; ParentControl: TWinControl);
+
+
+ControlDDHList:=TComponentList.Create;
+
+Destructor TRedactor.Destroy;
+begin
+ControlDDHList.Free;  
+inherited Destroy;
+end;
+
+procedure TRedactor.ChoisControl(SelectControl: TControl; ParentControl: TWinControl);
+begin
+if (ParentControl is TWinControl) then ControlDDHList.Add(TControlddh.Create(ParentControl, ParentControl));
+end;
