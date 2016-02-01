@@ -99,6 +99,7 @@ const
     );
 
 function GetGCom(GlobalVar: String): string;
+procedure LogDebug(FileNM: string; msg: string);
 
 implementation
 
@@ -115,6 +116,28 @@ begin
       result := NameCommentArr[i, 1];
       exit;
     end;
+end;
+
+procedure LogDebug(FileNM: string; msg: string);
+var
+  Filename: string;
+  LogFile: TextFile;
+begin
+  exit;
+  // prepares log file
+  Filename := FileNM + '.log';
+  AssignFile (LogFile, Filename);
+  if FileExists (FileName) then
+    Append (LogFile) // open existing file
+  else
+    Rewrite (LogFile); // create a new one
+  try
+    // write to the file and show error
+    Writeln (LogFile, DateTimeToStr (Now) + ':' + msg);
+  finally
+    // close the file
+    CloseFile (LogFile);
+  end;
 end;
 
 initialization

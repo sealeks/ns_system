@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 984
-  Top = 370
+  Left = 706
+  Top = 463
   Width = 912
   Height = 622
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1072' '#1090#1088#1077#1074#1086#1075
@@ -66,8 +66,8 @@ object Form1: TForm1
   object PanelProject: TPanel
     Left = 0
     Top = 0
-    Width = 904
-    Height = 575
+    Width = 896
+    Height = 564
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
@@ -75,13 +75,13 @@ object Form1: TForm1
     object Splitter2: TSplitter
       Left = 201
       Top = 30
-      Height = 545
+      Height = 534
     end
     object TreeViewProject: TTreeView
       Left = 0
       Top = 30
       Width = 201
-      Height = 545
+      Height = 534
       Align = alLeft
       Images = ImageListPrj
       Indent = 19
@@ -98,8 +98,8 @@ object Form1: TForm1
     object ValueListPrj: TValueListEditor
       Left = 204
       Top = 30
-      Width = 700
-      Height = 545
+      Width = 692
+      Height = 534
       Align = alClient
       DisplayOptions = [doAutoColResize, doKeyColFixed]
       TabOrder = 1
@@ -110,14 +110,14 @@ object Form1: TForm1
     object Panel1: TPanel
       Left = 0
       Top = 0
-      Width = 904
+      Width = 896
       Height = 30
       Align = alTop
       TabOrder = 2
       object ToolBar1: TToolBar
         Left = 1
         Top = 1
-        Width = 902
+        Width = 894
         Height = 29
         Caption = 'ToolBar1'
         Images = ImageList1
@@ -134,8 +134,8 @@ object Form1: TForm1
   object PanelActive: TPanel
     Left = 0
     Top = 0
-    Width = 904
-    Height = 575
+    Width = 896
+    Height = 564
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -144,13 +144,13 @@ object Form1: TForm1
       Left = 265
       Top = 0
       Width = 4
-      Height = 553
+      Height = 542
     end
     object ListView1: TListView
       Left = 269
       Top = 0
-      Width = 635
-      Height = 553
+      Width = 627
+      Height = 542
       Align = alClient
       AllocBy = 1000
       Color = 15461610
@@ -171,7 +171,7 @@ object Form1: TForm1
       Left = 0
       Top = 0
       Width = 265
-      Height = 553
+      Height = 542
       Align = alLeft
       DragMode = dmAutomatic
       HideSelection = False
@@ -194,8 +194,8 @@ object Form1: TForm1
     end
     object PanelDown: TPanel
       Left = 0
-      Top = 553
-      Width = 904
+      Top = 542
+      Width = 896
       Height = 22
       Align = alBottom
       BevelOuter = bvNone
@@ -203,13 +203,13 @@ object Form1: TForm1
       object ProgressBar1: TProgressBar
         Left = 0
         Top = 0
-        Width = 383
+        Width = 375
         Height = 22
         Align = alClient
         TabOrder = 0
       end
       object StatusBar1: TStatusBar
-        Left = 383
+        Left = 375
         Top = 0
         Width = 521
         Height = 22
@@ -226,15 +226,15 @@ object Form1: TForm1
     object PanelItem: TPanel
       Left = 269
       Top = 0
-      Width = 635
-      Height = 553
+      Width = 627
+      Height = 542
       Align = alClient
       DockSite = True
       TabOrder = 2
       object ToolBar: TToolBar
         Left = 1
         Top = 1
-        Width = 633
+        Width = 625
         Height = 29
         Caption = 'ToolBar'
         Images = ImageList1
@@ -303,8 +303,8 @@ object Form1: TForm1
       object ValueListItem: TValueListEditor
         Left = 1
         Top = 30
-        Width = 633
-        Height = 522
+        Width = 625
+        Height = 511
         Align = alClient
         DisplayOptions = [doAutoColResize, doKeyColFixed]
         FixedColor = clSilver
@@ -1202,7 +1202,7 @@ object Form1: TForm1
     Left = 208
     Top = 208
     Bitmap = {
-      494C01014E004F00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C01014E004F00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004001000001002000000000000040
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3846,7 +3846,8 @@ object Form1: TForm1
       F803F803F803F803F001F001F001F001F001F001F001F001F001F001F001F001
       F001F001F001F001C000F001F001F001F001F001F001F001F001F001F001F001
       F001F001F001F001F001F001F001F001F803F803F803F803FC07FC07FC07FC07
-      FF1FFF1FFF1FFF1FFFFFFFFFFFFFFFFF}
+      FF1FFF1FFF1FFF1FFFFFFFFFFFFFFFFF00000000000000000000000000000000
+      000000000000}
   end
   object TrendCon: TADOConnection
     LoginPrompt = False

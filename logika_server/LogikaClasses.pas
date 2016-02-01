@@ -3,7 +3,7 @@ unit LogikaClasses;
 interface
 uses
   classes,  SysUtils, InterfaceServerU,
-  Mycomms, DateUtils, ConstDef,
+  Mycomms, DateUtils, ConstDef, GlobalValue,
   windows{, debugClasses}, Messages, ConvFunc, {Globalvar,} dialogs, MemStructsU,LogikaComPortU, Math;
 
 const
@@ -1447,7 +1447,12 @@ begin
    end;
    vdt:=frtitems[Items[id].id[0]].TimeStamp;
    for l:=0 to archblocksize-tmp do
-   vdt:=incPeriod(typ[id],vdt,1);
+   begin
+   if (incPeriod(typ[id],vdt,1)<now) then
+     vdt:=incPeriod(typ[id],vdt,1)
+   else
+     break;
+   end;
    result:=
            GetTimeReqByTabTimeforSys(vdt,typ[id],delt[id]);
    result:=incminute (result, 1);
@@ -2491,6 +2496,14 @@ begin
   result:=result+HT+inttostr(mainlist.items[i].chanalNum)+HT+inttostr(mainlist.items[i].paramNum)+FF+
   datetimetoDevformat(mainlist.ReqTime2[i])+datetimetoDevformat(mainlist.ReqTime1[i]);
   //showmessage(datetimetostr(mainlist.ReqTime1[i])+  '  -  ' + datetimetostr(mainlist.ReqTime2[i]));
+  if (mainlist.items[i].typ=REPORTTYPE_DAY) then
+  begin
+  {LogDebug('logika-debug', '   ' + inttostr(mainlist.items[i].chanalNum)+'|'+inttostr(mainlist.items[i].paramNum) +
+  '  :  ' + datetimetostr(mainlist.ReqTime1[i])+  '  -  ' + datetimetostr(mainlist.ReqTime2[i]));}
+  if rtitems<>nil then
+  rtitems.Log('   ' + inttostr(mainlist.items[i].chanalNum)+'|'+inttostr(mainlist.items[i].paramNum) +
+  '  :  ' + datetimetostr(mainlist.ReqTime1[i])+  '  -  ' + datetimetostr(mainlist.ReqTime2[i]),_DEBUG_MESSAGE);
+  end;
   if result<>'' then result:=DLE+STX+result+DLE+ETX;
 end;
 

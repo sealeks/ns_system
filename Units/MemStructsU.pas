@@ -2074,6 +2074,8 @@ var
   fStr: TFileStream;
   curRefCount: integer;
   curIsKvit: boolean;
+  curBoolAO: boolean;
+  curBoolAK: boolean;
   varsGrnum: integer;
   ValReal_: real;
   ValidLevel_: integer;
@@ -2096,6 +2098,12 @@ begin
 
     CurRefCount := items[curItem].refCount;
     items[curItem].refCount := 0;
+
+    curBoolAO := items[curItem].isAlarmOn;
+    items[curItem].isAlarmOn := false;
+
+    curBoolAK := items[curItem].isAlarmKvit;
+    items[curItem].isAlarmKvit := true;
 
     // записываем условие неалармности
     ValReal_:=items[curItem].ValReal;
@@ -2139,6 +2147,8 @@ begin
     items[curItem].refCount := CurRefCount;
     items[curItem].isAlarmKvit := CurIsKvit;
     items[curItem].TimeStamp:=DeathB;
+    items[curItem].isAlarmKvit:=curBoolAK;
+    items[curItem].isAlarmOn:=curBoolAO;
     if (GroupNum_<>varsGrnum) then
          items[curItem].ValReal:=ValReal_;
     if (GroupNum_<>varsGrnum) then
