@@ -2782,7 +2782,15 @@ begin
                      if par_id>-1 then
                        begin
                          if getArrUnit(dirval,dirtime,au) then
-                            mainlist.addInBuffer(par_id, au);
+                            begin
+                            if (au.dt<now) then
+                                mainlist.addInBuffer(par_id, au)
+                            else
+                              begin
+                                 if rtitems<>nil then
+                                     rtitems.Log('now < tm arch' ,_DEBUG_MESSAGE);
+                              end;
+                            end;
                        end;
                      end;
 
