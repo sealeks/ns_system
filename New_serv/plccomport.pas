@@ -27,8 +27,12 @@ type
     //ProterrR: word;
     function PLCreadString (slaveNumber: byte; startAddress, dataSize: integer): string;  // override;
     function PLCreadString1 (slaveNumber: byte; startAddress, dataSize: integer; var data: string): integer;  override;
+    function PLCreadString1K (slaveNumber: byte; startAddress, dataSize: integer; var data: string): integer;
     function PLCreadStringB (slaveNumber: byte; startAddress, dataSize: integer; var data: string): boolean;  //override;
+    function PLCreadStringModBus (slaveNumber: byte; startAddress, dataSize: integer; var data: string): integer;
+    function PLCwriteStringModBus (slaveNumber: byte; startAddress: integer; NewValue: string): integer;
     function PLCwriteString (slaveNumber: byte; startAddress: integer; NewValue: string): integer;  override;
+    function PLCwriteStringK (slaveNumber: byte; startAddress: integer; NewValue: string): integer;
 
   published
     { Published declarations }
@@ -81,9 +85,32 @@ begin
     result := result xor ord(str[i]);
 end;
 
+function WordToStr(source:word):string;
+begin
+  result:=chr(source shr 8)+chr(source and $FF);
+end;
 
+function CRC16(str: string) : string;
+var
+   i, j: integer;
+   pol: boolean;
+   res: word;
+begin
+  res := $FFFF;
+  for i := 1 to length (str) do
+    begin
+      res := res xor ord(str[i]);
+      for j:=1 to 8 do
+        begin
+          pol:=(res and 1) = 1;
+          res := res shr 1;
+          if pol then res := res xor $A001;
+        end;
+    end;
+  result:=chr(res and $FF)+chr(res shr 8);
+end;
 
-function TPLCComPort.PLCwriteString(slaveNumber: byte; startAddress: integer; NewValue: string): integer;
+function TPLCComPort.PLCwriteStringK(slaveNumber: byte; startAddress: integer; NewValue: string): integer;
 var
    Request, Unser: string;
    len : integer;
@@ -153,7 +180,15 @@ begin
   result:=ERRP_W_NONE;
 end;
 
-function TPLCComPort.PLCreadString1 (slaveNumber: byte; startAddress, dataSize: integer; var data: string): integer;
+function TPLCComPort.PLCwriteString(slaveNumber: byte; startAddress: integer; NewValue: string): integer;
+begin
+if (fModbus) then
+result:=PLCwriteStringModBus(slaveNumber, startAddress, NewValue)
+else
+result:=PLCwriteStringK(slaveNumber, startAddress, NewValue);
+end;
+
+function TPLCComPort.PLCreadString1K (slaveNumber: byte; startAddress, dataSize: integer; var data: string): integer;
 var
    Request, Unser: string;
    str : string;
@@ -251,6 +286,14 @@ begin
     result:=ERRP_R_None;
 end;
 
+function TPLCComPort.PLCreadString1 (slaveNumber: byte; startAddress, dataSize: integer; var data: string): integer;
+begin
+if (fModbus) then
+    result:=PLCreadStringModBus(slaveNumber, startAddress, dataSize, data)
+else
+   result:=PLCreadString1K (slaveNumber, startAddress, dataSize, data);
+end;
+
 function TPLCComPort.PLCreadStringB (slaveNumber: byte; startAddress, dataSize: integer; var data: string): boolean;
 begin
   try
@@ -272,6 +315,101 @@ var
 begin
   PLCReadString1 (SlaveNumber, StartAddress, dataSize, data);
   result := data;
+end;
+
+function TPLCComPort.PLCreadStringModBus(slaveNumber: byte; startAddress,
+  dataSize: integer; var data: string): integer;
+var
+   Request, Unser: string;
+   str : string;
+   len : integer;
+   I: integer;
+   BlockSize: integer;
+   ch:char;
+begin
+  try
+    //if Assigned (OnStartRead) then OnStartRead(slaveNumber);
+//     DEBUG.Log('ReadString1 ' + inttostr(StartAddress)+ '; ' +
+//                inttostr(SlaveNumber)+ '; ' + inttostr(dataSize));
+     result:=0;
+     data := '';
+     Request := chr(SLAVENUMBER)+chr(3)+WordToStr(startAddress-1)+WordToStr(dataSize div 2);
+     Request := Request + CRC16(Request);
+     writeString (Request, true);
+     BlockSize := DataSize+5;
+     len := ReadString(str, 1, true);
+      if (len <> 1) then
+      begin
+         result:=ERRP_R_1;
+         raise Exception.create ('Нет ответа с данными');
+      end;
+     len := ReadString(Unser, BlockSize-1, true);
+      if (len <> BlockSize-1) then
+      begin
+         result:=ERRP_R_2;
+         raise Exception.create ('Нет ответа с данными');
+      end;
+      Unser:=str+Unser;
+      //check CRC
+      str := copy(unser, 4, length (unser) - 6);
+      if copy(Unser,length(Unser)-1,2)<>crc16(copy(Unser,1,length(Unser)-2)) then
+      begin
+         result:=ERRP_R_3;
+         raise Exception.Create ('Ошибка контрольной суммы.');
+      end;
+      for i:=1 to length(str) div 2 do
+        begin
+          ch:=str[i*2-1];
+          str[i*2-1]:=str[i*2];
+          str[i*2]:=ch;
+        end;
+      data := data + str;
+  finally
+    //if Assigned (OnStopRead) then OnStopRead(slaveNumber);
+
+  end;
+end;
+
+function TPLCComPort.PLCwriteStringModBus(slaveNumber: byte;
+  startAddress: integer; NewValue: string): integer;
+var
+   Request, Unser: string;
+   len : integer;
+   I: integer;
+   dataSize : integer;
+   str:string;
+begin
+  try
+     result:=0;
+     //if Assigned (OnStartWrite) then OnStartWrite(slaveNumber);
+     //DEBUG.Log('WriteString ' + inttostr(SlaveNumber)+ '; ' + inttostr(StartAddress) + '; ' + inttostr(BCDTOBIN(PWord(NewValue)^)));
+     dataSize := length (newValue);
+     if dataSize > 255 then
+       begin
+       result:=ERRP_W_1;
+       raise Exception.Create ('Слишком большой блок для записи');
+       end;
+     str:='';
+     for i:=1 to length(NewValue) div 2 do str:=str+NewValue[i*2]+NewValue[i*2-1];
+     Request := chr(SLAVENUMBER)+chr(16)+WordToStr(StartAddress-1)+WordToStr(dataSize div 2);
+     Request := Request+chr(dataSize)+str;
+     Request := Request+crc16(Request);
+     writeString (Request, true);
+     len := ReadString(Unser, 8, true);
+    if (len <> 8) then
+        begin
+        result:=ERRP_W_2;
+        raise exception.create ('Нет подтверждения записи');
+        end;
+    if copy(Unser,length(Unser)-1,2)<>crc16(copy(Unser,1,length(Unser)-2)) then
+        begin
+        result:=ERRP_W_2;
+        raise Exception.Create ('Ошибка контрольной суммы.');
+        end;
+
+  finally
+    //if Assigned (OnStopWrite) then OnStopWrite(slaveNumber);
+  end;
 end;
 
 end.

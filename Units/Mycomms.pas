@@ -72,6 +72,7 @@ type
     ftrd: integer;
     fred: integer;
     flCtrl: boolean;
+    fModbus: boolean;
     function  ComTimer(vl: integer): boolean;
     procedure DoneAsync(var AsyncPtr: PAsync);
     procedure InitAsync(var AsyncPtr: PAsync);
@@ -97,7 +98,7 @@ type
     function ReadString(var Str: String; Count: DWORD; WaitFor: Boolean): DWORD;
     procedure PugeCom;
     function ComString: String;
-    constructor Create(AOwner: TComponent;st: Tcomset); 
+    constructor Create(AOwner: TComponent;st: Tcomset; modbus: boolean = false);
     destructor Destroy; override;
     function ReadSettings: boolean; override;
   published
@@ -218,11 +219,12 @@ end;
 
 // TMyComPort
 
-constructor TMyComPort.Create(AOwner: TComponent; st: Tcomset);
+constructor TMyComPort.Create(AOwner: TComponent; st: Tcomset; modbus: boolean = false);
 begin
   inherited Create(AOwner);
   FTimeouts:=TComTimeouts.Create(self);
   self.fcomset:=st;
+  self.fModbus:=modbus;
   initComset;
 end;
 
