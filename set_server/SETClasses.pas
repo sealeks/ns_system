@@ -28,7 +28,7 @@ type
 // тип тега опроса
   // текущие данные, массив, архив
 type
-  TItemReqType  = (rtCurrent, rtArchive);
+  TItemReqType  = (rtCurrent, rtArchive, rtInput );
 
 type
   TNetType = ( ntAPS, ntDirect);
@@ -138,6 +138,7 @@ type
    property    refCount[id: integer]: integer read getrefCount;
    function    addItem(id: integer): PTUnitItem;
    procedure   SetCurVal(id: integer; val: string);
+   procedure   SetInpVal(id: integer; val: string);
    procedure   SetCurArch(id: integer; au: TreportArrUnit);
    constructor create(frtitems_: TanalogMems);
    destructor  destroy; override;
@@ -177,10 +178,12 @@ TVirtualUnitItems = class(TList)
       function  GetNeedReq(id: integer): boolean;
       function  GetNeedReq_(id: integer): boolean;
       function  GetComMessageCurr(id: integer): string;  // сообщение в порт для текущих
+      function  GetComMessageInp(id: integer): string;  // сообщение в порт для входов
       function  GetComMessageArch(id: integer): TDateTime;  // сообщение в порт для массивов
       function  GetArchChanal(id: integer): byte;  // сообщение в порт для массивов
       function  GetArchIs30min(id: integer): boolean;
       function  ProccessMessageCurr(id: integer; val: string): integer;  // сообщение в порт для текущих
+      function  ProccessMessageInp(id: integer; val: string): integer;  // сообщение в порт для входов
       function  ProccessMessageArch(id: integer; time: TDateTime; val: real): integer;  // сообщение в порт для массивов
       function getblocksize: integer;
       procedure Init;
@@ -859,6 +862,28 @@ begin
        end;
      end;
 
+   temp:=pos('I',val);
+   chan:=0;
+   num:=-1;
+   ind:=-1;
+   if temp>0 then
+     begin
+       chan:=-1;
+       if (temp)<length(val) then
+       begin
+        i:=temp+1;
+        tempstr:='';
+        while (i<=length(val)){ and (val[i]<>':')} do
+         begin
+            tempstr:=tempstr+val[i];
+            inc(i);
+         end;
+        ind:=strtointdef(tempstr,-1);
+        if (ind>-1) {and (num>-1)} then result:=true;
+        exit;
+       end;
+     end;
+
    temp:=pos('AR',val);
    chan:=0;
    num:=-1;
@@ -1136,6 +1161,14 @@ begin
             // определяем тип метки
             if not (typ_ in REPORT_SET_SET ) then
               begin
+              if (ind_>-1) then
+                 begin
+                    reqtype:=rtInput;
+                    ch_:=2000;
+                    num_:=ind_;
+                    ind_:=-1;
+                 end
+              else
                  reqtype:=rtCurrent;
               end
               else
@@ -1151,7 +1184,7 @@ begin
 
             case reqtype of
 
-              rtCurrent:
+              rtCurrent, rtInput:
                 begin
                    findid:=FindItemByParam(ch_,num_,ind_);
                    if findid>-1 then
@@ -1193,6 +1226,9 @@ begin
                    Sort;
                    end
                 end;
+
+
+
 
               rtArchive:
                 begin
@@ -1437,6 +1473,33 @@ begin
                frtitems.SetVal(items[id].ID[l],tempval,100);
             end
 
+     end;
+end;
+
+procedure  TUnitItems.SetInpVal(id: integer; val: string);
+var l, i, pos: integer;
+    tempint : integer;
+    tempval: bool;
+    valcorrect: boolean;
+begin
+   tempint:=0;
+   pos:= items[id].paramNum;
+   if (pos>0) then
+   begin
+   for i:=1 to length(val) do
+      tempint :=  tempint*256 + ord(val[i]);
+   tempval :=  ((1 shl (pos-1)) and tempint) <> 0;
+   for l:=0 to length(items[id].ID)-1 do
+     begin
+         if (tempval) then
+            begin
+               frtitems.SetVal(items[id].ID[l],1,100);
+            end
+         else
+            begin
+               frtitems.SetVal(items[id].ID[l],0,100);
+            end
+     end;
      end;
 end;
 
@@ -2133,6 +2196,15 @@ begin
                   it.reqType_:=rtCurrent;
                   Add(it);
                   blocksize:=1;
+                end;
+             rtInput:   // стартуем виртуальный элемент текущих
+                begin
+                  new(it);
+                  it.start_ind:=i;
+                  it.stop_ind:=i;
+                  it.reqType_:=rtInput;
+                  Add(it);
+                  blocksize:=1;
                 end
          end
         end;
@@ -2148,7 +2220,7 @@ var i: integer;
 begin
     result:=true;
     case items[id].reqType_ of
-       rtCurrent:  // если  текущая проверяем количество ссылок для каждого элемента в блоке
+       rtCurrent, rtInput:  // если  текущая проверяем количество ссылок для каждого элемента в блоке
          begin
             result:=false;
             for i:=items[id].start_ind to items[id].stop_ind  do
@@ -2176,7 +2248,7 @@ var i: integer;
 begin
     result:=true;
     case items[id].reqType_ of
-       rtCurrent:  // если  текущая проверяем количество ссылок для каждого элемента в блоке
+       rtCurrent, rtInput:  // если  текущая проверяем количество ссылок для каждого элемента в блоке
          begin
             result:=false;
             for i:=items[id].start_ind to items[id].stop_ind  do
@@ -2233,6 +2305,16 @@ begin
         if result=ANSWER_OK then
           begin
             ProccessMessageCurr(id,instr);
+          end;
+      end;
+    rtInput:
+      begin
+        outstr:=GetComMessageInp(id);
+        if outstr='' then exit;
+        result:=comserver.SETreadStr(slave,byte(RCURRENT),outstr,instr);
+        if result=ANSWER_OK then
+          begin
+            ProccessMessageInp(id,instr);
           end;
       end;
     rtArchive:
@@ -2382,6 +2464,13 @@ begin
    if result<>'' then result:=result;
 end;
 
+function TVirtualUnitItems.GetComMessageInp(id: integer): string;  // сообщение в порт для текущих
+var i: integer;
+begin
+  result:=chr($1D) + chr($FA);
+   if result<>'' then result:=result;
+end;
+
 
 
 function  TVirtualUnitItems.GetComMessageArch(id: integer): TDateTime;  // сообщение в порт для массивов
@@ -2426,6 +2515,19 @@ begin
     if id>-1 then
        begin
            mainlist.SetCurVal(id, val);
+       end;
+end;
+
+function TVirtualUnitItems.ProccessMessageInp(id: integer; val: string): integer;  // обработка сообщения из порта для текущих
+var sl, valsl: TStringList;
+    ch_,num_, i,  par_id: integer;
+    dirval, dirue, dirtime: string;
+    _getadr: boolean;
+
+begin
+    if id>-1 then
+       begin
+           mainlist.SetInpVal(id, val);
        end;
 end;
 
