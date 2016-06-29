@@ -56,6 +56,7 @@ constructor TSETServerThread.create(irtItems : string; comNum: integer;comset: T
 
 begin
   inherited create(false);
+  IsMultiThread:=true;
   fpath := irtItems;
   fComNum:=comNum;
   itemsList:=TStringList.Create;

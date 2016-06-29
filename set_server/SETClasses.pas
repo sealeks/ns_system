@@ -1936,10 +1936,12 @@ end;
 function TDeviceItems.Open: boolean;
 var i: integer;
 begin
+   result:=false;
    try
    comserver.fcomset.pt:=1;
    comserver.Open;
    fconnected:=true;
+   result:=true;
    for i:=0 to count-1 do
       items[i].setComm(comserver);
    for i:=0 to count-1 do

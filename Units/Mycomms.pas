@@ -287,10 +287,11 @@ begin
     SetupComPort;
     SetCommMask(FHandle,EV_TXEMPTY or EV_DSR or EV_RLSD);
     if self.flCtrl then
-   begin
-  
-    EscapeCommFunction(FHandle, CLRRTS	);
-   end;
+     begin
+       EscapeCommFunction(FHandle, CLRRTS	);
+     end;
+    PurgeComm(FHandle,PURGE_TXABORT or PURGE_TXCLEAR);
+    PurgeComm(FHandle,PURGE_RXABORT or PURGE_RXCLEAR);
     result:=true;
   except
     DestroyHandle;

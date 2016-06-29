@@ -56,6 +56,7 @@ constructor TLogikaServerThread.create(irtItems : string; comNum: integer;comset
 
 begin
   inherited create(false);
+  IsMultiThread:=true;
   fpath := irtItems;
   fComNum:=comNum;
   itemsList:=TStringList.Create;

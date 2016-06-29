@@ -1850,12 +1850,14 @@ end;
 function TDeviceItems.Open: boolean;
 var i: integer;
 begin
+   result:=false;
    try
    if ftypeReq=ntAPS then
        comserver.fcomset.pt:=0
    else comserver.fcomset.pt:=4;
    comserver.Open;
    fconnected:=true;
+   result:=true;
    for i:=0 to count-1 do
       items[i].setComm(comserver);
    for i:=0 to count-1 do

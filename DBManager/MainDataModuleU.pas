@@ -3,7 +3,7 @@ unit MainDataModuleU;
 interface
 
 uses
-  SysUtils, Classes, Forms, DateUtils,DB,math, ConstDef;
+  SysUtils, Classes, Forms, DateUtils,DB,math, ConstDef, MemStructsU;
 
 type
   TTrendDefOp= (tdoAdd, tdoUpdate, tdoDelete);
@@ -287,7 +287,7 @@ type
     function WriteTrendef (iLogCode: longInt; iname: string; comment: string; MinEu, MaxEU, minRaw, maxRaw,logDB,logTime, DeadBaund: real; EU: string;
              onmsg_: boolean; offmsg_: boolean; almsg_: boolean; logged: boolean; oper: TTrendDefOp; list: TTrenddefList): integer;  virtual;
 
-    function ClearArchive(val: integer): boolean;
+    function ClearArchive(val: integer; first: boolean): boolean;
     function delTable(fn: string): boolean;  virtual;
     function deleteTrenddef(): boolean;
 
@@ -712,8 +712,8 @@ begin
 
 end;
 
-function TMainDataModule.ClearArchive(val: integer): boolean;
-var DL,i: integer;
+function TMainDataModule.ClearArchive(val: integer; first: boolean ): boolean;
+var DL,i, depth: integer;
     tm: TDateTime;
 begin
 if val<0 then exit;
@@ -723,27 +723,57 @@ if val<1 then DL:=6 else DL:=val;
 
 // очистка трендов
 
+   depth:=100;
+   if (first) then
+      begin
+         depth:=900;
+      end;
+
+
    tm:=incMonth(now,-DL);
    tm:=incday(tm,-1);
-   for i:=0 to 100 do
+
+   if (rtItems<>nil) then
+          rtItems.Log('delete trtabel start name: '+ trendDateToFileName(tm),_DEBUG_WARNING);
+
+   for i:=0 to depth do
        begin
         delTrTable(tm);
-        // delAlTable(tm);
         tm:=incday(tm,-1);
        end;
 
-// очистка журнала
+   if (rtItems<>nil) then
+          rtItems.Log('delete trtabel stop name: '+ trendDateToFileName(tm),_DEBUG_WARNING);
+
+// очистка журнала и отчентов
+
+   if (rtItems<>nil) then
+          rtItems.Log('delete tabel start name: '+ alarmDateToFileName(tm) + ' ... ' + ReportDateToFileName(tm,REPORTTYPE_HOUR),_DEBUG_WARNING);
 
    tm:=incMonth(now,-(DL+1));
    tm:=incday(tm,-1);
    delAlTable(tm);
+   delRepTable(tm);
 
+   if (first) then
+     begin
+        depth:=30;
+        for i:=0 to depth do
+          begin
+            delAlTable(tm);
+            delRepTable(tm);
+            tm:=incMonth(tm,-1);
+       end;
+     end;
+
+    if (rtItems<>nil) then
+          rtItems.Log('delete tabel stop name: '+ alarmDateToFileName(tm) + ' ... ' + ReportDateToFileName(tm,REPORTTYPE_HOUR),_DEBUG_WARNING);
 // очистка отчетов
 
-   tm:=incYear(now,-DL);
-   tm:=incmonth(tm,-1);
-   delRepTable(tm);
-   delOscTable(tm);
+   //tm:=incYear(now,-DL);
+   //tm:=incmonth(tm,-1);
+   {delRepTable(tm);}
+   //delOscTable(tm);
    
 end;
 

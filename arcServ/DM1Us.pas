@@ -46,8 +46,7 @@ type
     Label10: TLabel;  // таймер вычисл€емой группы
     PugeTimer: TTimer;  // таймер чистки базы срабатывает первый раз и с наступлние суток
     StartHourWriteTimer: TTimer;
-    TimerPingConnection_: TTimer;  // таймер форсированной записи в начале часа
-
+    TimerPingConnection_: TTimer;
     procedure PugeTimerTimer(Sender: TObject);
     procedure StartHourWriteTimerTimer(Sender: TObject);
 
@@ -73,6 +72,7 @@ type
     fLastConn: boolean;
     fLastReqTime: TDateTime;
     trayok: boolean;
+    firstcall: boolean;
     CountAnalog,CountEvent,CountAnalogPer,CountEventPer: integer;
     fRunSt: boolean;
     BlinkState: boolean;
@@ -110,7 +110,7 @@ type
     // запись тревог
     procedure WriteReport(id: integer);
     // запись отчетов
-    procedure DeleteArchive;
+    procedure DeleteArchive(first: boolean);
     // чистка архива
     procedure ForcedWriteLog(stop_: boolean = false);
     // форсированна€ запись трендов
@@ -198,6 +198,7 @@ procedure ServiceController(CtrlCode: DWord); stdcall;
 procedure TDm1s.Init;
 var i: integer;
 begin
+firstcall:=true;
 pugeTime:=-1;
 prevHour:=-1;
 serv:=0;
@@ -340,7 +341,7 @@ begin
      CountEvent:=0;
      CountAnalogPer:=0;
      CountEventPer:=0;
-     DeleteArchive;
+     DeleteArchive(false);
      ForcedWriteLog(true);
      prevHour:=-1;
    // if serv>31 then TerminateProcess(serv,0);
@@ -1115,11 +1116,11 @@ end;
 
 
 
-procedure TDm1s.DeleteArchive;
+procedure TDm1s.DeleteArchive(first: boolean);
 begin
     if DBMeneger=nil then exit;
     try
-    DBMeneger.ClearArchive(deletecircle);
+    DBMeneger.ClearArchive(deletecircle, first);
     except
       on E: Exception do CheckError(E);
    //  Log('Ќе удалось очистить архив! err: dm2s.DeleteArchive '+ E.Message,_DEBUG_ERROR);
@@ -1188,7 +1189,7 @@ else  FNID.hIcon:=self.Image1.picture.Icon.Handle;
      else
      Shell_NotifyIcon(NIM_MODIFY,@FNID);
      except
-     end;   
+     end;
 
 end;
 
@@ -1203,7 +1204,8 @@ begin
 if DBMeneger=nil then exit;
  if PugeTime<>DayofTheMonth(now) then
    begin
-     DeleteArchive;
+     DeleteArchive(firstcall);
+     firstcall:=false;
      PugeTime:=DayofTheMonth(now);
      DBMeneger.DayUtilite;
    end;

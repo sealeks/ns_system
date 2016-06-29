@@ -161,6 +161,7 @@ constructor TServerThread.create(irtItems : string; comNum: integer;comset: TCOM
 var fff:  string;
 begin
   inherited create(false);
+  IsMultiThread:=true;
   fpath := irtItems;
   fComNum:=comNum;
  // ForceControl:=false;
