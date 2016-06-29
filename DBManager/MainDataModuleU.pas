@@ -734,7 +734,7 @@ if val<1 then DL:=6 else DL:=val;
    tm:=incday(tm,-1);
 
    if (rtItems<>nil) then
-          rtItems.Log('delete trtabel start name: '+ trendDateToFileName(tm),_DEBUG_WARNING);
+          rtItems.Log('delete trtabel start name: '+ trendDateToFileName(tm),_DEBUG_MESSAGE);
 
    for i:=0 to depth do
        begin
@@ -743,21 +743,22 @@ if val<1 then DL:=6 else DL:=val;
        end;
 
    if (rtItems<>nil) then
-          rtItems.Log('delete trtabel stop name: '+ trendDateToFileName(tm),_DEBUG_WARNING);
+          rtItems.Log('delete trtabel stop name: '+ trendDateToFileName(tm),_DEBUG_MESSAGE);
 
 // очистка журнала и отчентов
 
-   if (rtItems<>nil) then
-          rtItems.Log('delete tabel start name: '+ alarmDateToFileName(tm) + ' ... ' + ReportDateToFileName(tm,REPORTTYPE_HOUR),_DEBUG_WARNING);
-
    tm:=incMonth(now,-(DL+1));
    tm:=incday(tm,-1);
+
+   if (rtItems<>nil) then
+          rtItems.Log('delete tabel start name: '+ alarmDateToFileName(tm) + ' ... ' + ReportDateToFileName(tm,REPORTTYPE_HOUR),_DEBUG_MESSAGE);
+
    delAlTable(tm);
    delRepTable(tm);
 
    if (first) then
      begin
-        depth:=30;
+        depth:=48;
         for i:=0 to depth do
           begin
             delAlTable(tm);
@@ -767,7 +768,7 @@ if val<1 then DL:=6 else DL:=val;
      end;
 
     if (rtItems<>nil) then
-          rtItems.Log('delete tabel stop name: '+ alarmDateToFileName(tm) + ' ... ' + ReportDateToFileName(tm,REPORTTYPE_HOUR),_DEBUG_WARNING);
+          rtItems.Log('delete tabel stop name: '+ alarmDateToFileName(tm) + ' ... ' + ReportDateToFileName(tm,REPORTTYPE_HOUR),_DEBUG_MESSAGE);
 // очистка отчетов
 
    //tm:=incYear(now,-DL);
