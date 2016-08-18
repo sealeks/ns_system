@@ -82,6 +82,7 @@ type
     groupname: string;
     fComSet: TCOMSet;
     freqId: integer;
+    groupId: integer;
     //freq_in: integer;
     freqTime: TdateTime;
     freqDelay: integer;
@@ -103,7 +104,7 @@ type
     procedure SetPrevValue(i: integer; val: longint);
     function FindItem(ID: longint): longint;
     function FindItemByName(Name: string): longint;
-    procedure AllInvalid;
+    procedure AllInvalid(groupId: integer = -1);
     procedure Sort;
     function GetReport: boolean;
     function GetSyncTime: boolean;
@@ -296,7 +297,7 @@ begin
   inherited Create;
   frtitems := _frtitems;
   freqId := -1;
-  //freqDirectId:=-1;
+  groupId := -1;
   NewItems := True;
   lastupdatetime := 0;
   fComSet := ComSet;
@@ -421,13 +422,21 @@ begin
   Result := inherited Items[i];
 end;
 
-procedure TAscItems.AllInvalid;
+procedure TAscItems.AllInvalid(groupId: integer =-1);
 var
   i: integer;
 begin
   for i := 0 to Count - 1 do
+    begin
     if items[i].id > -1 then
-      frtitems.ValidOff(items[i].id);
+      if (groupId<>-1) then
+        frtitems.ValidOff(items[i].id)
+      else
+        begin
+          if (items[i].GroupNum=groupId) then
+            frtitems.ValidOff(items[i].id)
+        end;
+    end;
 end;
 
 
