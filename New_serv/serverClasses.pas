@@ -147,7 +147,8 @@ type
     serverinf: TInterfaceServer;
     constructor Create(AOwner: TComponent; comset: TCOMSet;
       modbus: boolean = False); overload;
-    constructor Create(slavenum: integer; comset: TCOMSet); overload;
+    constructor Create(slavenum: integer; comset: TCOMSet;
+      modbus: boolean = False); overload;
     destructor Destroy; override;
     property groupNumber: integer read fgroupNumber write fGroupNumber;
     property ValidLevel: integer read fValid write fValid;
@@ -429,7 +430,7 @@ begin
   for i := 0 to Count - 1 do
     begin
     if items[i].id > -1 then
-      if (groupId<>-1) then
+      if (groupId=-1) then
         frtitems.ValidOff(items[i].id)
       else
         begin
@@ -493,11 +494,11 @@ begin
 end;
 
 
-constructor TServer.Create(slavenum: integer; comset: TCOMSet);
+constructor TServer.Create(slavenum: integer; comset: TCOMSet; modbus: boolean = False);
 var
   i: integer;
 begin
-  if (comset.rtc = 1) then { MODBUS = HOST}
+  if (modbus) then { MODBUS = HOST}
     serverinf := TIPModBusServer.Create(nil)
   else
     serverinf := TEtherServer.Create(nil);

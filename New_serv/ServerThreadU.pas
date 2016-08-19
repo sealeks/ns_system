@@ -60,7 +60,8 @@ type
     procedure reset;
     constructor Create(irtItems: string; comNum: integer; comset: TCOMSet;
       modbus: boolean = False); overload;
-    constructor Create(irtItems: string; comset: TCOMSet; slavenum: integer); overload;
+    constructor Create(irtItems: string; comset: TCOMSet; slavenum: integer;
+      modbus: boolean = False); overload;
     destructor Destroy; override;
     function DoRW: boolean;
     function term: boolean;
@@ -195,7 +196,7 @@ begin
 end;
 
 
-constructor TServerThread.Create(irtItems: string; comset: TCOMSet; slavenum: integer);
+constructor TServerThread.Create(irtItems: string; comset: TCOMSet; slavenum: integer; modbus: boolean = False);
 var
   fff: string;
 begin
@@ -205,7 +206,7 @@ begin
   itemsList := TStringList.Create;
   finitvar := False;
   finitserv := False;
-  server := Tserver.Create(slavenum, comset);
+  server := Tserver.Create(slavenum, comset, modbus);
   fanalizefunc := nil;
   curReadid := -1;
   curforceReadid := -1;
