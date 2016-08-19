@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 706
-  Top = 463
+  Left = 1018
+  Top = 657
   Width = 912
   Height = 622
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1072' '#1090#1088#1077#1074#1086#1075
@@ -105,7 +105,7 @@ object Form1: TForm1
       TabOrder = 1
       ColWidths = (
         150
-        544)
+        536)
     end
     object Panel1: TPanel
       Left = 0
@@ -316,7 +316,7 @@ object Form1: TForm1
           #1047#1085#1072#1095#1077#1085#1080#1077)
         ColWidths = (
           226
-          401)
+          393)
       end
     end
   end

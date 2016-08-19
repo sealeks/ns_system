@@ -582,7 +582,7 @@ begin
                       if (lstate) then
                         begin
                           frtitems.SetVal(acs.freqId, 0, 100);
-                          acs.AllInvalid(acs.GroupId);
+                          acs.AllInvalid(acs.GroupNum);
                         end;
                     end;
                 end;
@@ -717,8 +717,8 @@ begin
     AskItems_ := TAscItems(itemslist.Objects[i]);
     if AskItems_ <> nil then
     begin
-      AskItems_.groupId :=
-        frtitems.TegGroups.Idx[AskItems_.groupname];
+      AskItems_.groupNum :=
+        frtitems.TegGroups.ItemNum[AskItems_.groupname];
       AskItems_.freqId :=
         frtitems.GetSimpleID(trim(uppercase(AskItems_.groupname + '_REQ')));
       if (AskItems_.freqId > -1) then
