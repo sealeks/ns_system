@@ -287,10 +287,10 @@ begin
     self.initComset;
     SetupComPort;
     SetCommMask(FHandle, EV_TXEMPTY or EV_DSR or EV_RLSD);
+
     if self.flCtrl then
-    begin
       EscapeCommFunction(FHandle, CLRRTS);
-    end;
+
     PurgeComm(FHandle, PURGE_TXABORT or PURGE_TXCLEAR);
     PurgeComm(FHandle, PURGE_RXABORT or PURGE_RXCLEAR);
     Result := True;
@@ -298,7 +298,6 @@ begin
     DestroyHandle;
     FConnected := False;
     Result := False;
-    //raise;
   end;
 end;
 
@@ -381,7 +380,6 @@ begin
     end;
 
     DCB.ByteSize := integer(FDataBits) + 5;
-    //  DCB.EofChar := CHAR($0A);
     if not SetCommState(FHandle, DCB) then
       raise EComPort.Create('Unable to set com state: ' + LastErr);
   end;
@@ -522,17 +520,12 @@ begin
     begin
       Result := 0;
       PurgeComm(FHandle, PURGE_RXABORT or PURGE_RXCLEAR);
-      //PurgeComm(FHandle,PURGE_RXCLEAR);
     end
     else
       Result := bytestrans;
   finally
     DoneAsync(AsyncPtr);
   end;
-
-  // PurgeComm(FHandle,PURGE_TXABORT or PURGE_TXCLEAR);
-  // PurgeComm(FHandle,PURGE_RXABORT or PURGE_RXCLEAR);
-  // sleep(500);
 end;
 
 
@@ -674,7 +667,6 @@ begin
         self.fBaudRate := br115200
       else
         self.fBaudRate := br9600;
-
       if val.db = 5 then
         self.fDataBits := dbFive
       else
@@ -733,7 +725,6 @@ begin
       (val.red <> fcomset.red) or
       (val.bs <> fcomset.bs)) then
     begin
-      //self.blockSize:=val.bs;
       self.fred := val.red;
       self.ftrd := val.trd;
     end;
@@ -828,19 +819,12 @@ begin
 
   self.flCtrl := val.flCtrl;
 
-
-
-
   self.Timeouts.ReadInterval := val.ri;
   self.Timeouts.ReadTotalMultiplier := val.rtm;
   self.Timeouts.ReadTotalConstant := val.rtc;
   self.Timeouts.WriteTotalMultiplier := val.wtm;
   self.Timeouts.WriteTotalConstant := val.wtc;
 
-
-
-
-  //self.blockSize:=val.bs;
   self.fred := val.red;
   self.ftrd := val.trd;
 
@@ -858,7 +842,6 @@ begin
   baudrate := Tbaudrate(self.fcomset.br);
   stopBits := TStopBits(self.fcomset.sb);
   DataBits := TDataBits(self.fcomset.db);
-  // self.blockSize:= self.fcomset.bs;
   Timeouts.ReadInterval := self.fcomset.ri;
   Timeouts.ReadTotalMultiplier := self.fcomset.rtm;
   Timeouts.ReadTotalConstant := self.fcomset.rtc;

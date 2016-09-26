@@ -143,20 +143,19 @@ Item0=D:\prj\IMMI\programs\VCL\SPAComPort\
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=13
-Item0=..\units;..\vcl;..\Immi;..\New_serv;..\opcgetway;..\Immi_ArchOPCHDA;..\Configurator;..\DBManager;..\PostGresComp\src\component;..\PostGresComp\src\core;..\PostGresComp\src\dbc;..\PostGresComp\src\parsesql;..\PostGresComp\src\plain;..\logika_server;..\set_server
-Item1=..\units;..\vcl;..\immi;..\BaseTag;..\DBManager;E:\ADOIMMI\programs\DBManager
-Item2=immiform;..\units;..\vcl;..\MemShow;..\Редактор;..\компоненты редактора;..\immi;..\BaseTag;..\PostGresComp\src\component;..\PostGresComp\src\core;..\PostGresComp\src\dbc;..\PostGresComp\src\parsesql;..\PostGresComp\src\plain
-Item3=..\Immi;..\Ether;..\VCL;..\Units
-Item4=..\units;..\vcl;..\immi
-Item5=..\Immi;..\Ether;..\VCL;..\Unit
-Item6=..\Immi;..\Ether;..\VCL
-Item7=immiform;..\units;..\units\registration;..\vcl;..\MemShow;..\Редактор;..\компоненты редактора;..\immi
-Item8=$(DELPHI)\Lib\Debug;..\VCL;..\компоненты редактора;..\редактор;..\VCL\ifps3;..\Immi;..\VCL\SynEdit\Source;..\Units
-Item9=$(DELPHI)\Lib\Debug;..\units;..\VCL;..\компоненты редактора;..\редактор;..\VCL\ifps3;..\Immi;..\VCL\SynEdit\Source
-Item10=../Units
-Item11=..\VCL\SpaComPort;..\..\dcu;..\vcl\comportmy
-Item12=..\units;..\vcl
+Count=12
+Item0=..\units;..\vcl;..\immi;..\BaseTag
+Item1=immiform;..\units;..\vcl;..\MemShow;..\Редактор;..\компоненты редактора;..\immi;..\BaseTag;..\PostGresComp\src\component;..\PostGresComp\src\core;..\PostGresComp\src\dbc;..\PostGresComp\src\parsesql;..\PostGresComp\src\plain
+Item2=..\Immi;..\Ether;..\VCL;..\Units
+Item3=..\units;..\vcl;..\immi
+Item4=..\Immi;..\Ether;..\VCL;..\Unit
+Item5=..\Immi;..\Ether;..\VCL
+Item6=immiform;..\units;..\units\registration;..\vcl;..\MemShow;..\Редактор;..\компоненты редактора;..\immi
+Item7=$(DELPHI)\Lib\Debug;..\VCL;..\компоненты редактора;..\редактор;..\VCL\ifps3;..\Immi;..\VCL\SynEdit\Source;..\Units
+Item8=$(DELPHI)\Lib\Debug;..\units;..\VCL;..\компоненты редактора;..\редактор;..\VCL\ifps3;..\Immi;..\VCL\SynEdit\Source
+Item9=../Units
+Item10=..\VCL\SpaComPort;..\..\dcu;..\vcl\comportmy
+Item11=..\units;..\vcl
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=..\..\DCU

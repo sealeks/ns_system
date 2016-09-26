@@ -500,11 +500,6 @@ begin
     else
     time:= IncHour(time,-1);
 
-    //w_comand := DateTimeToStr(time);
-    //w_comand := DateTimeToStr(time);
-    //result:=0;
-    //res:=Nan;
-    //exit;
     result:=SETfindPeriod(slaveNumber, time, is30min, isfirst30min, data);
     if (result<>ANSWER_OK) then
     begin

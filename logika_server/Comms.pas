@@ -1113,33 +1113,6 @@ end;
 
 procedure TComPort.ShowPropForm;
 begin
-  {with TCommFrm.Create(nil) do begin
-    ComboBox1.ItemIndex := Integer(Port);
-    ComboBox2.ItemIndex := Integer(BaudRate);
-    ComboBox3.ItemIndex := Integer(StopBits);
-    ComboBox4.ItemIndex := Integer(DataBits);
-    ComboBox5.ItemIndex := Integer(Parity.Bits);
-    CheckBox1.Checked := FFlowControl.OutCtsFlow;
-    CheckBox2.Checked := FFlowControl.OutDsrFlow;
-    CheckBox3.Checked := FFlowControl.XonXoffOut;
-    CheckBox4.Checked := FFlowControl.XonXoffIn;
-    RadioGroup1.ItemIndex := Integer(FFlowControl.ControlRts);
-    RadioGroup2.ItemIndex := Integer(FFlowControl.ControlDtr);
-    if ShowModal = mrOK then begin
-      Port := TPortType(ComboBox1.ItemIndex);
-      BaudRate := TBaudRate(ComboBox2.ItemIndex);
-      StopBits := TStopBits(ComboBox3.ItemIndex);
-      DataBits := TDataBits(ComboBox4.ItemIndex);
-      Parity.FBits := TParityBits(ComboBox5.ItemIndex);
-      FFlowControl.OutCtsFlow := CheckBox1.Checked;
-      FFlowControl.OutDsrFlow := CheckBox2.Checked;
-      FFlowControl.XonXoffOut := CheckBox3.Checked;
-      FFlowControl.XonXoffIn := CheckBox4.Checked;
-      FFlowControl.ControlRts := TRtsFlowControl(RadioGroup1.ItemIndex);
-      FFlowControl.ControlDtr := TDtrFlowControl(RadioGroup2.ItemIndex);
-    end;
-    Free;
-  end;         }
 end;
 
 procedure TComPort.SetBaudRate(Value: TBaudRate);

@@ -7,8 +7,8 @@ uses
 
 type
   TNS_Logika_ServIO = class(TService)
-    procedure ServiceStart(Sender: TService; var Started: Boolean);
-    procedure ServiceStop(Sender: TService; var Stopped: Boolean);
+    procedure ServiceStart(Sender: TService; var Started: boolean);
+    procedure ServiceStop(Sender: TService; var Stopped: boolean);
     procedure ServiceShutdown(Sender: TService);
     procedure ServiceCreate(Sender: TObject);
     procedure ServiceDestroy(Sender: TObject);
@@ -39,33 +39,30 @@ begin
   Result := ServiceController;
 end;
 
-procedure TNS_Logika_ServIO.ServiceStart(Sender: TService; var Started: Boolean);
+procedure TNS_Logika_ServIO.ServiceStart(Sender: TService; var Started: boolean);
 begin
 
-  FormLogikaServer.PopupMenu1.Items[3].Visible:=false;
+  FormLogikaServer.PopupMenu1.Items[3].Visible := False;
 end;
 
-procedure TNS_Logika_ServIO.ServiceStop(Sender: TService; var Stopped: Boolean);
+procedure TNS_Logika_ServIO.ServiceStop(Sender: TService; var Stopped: boolean);
 begin
-   FormLogikaServer.Stop;
-  // FormLogikaServer.Free;
+  FormLogikaServer.Stop;
 end;
 
 procedure TNS_Logika_ServIO.ServiceShutdown(Sender: TService);
 begin
-   FormLogikaServer.Stop;
-
-  // FormLogikaServer.Free;
+  FormLogikaServer.Stop;
 end;
 
 procedure TNS_Logika_ServIO.ServiceCreate(Sender: TObject);
 begin
-FormLogikaServer:=TFormLogikaServer.Create(self);
+  FormLogikaServer := TFormLogikaServer.Create(self);
 end;
 
 procedure TNS_Logika_ServIO.ServiceDestroy(Sender: TObject);
 begin
-FormLogikaServer.Free;
+  FormLogikaServer.Free;
 end;
 
 end.

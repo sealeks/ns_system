@@ -10,10 +10,11 @@ type
 
   TGenericStruct = class
   public
-    function IsEmpty: Boolean; virtual; abstract;
+    function IsEmpty: boolean; virtual; abstract;
   end;
 
   PQueueItem = ^TQueueItem;
+
   TQueueItem = record
     Data: Pointer;
     Next: PQueueItem;
@@ -24,12 +25,13 @@ type
     Head, Tail: PQueueItem;
   public
     destructor Destroy; override;
-    function IsEmpty: Boolean; override;
+    function IsEmpty: boolean; override;
     procedure Add(Data: Pointer);
     function Remove: Pointer;
   end;
 
   PStackItem = ^TStackItem;
+
   TStackItem = record
     Data: Pointer;
     Previous: PStackItem;
@@ -40,12 +42,13 @@ type
     Top: PStackItem;
   public
     destructor Destroy; override;
-    function IsEmpty: Boolean; override;
+    function IsEmpty: boolean; override;
     procedure Push(Data: Pointer);
     function Pop: Pointer;
   end;
 
   PDoubleListItem = ^TDoubleListItem;
+
   TDoubleListItem = record
     Data: Pointer;
     Next, Previous: PDoubleListItem;
@@ -59,7 +62,8 @@ destructor TQueue.Destroy;
 var
   TempItem: PQueueItem;
 begin
-  while (Head <> nil) do begin
+  while (Head <> nil) do
+  begin
     TempItem := Head^.Next;
     Dispose(Head);
     Head := TempItem;
@@ -67,7 +71,7 @@ begin
   inherited Destroy;
 end;
 
-function TQueue.IsEmpty: Boolean;
+function TQueue.IsEmpty: boolean;
 begin
   Result := (Head = nil);
 end;
@@ -104,7 +108,8 @@ destructor TStack.Destroy;
 var
   TempItem: PStackItem;
 begin
-  while (Top <> nil) do begin
+  while (Top <> nil) do
+  begin
     TempItem := Top;
     Top := Top^.Previous;
     Dispose(TempItem);
@@ -112,7 +117,7 @@ begin
   inherited Destroy;
 end;
 
-function TStack.IsEmpty: Boolean;
+function TStack.IsEmpty: boolean;
 begin
   Result := (Top = nil);
 end;
