@@ -2309,18 +2309,6 @@ begin
           it.stop_ind := i;
           it.reqType_ := rtArchive;
           Add(it);
-                  {if curind>-1 then
-                   begin
-                     new(it);
-                     tempcurind:=curind+maxread_; // конещ блока текущих
-                     tempcurind:=min(maxcur,tempcurind);
-                     it.start_ind:=curind;
-                     it.stop_ind:=tempcurind;
-                     it.reqType_:=rtCurrent;
-                     curind:=tempcurind+1;    // следующий блок текущих
-                     if curind>maxcur then curind:=0; // если блок переполнен в ноль
-                     add(it);
-                   end;   }
           blocksize := 0;
         end;
         rtCurrent:   // стартуем виртуальный элемент текущих

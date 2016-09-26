@@ -22,7 +22,6 @@ type
 
   protected
     syncTime: TDateTime;
-    //    procedure SetRTItems; //for synhronize
   public
     fisstopped: boolean;
     server: TDeviceItems;
@@ -124,12 +123,12 @@ begin
   end;
 end;
 
+
 procedure TSETServerThread.InitVar;
 begin
   finitVar := (frtItems <> nil);
   server.Init;
 end;
-
 
 procedure TSETServerThread.UnInitVar;
 begin
@@ -151,8 +150,6 @@ end;
 
 
 function TSETServerThread.DoRW: boolean;
-var
-  Last: longint;
 begin
   Result := server.readDev;
 end;
@@ -164,11 +161,11 @@ begin
 end;
 
 
-
 procedure TSETServerThread.Stops;
 begin
   synchronize(reset);
 end;
+
 
 procedure TSETServerThread.reset;
 begin
@@ -201,16 +198,13 @@ begin
       if not server.Connected then
         synchronize(Initserv)
       else
-        Analize;
-      begin
-        if True then
         begin
+          Analize;
           if not DORW then
             sleep(10)
           else
             sleep(10);
         end;
-      end;
     end;
   except
   end;
@@ -224,6 +218,7 @@ begin
     except
     end;
   end;
+
 end;
 
 end.
