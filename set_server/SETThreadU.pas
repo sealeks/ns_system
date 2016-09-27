@@ -35,7 +35,6 @@ type
     constructor Create(irtItems: string; comNum: integer; comset: TCOMSet); overload;
     destructor Destroy; override;
     function DoRW: boolean;
-    function term: boolean;
     property isExecuted: boolean read fisExecuted write fisExecuted default False;
     property An: boolean read fAn write fAn default False;
     procedure Execute; override;
@@ -132,17 +131,15 @@ end;
 
 procedure TSETServerThread.UnInitVar;
 begin
+  server.UnInit;
   if (frtItems <> nil) then
     frtItems.Free;
-  server.UnInit;
 end;
 
 
 procedure TSETServerThread.InitServ;
 begin
-  if (frtItems = nil) then
-    exit;
-  if (not server.Connected) then
+  if (not server.Open) then
     exit;
   server.readDev;
   PredLastCommand := frtItems.command.CurLine;
@@ -152,12 +149,6 @@ end;
 function TSETServerThread.DoRW: boolean;
 begin
   Result := server.readDev;
-end;
-
-
-function TSETServerThread.term: boolean;
-begin
-  Result := self.Terminated;
 end;
 
 

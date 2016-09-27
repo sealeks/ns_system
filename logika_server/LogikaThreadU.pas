@@ -36,7 +36,6 @@ type
     constructor Create(irtItems: string; comNum: integer; comset: TCOMSet); overload;
     destructor Destroy; override;
     function DoRW: boolean;
-    function term: boolean;
     property isExecuted: boolean read fisExecuted write fisExecuted default False;
     property An: boolean read fAn write fAn default False;
     procedure Execute; override;
@@ -70,7 +69,7 @@ end;
 
 destructor TLogikaServerThread.Destroy;
 begin
-  self.Terminate;
+  Terminate;
   while not Terminated do
     sleep(50);
   UnInitVar;
@@ -135,16 +134,14 @@ end;
 
 procedure TLogikaServerThread.UnInitVar;
 begin
+  server.UnInit;
   if (frtItems <> nil) then
     frtItems.Free;
-  server.UnInit;
 end;
 
 
 procedure TLogikaServerThread.InitServ;
 begin
-  if (frtItems = nil) then
-    exit;
   if (not server.Open) then
     exit;
   server.readDev;
@@ -173,7 +170,6 @@ var
       else
       if (frtItems.Command[j].ID <> -1) then
       begin
-
         try
           Server.AddCommand(frtitems.GetName(frtItems.Command[j].ID),
             frtItems.Command[j].ValReal);
@@ -229,11 +225,6 @@ begin
   end;
 end;
 
-function TLogikaServerThread.term: boolean;
-begin
-  Result := self.Terminated;
-end;
-
 
 procedure TLogikaServerThread.Stops;
 begin
@@ -274,6 +265,7 @@ begin
         if not finitvar then
           synchronize(InitVar)
         else
+        begin
         if not server.Connected then
           synchronize(Initserv)
         else
@@ -283,6 +275,7 @@ begin
             sleep(10)
           else
             sleep(10);
+        end;
         end;
       except
         on E: Exception do

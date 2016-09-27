@@ -2013,10 +2013,7 @@ end;
 
 function TDeviceItems.Connected: boolean;
 begin
-   if ( not comserver.Connected) then
-     result:=Open
-   else
-     result:=true;
+  result:=comserver.Connected;
 end;
 
 function TDeviceItems.Open: boolean;

@@ -1949,7 +1949,6 @@ begin
                 begin
                 if (MinRaw=MaxRaw) {or (MinEU=MaxEU)} then
                 begin
-
                     // frtitems.SetValid(items[num].rtid[i],qld);
                      frtitems.SetVal(items[num].rtid[i],val,qld);
                     // if round(val)=41 then

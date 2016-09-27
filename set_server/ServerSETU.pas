@@ -191,19 +191,15 @@ begin
           tempStrList.Add(IntToStr(temComNum));
           ServerThread := TSETServerThread.Create(PathMem, temComNum, ComSet);
           threadCOMList.AddObject('COM' + IntToStr(temComNum), ServerThread);
-          ServerThread.InitVar;
           ChildComtrn := TreeView1.Items.AddChildObject(
             RS, 'COM' + IntToStr(temComNum), ServerThread.server);
           ChildComtrn.ImageIndex := 2;
-
           for j := 0 to ServerThread.server.Count - 1 do
           begin
             ChildSlavetrn := TreeView1.Items.AddChildObject(
               ChildComtrn, ServerThread.server.items[j].NameDev, ServerThread.server.items[j]);
             ChildSlavetrn.ImageIndex := 3;
           end;
-          //  self.TreeView1.
-
         end;
       end;
     end;

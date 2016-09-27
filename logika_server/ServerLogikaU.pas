@@ -182,7 +182,7 @@ begin
           tempStrList.Add(IntToStr(temComNum));
           ServerThread := TLogikaServerThread.Create(PathMem, temComNum, ComSet);
           threadCOMList.AddObject('COM' + IntToStr(temComNum), ServerThread);
-          ServerThread.InitVar;
+          //ServerThread.InitVar;
           ChildComtrn := TreeView1.Items.AddChildObject(
             RS, 'COM' + IntToStr(temComNum), ServerThread.server);
           ChildComtrn.ImageIndex := 2;
