@@ -4,7 +4,7 @@ interface
 
 uses
   Classes, LogikaClasses, Windows, memStructsU, SysUtils,
-  convFunc, InterfaceServerU,  MyComms, DateUtils;
+  convFunc, InterfaceServerU, MyComms, DateUtils;
 
 type
   TLogikaServerThread = class(TThread)
@@ -45,8 +45,8 @@ type
 implementation
 
 
-constructor TLogikaServerThread.Create(irtItems: string;
-  comNum: integer; comset: TCOMSet);
+constructor TLogikaServerThread.Create(irtItems: string; comNum: integer;
+  comset: TCOMSet);
 
 begin
   inherited Create(False);
@@ -56,14 +56,17 @@ begin
   itemsList := TStringList.Create;
   finitvar := False;
   frtItems := TanalogMems.Create(fpath);
+
   frtItems.SetAppName('#LogikaServ' + IntToStr(comNum));
   comset.db := 8;
   comset.sb := 1;
   syncTime := 0;
   comset.pt := 0;
   server := TDeviceItems.Create(frtItems, comNum, comset);
+
   PredLastCommand := 0;
   fAn := False;
+
 end;
 
 
@@ -76,6 +79,9 @@ begin
   itemsList.Free;
   server.Close;
   server.Free;
+
+  frtItems.Free;
+
   inherited Destroy;
 end;
 
@@ -127,16 +133,15 @@ end;
 
 procedure TLogikaServerThread.InitVar;
 begin
-  finitVar := (frtItems <> nil);
+  finitVar := True;
   server.Init;
 end;
 
 
 procedure TLogikaServerThread.UnInitVar;
 begin
+  finitVar := False;
   server.UnInit;
-  if (frtItems <> nil) then
-    frtItems.Free;
 end;
 
 
@@ -237,6 +242,7 @@ begin
   fisExecuted := False;
 end;
 
+
 procedure TLogikaServerThread.Execute;
 begin
   try
@@ -261,28 +267,28 @@ begin
         end;
         exit;
       end;
-      try
-        if not finitvar then
-          synchronize(InitVar)
-        else
-        begin
+      if not finitvar then
+        synchronize(InitVar)
+      else
+      begin
         if not server.Connected then
           synchronize(Initserv)
         else
         begin
-          Analize;
-          if not DORW then
-            sleep(10)
-          else
-            sleep(10);
+          try
+            Analize;
+            if not DORW then
+              sleep(10)
+            else
+              sleep(10);
+          except
+            on E: Exception do
+            begin
+              if frtItems <> nil then
+                frtitems.LogFatalError('Logika sever thread error In = ' + E.Message);
+            end
+          end;
         end;
-        end;
-      except
-        on E: Exception do
-        begin
-          if frtItems <> nil then
-            frtitems.LogFatalError('Logika sever thread error In');
-        end
       end;
     end;
   except

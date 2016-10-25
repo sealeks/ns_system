@@ -17,9 +17,8 @@ const
   MAXPERIOD_ARCHITEM = 31;
 
 const
-  REPORT_SET_LOGIKA = [REPORTTYPE_HOUR, REPORTTYPE_DEC,
-    REPORTTYPE_DAY, REPORTTYPE_MONTH, REPORTTYPE_30MIN,
-    REPORTTYPE_10MIN];
+  REPORT_SET_LOGIKA = [REPORTTYPE_HOUR, REPORTTYPE_DEC, REPORTTYPE_DAY,
+    REPORTTYPE_MONTH, REPORTTYPE_30MIN, REPORTTYPE_10MIN];
 
 type
   TUnitItemType = (uiReal, uiInteger, uiTime, uiMessage);
@@ -279,11 +278,10 @@ type
     property MaxUSD: byte read fMaxUSD;
   end;
 
-  //PTDeviceItem = ^TDeviceItem;
+
 
   TDeviceItems = class(TList)
   protected
-    //    frepList: TLogRepItems;
     fAllItemsList: TStringList;  // список всех элементов Команды
     funitList: TUnitItems;
     frtitems: TanalogMems;
@@ -338,8 +336,7 @@ function DevValtoRtitemVal(val: string; typV: TUnitItemType; var res: real): boo
 function RtitemValtoDevVal(val: real; typV: TUnitItemType; var res: string): boolean;
 function datetimetoDevformat(val: TDateTime): string;
 function getArrUnit(val: string; tm: string; var res: TreportArrUnit): boolean;
-// преобразование строки полученной из контроллера в
-// значение базы
+
 
 implementation
 
@@ -383,8 +380,8 @@ end;
 
 function datetimetoDevformat(val: TDateTime): string;
 begin
-  Result := formatdatetime(char(HT) + 'dd' + char(HT) + 'mm' + char(HT) + 'YY' +
-    char(HT) + 'hh' + char(HT) + 'nn' + char(HT) + 'ss' + char(FF), val);
+  Result := formatdatetime(char(HT) + 'dd' + char(HT) + 'mm' + char(HT) +
+    'YY' + char(HT) + 'hh' + char(HT) + 'nn' + char(HT) + 'ss' + char(FF), val);
 end;
 
 function getArrUnit(val: string; tm: string; var res: TreportArrUnit): boolean;
@@ -1207,17 +1204,6 @@ begin
   end;
 end;
 
-{function  TUnitItems.FindItemByName(Name_: string): integer;
-var i: integer;
-begin
-  result := -1;
-  for i := 0 to Count - 1 do
-    if (uppercase(Items[i].name) = uppercase(Name_)) then
-    begin
-      result := i;
-      exit;
-    end;
-end;   }
 
 function TUnitItems.addItem(id: integer): PTUnitItem;
 var
@@ -1237,121 +1223,114 @@ begin
 
   typ_ := frtitems[id].logTime;
   name_ := frtitems.GetName(id);
-  //  if FindItemByName(frtitems.GetName(id))<0 then
+
+  if not checkS(trim(uppercase(frtitems.GetDDEItem(id)))) then
   begin
-    if not checkS(trim(uppercase(frtitems.GetDDEItem(id)))) then
-    begin
-      log('Mетка nm:=' + frtitems.GetName(id) + ', id=' + IntToStr(id) +
-        ' не добавлена. Источник ' + frtitems.GetDDEItem(id) +
-        ' содержит некорректные символы!', _DEBUG_ERROR);
-    end;
+    log('Mетка nm:=' + frtitems.GetName(id) + ', id=' + IntToStr(id) +
+      ' не добавлена. Источник ' + frtitems.GetDDEItem(id) +
+      ' содержит некорректные символы!', _DEBUG_ERROR);
+  end;
 
-    if GetInfo(frtitems.GetDDEItem(id), ch_, num_, ind_, utyp_) then
-    begin
+  if GetInfo(frtitems.GetDDEItem(id), ch_, num_, ind_, utyp_) then
+  begin
 
-      // определяем тип метки
-      if not (typ_ in REPORT_SET_LOGIKA) then
-      begin
-        if ind_ > -1 then
-          reqtype := rtArray
-        else
-          reqtype := rtCurrent;
-      end
+    // определяем тип метки
+    if not (typ_ in REPORT_SET_LOGIKA) then
+    begin
+      if ind_ > -1 then
+        reqtype := rtArray
       else
-        reqtype := rtArchive;
+        reqtype := rtCurrent;
+    end
+    else
+      reqtype := rtArchive;
 
 
-      case reqtype of
+    case reqtype of
 
-        rtCurrent, rtArray:
+      rtCurrent, rtArray:
+      begin
+        findid := FindItemByParam(ch_, num_, ind_);
+        if findid > -1 then
         begin
-          findid := FindItemByParam(ch_, num_, ind_);
-          if findid > -1 then
-          begin
-            it := items[findid];
-            setlength(tempid, length(it.id) + 1);
-            for l := 0 to length(it.id) - 1 do
-              tempid[l] := it.id[l];
-            setlength(it.id, length(it.id) + 1);
-            for l := 0 to length(it.id) - 2 do
-              it.id[l] := tempid[l];
-            it.id[length(it.id) - 1] := id;
-            setlength(tempid, 0);
-            // log('Продублирована метка nm:='+frtitems.GetName(id)+', source='+frtitems.GetDDEItem(id)+', id='+
-            // inttostr(id) + ',ch:='+inttostr(ch_)+',num='+ inttostr(num_)+',ind='+ inttostr(ind_));
-            Result := items[findid];
-          end
-          else
-          begin
-            new(it);
-            it.Name := name_;
-            setlength(it.ID, 1);
-            it.ID[0] := id;
-            it.chanalNum := ch_;
-            it.paramNum := num_;
-            it.uiType := utyp_;
-            it.index := ind_;
-            it.typ := typ_;
-            // log('Добавлена метка nm:='+frtitems.GetName(id)+', source='+frtitems.GetDDEItem(id)+', id='+
-            //   inttostr(id) + ',ch:='+inttostr(ch_)+',num='+ inttostr(num_)+',ind='+ inttostr(ind_));
-            Add(it);
-            it.reqType := reqtype;
-            it.error := 0;
-            it.minRaw := frtitems[id].MinRaw;
-            it.maxRaw := frtitems[id].MaxRaw;
-            it.minEU := frtitems[id].MinEU;
-            it.maxEU := frtitems[id].MaxEU;
-            Result := it;
-            Sort;
-          end;
-        end;
-
-        rtArchive:
+          it := items[findid];
+          setlength(tempid, length(it.id) + 1);
+          for l := 0 to length(it.id) - 1 do
+            tempid[l] := it.id[l];
+          setlength(it.id, length(it.id) + 1);
+          for l := 0 to length(it.id) - 2 do
+            it.id[l] := tempid[l];
+          it.id[length(it.id) - 1] := id;
+          setlength(tempid, 0);
+          Result := items[findid];
+        end
+        else
         begin
-          ind_ := -2;
-          findid := FindItemByParam(ch_, num_, -2);
-          if findid > -1 then
-          begin
-            log('Архивная метка  не добавлена nm:=' + frtitems.GetName(
-              id) + ' источник source=' + frtitems.GetDDEItem(id) +
-              ' Имеет дупликат!', _DEBUG_ERROR);
-            exit;
-          end;
-
-
           new(it);
-          it.reqType := reqtype;
+          it.Name := name_;
           setlength(it.ID, 1);
           it.ID[0] := id;
           it.chanalNum := ch_;
           it.paramNum := num_;
           it.uiType := utyp_;
-          it.index := -2;
-          it.Name := name_;
+          it.index := ind_;
           it.typ := typ_;
-          it.lasttime := 0;
+          Add(it);
+          it.reqType := reqtype;
+          it.error := 0;
           it.minRaw := frtitems[id].MinRaw;
           it.maxRaw := frtitems[id].MaxRaw;
           it.minEU := frtitems[id].MinEU;
           it.maxEU := frtitems[id].MaxEU;
-          setlength(it.buffer, 0);
-          it.delt := round(frtitems[id].AlarmConst);
-          //  log('Архивная  метка добавлена nm:='+frtitems.GetName(id)+', source='+frtitems.GetDDEItem(id)+', id='+
-          //inttostr(id) + ',ch:='+inttostr(ch_)+',num='+ inttostr(num_)+',ind='+ inttostr(ind_));
-          Add(it);
-          it.error := 0;
-          Sort;
-          findid := FindItemByParam(ch_, num_, -2);
-          state[findid] := REPORT_NEEDKHOWDEEP;
           Result := it;
+          Sort;
         end;
       end;
-    end
-    else
-      log('Mетка nm:=' + frtitems.GetName(id) + ', id=' + IntToStr(id) +
-        ', ch:=' + IntToStr(ch_) + ', num=' + IntToStr(num_) +
-        ' не добавлена. Источник ' + frtitems.GetDDEItem(id) + ' задан не верно!', _DEBUG_ERROR);
-  end;
+
+      rtArchive:
+      begin
+        ind_ := -2;
+        findid := FindItemByParam(ch_, num_, -2);
+        if findid > -1 then
+        begin
+          log('Архивная метка  не добавлена nm:=' + frtitems.GetName(
+            id) + ' источник source=' + frtitems.GetDDEItem(id) +
+            ' Имеет дупликат!', _DEBUG_ERROR);
+          exit;
+        end;
+
+
+        new(it);
+        it.reqType := reqtype;
+        setlength(it.ID, 1);
+        it.ID[0] := id;
+        it.chanalNum := ch_;
+        it.paramNum := num_;
+        it.uiType := utyp_;
+        it.index := -2;
+        it.Name := name_;
+        it.typ := typ_;
+        it.lasttime := 0;
+        it.minRaw := frtitems[id].MinRaw;
+        it.maxRaw := frtitems[id].MaxRaw;
+        it.minEU := frtitems[id].MinEU;
+        it.maxEU := frtitems[id].MaxEU;
+        setlength(it.buffer, 0);
+        it.delt := round(frtitems[id].AlarmConst);
+        Add(it);
+        it.error := 0;
+        Sort;
+        findid := FindItemByParam(ch_, num_, -2);
+        state[findid] := REPORT_NEEDKHOWDEEP;
+        Result := it;
+      end;
+    end;
+  end
+  else
+    log('Mетка nm:=' + frtitems.GetName(id) + ', id=' + IntToStr(id) +
+      ', ch:=' + IntToStr(ch_) + ', num=' + IntToStr(num_) +
+      ' не добавлена. Источник ' + frtitems.GetDDEItem(id) +
+      ' задан не верно!', _DEBUG_ERROR);
 end;
 
 
@@ -1361,7 +1340,7 @@ var
   i: integer;
 begin
   // пузырьковая сортировка
-  fl := True;
+  fl := Count>1;
   while fl do
   begin
     fl := False;
@@ -1410,7 +1389,6 @@ begin
     exit;
   Result := length(items[id].buffer);
 end;
-
 
 
 
@@ -1610,7 +1588,6 @@ begin
   Result :=
     GetTimeReqByTabTimeforSys(vdt, typ[id], delt[id]);
   Result := incminute(Result, 1);
-  //result:=min(result,incminute (incPeriod(typ[id],now,1),1));
 end;
 
 
@@ -1649,8 +1626,8 @@ begin
   if (RtId[id] > 0) then
   begin
     res := frtitems[RtId[id]].ValidLevel;
-    if (res in [REPORT_NOACTIVE, REPORT_NEEDKHOWDEEP,
-      REPORT_NEEDREQUEST, REPORT_NORMAL, REPORT_NODATA, REPORT_DATA]) then
+    if (res in [REPORT_NOACTIVE, REPORT_NEEDKHOWDEEP, REPORT_NEEDREQUEST,
+      REPORT_NORMAL, REPORT_NODATA, REPORT_DATA]) then
       Result := res
     else
       Result := REPORT_NOACTIVE;
@@ -1700,7 +1677,6 @@ destructor TDeviceItem.Destroy;
 begin
   fAllItemsList.Free;
   funitList.Free;
-
 end;
 
 function TDeviceItem.Init: boolean;
@@ -1719,7 +1695,6 @@ begin
       id_req := frtitems.GetSimpleID(grname + '_REQ');
       id_inreq := frtitems.GetSimpleID(grname + '_INREQ');
     end;
-
   end;
   AddGroup;
 
@@ -1736,24 +1711,19 @@ begin
   Result := True;
   if (id_inreq < 0) then
   begin
-    //  if (id_req>-1) and (frtitems.Items[id_req].ID>-1) then
-    //  frtitems.SetVal(id_req,0,0);
     exit;
   end;
   if (frtitems.Items[id_inreq].ID < 0) then
   begin
-    //  if (id_req>-1) and (frtitems.Items[id_req].ID>-1) then
-    //  frtitems.SetVal(id_req,0,0);
     exit;
   end;
   if (frtitems.Items[id_inreq].ValReal > 0) then
   begin
-    //  if (id_req>-1) and (frtitems.Items[id_req].ID>-1) then
-    //  frtitems.SetVal(id_req,0,0);
     exit;
   end;
   Result := False;
 end;
+
 
 procedure TDeviceItem.setreqOff;
 begin
@@ -1762,30 +1732,25 @@ begin
   funitList.setAllValidOff;
 end;
 
+
 procedure TDeviceItem.setreqOn;
 begin
   if (id_req > -1) and (frtitems.Items[id_req].ID > -1) then
     frtitems.SetVal(id_req, 1, 100);
-
 end;
-
-
 
 
 function TDeviceItem.Read: integer;
 begin
   if flastconnect = 0 then
     flastconnect := now;
-
   if needreq then
   begin
-
     if not inconnected then
     begin
       if (SecondsBetween(now, flastconnect) < timeoutreq) then
         exit;
     end;
-
     Result := virtualitems.Read;
     if Result > 0 then
     begin
@@ -1794,7 +1759,7 @@ begin
       begin
         setreqOff;
         if (self.comserver.Connected) then
-           self.comserver.Close;
+          self.comserver.Close;
         inconnected := False;
         flastconnect := now;
       end;
@@ -1815,11 +1780,11 @@ begin
 end;
 
 
-
 function TDeviceItem.UnInit: boolean;
 begin
   funitList.Clear;
 end;
+
 
 function TDeviceItem.FindIt(val: string): PTUnitItem;
 var
@@ -1833,7 +1798,6 @@ begin
     Result := PTUnitItem(fAllItemsList.Objects[temp]);
   end;
 end;
-
 
 
 
@@ -1852,6 +1816,7 @@ begin
   end;
 end;
 
+
 function TDeviceItem.Sync: boolean;
 begin
   if virtualitems <> nil then
@@ -1861,8 +1826,8 @@ begin
   end;
 end;
 
-function TDeviceItem.GetNameDev: string;
 
+function TDeviceItem.GetNameDev: string;
 begin
   Result := '';
   if fGroupNum > -1 then
@@ -1878,6 +1843,7 @@ begin
     Result := virtualitems.curread;
 end;
 
+
 function TDeviceItem.getCursor: integer;
 begin
   Result := -1;
@@ -1885,8 +1851,8 @@ begin
     Result := virtualitems.virtCursor;
 end;
 
-procedure TDeviceItem.AddGroup;
 
+procedure TDeviceItem.AddGroup;
 var
   i, gri, fblocksize, temp: integer;
   newit: PtUnitItem;
@@ -1928,24 +1894,6 @@ begin
   end;
   virtualitems.proxy := fproxy;
   virtualitems.setUnitItems(funitList, fblocksize);
-
-    { text:='';
-   for i:=0 to funitList.Count-1 do
-     begin
-     //  funitList.items[i].chanalNum
-       text:=text+inttostr(i)+' item: ty:='+ inttostr(integer(funitList.items[i].reqType))+', ch:='+
-       inttostr(funitList.items[i].chanalNum)+', par:='+inttostr(funitList.items[i].paramNum)+', ind:='+
-       inttostr(funitList.items[i].index)+', utip:='+ inttostr(integer(funitList.items[i].uiType))+char(13);
-     end;
-   showmessage(text);
-   text:='';
-   for i:=0 to virtualitems.Count-1 do
-     begin
-     //  funitList.items[i].chanalNum
-       text:=text+inttostr(i)+'+i item: ty:='+ inttostr(integer(virtualitems.items[i].reqType_))+', start:='+
-       inttostr(virtualitems.items[i].start_ind)+', stop:='+inttostr(virtualitems.items[i].stop_ind)+char(13);
-     end;
-  //showmessage(text);    }
 end;
 
 
@@ -1971,9 +1919,10 @@ end;
 
 destructor TDeviceItems.Destroy;
 begin
-  frtitems.Free;
-  inherited Destroy;
+  //frtitems.Free;
+  comserver.Free;
   fAllItemsList.Free;
+  inherited Destroy;
 end;
 
 
@@ -2013,7 +1962,7 @@ end;
 
 function TDeviceItems.Connected: boolean;
 begin
-  result:=comserver.Connected;
+  Result := comserver.Connected;
 end;
 
 function TDeviceItems.Open: boolean;
@@ -2026,7 +1975,7 @@ begin
       comserver.fcomset.pt := 0
     else
       comserver.fcomset.pt := 4;
-    fconnected :=comserver.Open;
+    fconnected := comserver.Open;
     Result := fconnected;
     for i := 0 to Count - 1 do
       items[i].setComm(comserver);
@@ -2094,9 +2043,7 @@ var
 begin
   Result := True;
   for i := 0 to self.Count - 1 do
-  begin
     items[i].sync;
-  end;
 end;
 
 function TDeviceItems.inReq: boolean;
@@ -2118,7 +2065,6 @@ var
   ComSet: TComSEt;
   DI: TDeviceItem;
 begin
-  // trim(uppercase(frtitems.TegGroups.Items[i].App));
   for i := 0 to frtitems.TegGroups.Count - 1 do
   begin
     if (trim(uppercase(frtitems.TegGroups.Items[i].App)) = 'LOGIKASERV') then
@@ -2288,7 +2234,6 @@ begin
 
     if blocksize = 0 then
     begin
-
       case mainlist.items[i].reqType of
         rtArchive:
         begin
@@ -2388,7 +2333,6 @@ begin
             it.reqType_ := rtArray;
             Add(it);
             blocksize := 1;
-
           end;
         end;
 
@@ -2449,7 +2393,6 @@ begin
         Result := False;
     end;
   end;
-  //  result:=false;
 end;
 
 
@@ -2480,7 +2423,6 @@ begin
         Result := False;
     end;
   end;
-  //  result:=false;
 end;
 
 
@@ -2513,8 +2455,8 @@ begin
       outstr := GetComMessageCurr(id);
       if outstr = '' then
         exit;
-      Result := comserver.LogikareadStr(slave, proxy, byte(RCURRENT), outstr, maxUsd,
-        instr, (typeReq = ntDirect));
+      Result := comserver.LogikareadStr(slave, proxy, byte(RCURRENT),
+        outstr, maxUsd, instr, (typeReq = ntDirect));
       if Result = ANSWER_OK then
       begin
         ProccessMessageCurr(id, instr);
@@ -2525,8 +2467,8 @@ begin
       outstr := GetComMessageArr(id);
       if outstr = '' then
         exit;
-      Result := comserver.LogikareadStr(slave, proxy, byte(RARRAY), outstr, maxUsd,
-        instr, (typeReq = ntDirect));
+      Result := comserver.LogikareadStr(slave, proxy, byte(RARRAY),
+        outstr, maxUsd, instr, (typeReq = ntDirect));
       if Result = ANSWER_OK then
       begin
         ProccessMessageArr(id, instr);
@@ -2537,8 +2479,8 @@ begin
       outstr := GetComMessageArch(id);
       if outstr = '' then
         exit;
-      Result := comserver.LogikareadStr(slave, proxy, byte(RARCH), outstr, maxUsd,
-        instr, (typeReq = ntDirect));
+      Result := comserver.LogikareadStr(slave, proxy, byte(RARCH),
+        outstr, maxUsd, instr, (typeReq = ntDirect));
       if Result = ANSWER_OK then
       begin
         ProccessMessageArch(id, instr);
@@ -2599,7 +2541,6 @@ begin
   end;
   if vcur >= Count then
     vcur := 0;
-  //  если ничего не сделано возвращает -1;
 end;
 
 
@@ -2623,19 +2564,19 @@ begin
         mainlist.items[items[vcur].start_ind].chanalNum) + 'num' +
         IntToStr(mainlist.items[items[vcur].start_ind].paramNum) +
         'i1' + IntToStr(mainlist.items[items[vcur].start_ind].index) +
-        'ik' + IntToStr(mainlist.items[items[vcur].stop_ind].index) + ': ' +
-        mainlist.items[items[vcur].start_ind].Name + '-' +
+        'ik' + IntToStr(mainlist.items[items[vcur].stop_ind].index) +
+        ': ' + mainlist.items[items[vcur].start_ind].Name + '-' +
         mainlist.items[items[vcur].stop_ind].Name;
     rtArchive: Result := Result + 'ch' + IntToStr(
         mainlist.items[items[vcur].start_ind].chanalNum) + 'num' +
-        IntToStr(mainlist.items[items[vcur].start_ind].paramNum) + ': ' +
-        mainlist.items[items[vcur].start_ind].Name;
+        IntToStr(mainlist.items[items[vcur].start_ind].paramNum) +
+        ': ' + mainlist.items[items[vcur].start_ind].Name;
     else
-      Result := Result + 'ch' + IntToStr(mainlist.items[items[vcur].start_ind].chanalNum)
-        + 'num' + IntToStr(mainlist.items[items[vcur].start_ind].paramNum) +
-        ' - ' + 'ch' + IntToStr(
-        mainlist.items[items[vcur].stop_ind].chanalNum) + 'num' +
-        IntToStr(mainlist.items[items[vcur].stop_ind].paramNum) +
+      Result := Result + 'ch' +
+        IntToStr(mainlist.items[items[vcur].start_ind].chanalNum) +
+        'num' + IntToStr(mainlist.items[items[vcur].start_ind].paramNum) +
+        ' - ' + 'ch' + IntToStr(mainlist.items[items[vcur].stop_ind].chanalNum) +
+        'num' + IntToStr(mainlist.items[items[vcur].stop_ind].paramNum) +
         mainlist.items[items[vcur].start_ind].Name + '-' +
         mainlist.items[items[vcur].stop_ind].Name;
   end;
@@ -2707,8 +2648,8 @@ begin
   for i := items[id].start_ind to items[id].stop_ind do
   begin
     if mainlist.refCount[i] > 0 then
-      Result := Result + HT + IntToStr(mainlist.items[i].chanalNum) + HT +
-        IntToStr(mainlist.items[i].paramNum) + FF;
+      Result := Result + HT + IntToStr(mainlist.items[i].chanalNum) +
+        HT + IntToStr(mainlist.items[i].paramNum) + FF;
   end;
   if Result <> '' then
     Result := DLE + STX + Result + DLE + ETX;
@@ -2724,8 +2665,8 @@ begin
   i := items[id].start_ind;
   istop := items[id].stop_ind;
   icount := mainlist.items[istop].index - mainlist.items[i].index + 1;
-  Result := Result + HT + IntToStr(mainlist.items[i].chanalNum) + HT + IntToStr(
-    mainlist.items[i].paramNum) + HT + IntToStr(mainlist.items[i].index) +
+  Result := Result + HT + IntToStr(mainlist.items[i].chanalNum) + HT +
+    IntToStr(mainlist.items[i].paramNum) + HT + IntToStr(mainlist.items[i].index) +
     HT + IntToStr(icount) + FF;
   if Result <> '' then
     Result := DLE + STX + Result + DLE + ETX;
@@ -2738,18 +2679,17 @@ var
 begin
   Result := '';
   i := items[id].start_ind;
-  Result := Result + HT + IntToStr(mainlist.items[i].chanalNum) + HT + IntToStr(
-    mainlist.items[i].paramNum) + FF + datetimetoDevformat(mainlist.ReqTime2[i]) +
-    datetimetoDevformat(mainlist.ReqTime1[i]);
-  //showmessage(datetimetostr(mainlist.ReqTime1[i])+  '  -  ' + datetimetostr(mainlist.ReqTime2[i]));
+  Result := Result + HT + IntToStr(mainlist.items[i].chanalNum) + HT +
+    IntToStr(mainlist.items[i].paramNum) + FF +
+    datetimetoDevformat(mainlist.ReqTime2[i]) + datetimetoDevformat(
+    mainlist.ReqTime1[i]);
   if (mainlist.items[i].typ = REPORTTYPE_DAY) then
   begin
-  {LogDebug('logika-debug', '   ' + inttostr(mainlist.items[i].chanalNum)+'|'+inttostr(mainlist.items[i].paramNum) +
-  '  :  ' + datetimetostr(mainlist.ReqTime1[i])+  '  -  ' + datetimetostr(mainlist.ReqTime2[i]));}
     if rtitems <> nil then
-      rtitems.Log('   ' + IntToStr(mainlist.items[i].chanalNum) + '|' +
-        IntToStr(mainlist.items[i].paramNum) + '  :  ' + datetimetostr(mainlist.ReqTime1[i]) +
-        '  -  ' + datetimetostr(mainlist.ReqTime2[i]), _DEBUG_MESSAGE);
+      rtitems.Log('   ' + IntToStr(mainlist.items[i].chanalNum) +
+        '|' + IntToStr(mainlist.items[i].paramNum) + '  :  ' +
+        datetimetostr(mainlist.ReqTime1[i]) + '  -  ' +
+        datetimetostr(mainlist.ReqTime2[i]), _DEBUG_MESSAGE);
   end;
   if Result <> '' then
     Result := DLE + STX + Result + DLE + ETX;
@@ -2777,24 +2717,16 @@ begin
       outstr := GetCommand(It, val);
       if outstr = '' then
         exit;
-      Result := comserver.LogikareadStr(slave, proxy, byte(WCURRENT), outstr, maxUsd,
-        instr, (typeReq = ntDirect));
-      if Result = ANSWER_OK then
-      begin
-        //   ProccessCommand(id,instr);
-      end;
+      Result := comserver.LogikareadStr(slave, proxy, byte(WCURRENT),
+        outstr, maxUsd, instr, (typeReq = ntDirect));
     end;
     rtArray:
     begin
       outstr := GetCommandArr(It, val);
       if outstr = '' then
         exit;
-      Result := comserver.LogikareadStr(slave, proxy, byte(WARRAY), outstr, maxUsd,
-        instr, (typeReq = ntDirect));
-      if Result = ANSWER_OK then
-      begin
-        //   ProccessCommandArr(id,instr);
-      end;
+      Result := comserver.LogikareadStr(slave, proxy, byte(WARRAY),
+        outstr, maxUsd, instr, (typeReq = ntDirect));
     end;
   end;
 end;
@@ -2809,16 +2741,11 @@ begin
   if not comserver.Connected then
     exit;
   outstr := self.GetTimeC;
-  Result := comserver.LogikareadStr(slave, proxy, byte(WCURRENT), outstr, maxUsd,
-    instr, (typeReq = ntDirect));
-  {if Result = ANSWER_OK then
-  begin
-    //result:=0;
-  end;}
-
+  Result := comserver.LogikareadStr(slave, proxy, byte(WCURRENT),
+    outstr, maxUsd, instr, (typeReq = ntDirect));
   outstr := self.GetDateC;
-  Result := comserver.LogikareadStr(slave, proxy, byte(WCURRENT), outstr, maxUsd,
-    instr, (typeReq = ntDirect));
+  Result := comserver.LogikareadStr(slave, proxy, byte(WCURRENT),
+    outstr, maxUsd, instr, (typeReq = ntDirect));
   if Result = ANSWER_OK then
   begin
 
@@ -2836,8 +2763,8 @@ begin
   Result := '';
   if not RtitemValtoDevVal(val, It.uiType, drval) then
     exit;
-  Result := Result + HT + IntToStr(It.chanalNum) + HT + IntToStr(It.paramNum) + FF +
-    HT + Decode_Win_to_DOS(drval) + FF;
+  Result := Result + HT + IntToStr(It.chanalNum) + HT + IntToStr(It.paramNum) +
+    FF + HT + Decode_Win_to_DOS(drval) + FF;
   if Result <> '' then
     Result := DLE + STX + Result + DLE + ETX;
 end;
@@ -3100,4 +3027,3 @@ begin
 end;
 
 end.
-

@@ -1756,7 +1756,6 @@ destructor TDeviceItem.Destroy;
 begin
   fAllItemsList.Free;
   funitList.Free;
-
 end;
 
 function TDeviceItem.Init: boolean;
@@ -1992,7 +1991,6 @@ end;
 
 destructor TDeviceItems.Destroy;
 begin
-  frtitems.Free;
   inherited Destroy;
   fAllItemsList.Free;
 end;

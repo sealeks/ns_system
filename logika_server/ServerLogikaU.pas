@@ -40,7 +40,6 @@ type
     Image2: TImage;
     Timer2: TTimer;
     Timer4: TTimer;
-    //  procedure Button3Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure N3Click(Sender: TObject);
@@ -182,7 +181,6 @@ begin
           tempStrList.Add(IntToStr(temComNum));
           ServerThread := TLogikaServerThread.Create(PathMem, temComNum, ComSet);
           threadCOMList.AddObject('COM' + IntToStr(temComNum), ServerThread);
-          //ServerThread.InitVar;
           ChildComtrn := TreeView1.Items.AddChildObject(
             RS, 'COM' + IntToStr(temComNum), ServerThread.server);
           ChildComtrn.ImageIndex := 2;

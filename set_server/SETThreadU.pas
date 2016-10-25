@@ -68,13 +68,17 @@ end;
 
 destructor TSETServerThread.Destroy;
 begin
-  self.Terminate;
+  Terminate;
   while not Terminated do
     sleep(50);
   UnInitVar;
+
   itemsList.Free;
   server.Close;
   server.Free;
+
+  frtItems.Free;
+
   inherited Destroy;
 end;
 
@@ -125,15 +129,14 @@ end;
 
 procedure TSETServerThread.InitVar;
 begin
-  finitVar := (frtItems <> nil);
+  finitVar := True;
   server.Init;
 end;
 
 procedure TSETServerThread.UnInitVar;
 begin
+  finitVar := False;
   server.UnInit;
-  if (frtItems <> nil) then
-    frtItems.Free;
 end;
 
 
@@ -164,7 +167,6 @@ begin
 end;
 
 procedure TSETServerThread.Execute;
-
 begin
   try
     fisExecuted := True;
@@ -186,16 +188,24 @@ begin
       if not finitvar then
         synchronize(InitVar)
       else
-      if not server.Connected then
-        synchronize(Initserv)
-      else
-        begin
-          Analize;
-          if not DORW then
-            sleep(10)
-          else
-            sleep(10);
-        end;
+      begin
+        if not server.Connected then
+          synchronize(Initserv)
+        else
+          try
+            Analize;
+            if not DORW then
+              sleep(10)
+            else
+              sleep(10);
+          except
+            on E: Exception do
+            begin
+              if frtItems <> nil then
+                frtitems.LogFatalError('Set sever thread error In = ' + E.Message);
+            end
+          end;
+      end;
     end;
   except
   end;
